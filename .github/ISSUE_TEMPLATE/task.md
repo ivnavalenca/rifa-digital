@@ -1,33 +1,57 @@
----
-name: Task
-about: Criar uma tarefa técnica
-title: "Task - "
-labels: task
-assignees: ''
----
+# Task Template
 
-## Descrição da tarefa
+## Título da Task
 
-Explique o que precisa ser feito.
+Descreva brevemente a tarefa técnica a ser realizada.
 
----
+------------------------------------------------------------------------
+
+## User Story Relacionada
+
+USXX - Nome da User Story
+
+Epic: EXX - Nome do Épico
+
+------------------------------------------------------------------------
+
+## Descrição
+
+Explique claramente o que precisa ser feito nesta tarefa.
+
+------------------------------------------------------------------------
 
 ## Objetivo
 
-Qual o objetivo dessa tarefa dentro do projeto?
+Qual o objetivo desta tarefa dentro da User Story?
 
----
+------------------------------------------------------------------------
 
 ## Subtarefas
 
-- [ ] Subtarefa 1
-- [ ] Subtarefa 2
-- [ ] Subtarefa 3
+-   [ ] Subtarefa 1
+-   [ ] Subtarefa 2
+-   [ ] Subtarefa 3
 
----
+------------------------------------------------------------------------
 
-## Critérios de conclusão
+## Critérios de Conclusão
 
-- [ ] Código implementado
-- [ ] Revisado
-- [ ] Integrado ao projeto
+-   [ ] Implementação concluída
+-   [ ] Código revisado
+-   [ ] Testes realizados
+-   [ ] Documentação atualizada
+
+------------------------------------------------------------------------
+
+## Informações adicionais
+
+Adicione links, referências ou observações relevantes.
+
+------------------------------------------------------------------------
+
+## Campos recomendados no Board
+
+Tipo: Task
+Sprint: Sprint X
+Prioridade: Alta / Média / Baixa
+Story Points: 1 ou 2
