@@ -51,7 +51,7 @@ Adicione links, referências ou observações relevantes.
 
 ## Campos recomendados no Board
 
-Tipo: Task
-Sprint: Sprint X
-Prioridade: Alta / Média / Baixa
+Tipo: Task\
+Sprint: Sprint X\
+Prioridade: Alta / Média / Baixa\
 Story Points: 1 ou 2
