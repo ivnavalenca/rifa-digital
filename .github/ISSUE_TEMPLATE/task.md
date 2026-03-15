@@ -2,13 +2,12 @@
 about: Criar uma tarefa técnica relacionada a uma User Story
 labels: task
 name: Task
-title: Task -
+title: TXX -
 ---
 
 ## User Story Relacionada
 
-USXX - Nome da User Story
-
+USXX - Nome da User Story\
 Epic: EXX - Nome do Épico
 
 ------------------------------------------------------------------------
@@ -16,12 +15,6 @@ Epic: EXX - Nome do Épico
 ## Descrição
 
 Explique claramente o que precisa ser feito nesta tarefa.
-
-------------------------------------------------------------------------
-
-## Objetivo
-
-Qual o objetivo desta tarefa dentro da User Story?
 
 ------------------------------------------------------------------------
 
@@ -39,12 +32,6 @@ Qual o objetivo desta tarefa dentro da User Story?
 -   [ ] Código revisado
 -   [ ] Testes realizados
 -   [ ] Documentação atualizada
-
-------------------------------------------------------------------------
-
-## Informações adicionais
-
-Adicione links, referências ou observações relevantes.
 
 ------------------------------------------------------------------------
 
