@@ -1,7 +1,7 @@
 ---
 name: Epic
 about: Criar uma Epic (grande funcionalidade do sistema)
-title: "Epic - "
+title: "E00 - "
 labels: epic
 assignees: ''
 ---
