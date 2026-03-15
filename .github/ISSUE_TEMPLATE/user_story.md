@@ -6,6 +6,12 @@ labels: user-story
 assignees: ''
 ---
 
+## Epic
+
+Relacionado ao épico: #
+
+---
+
 ## História de Usuário
 
 Como **[tipo de usuário]**  
@@ -16,7 +22,7 @@ para **[benefício]**.
 
 ## Descrição
 
-Descreva com mais detalhes a funcionalidade ou necessidade do usuário.
+Explique com mais detalhes o contexto da funcionalidade.
 
 ---
 
@@ -28,16 +34,16 @@ Descreva com mais detalhes a funcionalidade ou necessidade do usuário.
 
 ---
 
-## Regras de Negócio
+## Regras de Negócio (se houver)
 
 - Regra 1
 - Regra 2
 
 ---
 
-## Protótipo ou Referência
+## Protótipo / Referência (opcional)
 
-Link para protótipo, wireframe ou documentação.
+Link para protótipo, mockup ou documentação.
 
 ---
 
