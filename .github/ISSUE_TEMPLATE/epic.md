@@ -28,9 +28,9 @@ Explique qual valor essa funcionalidade gera para os usuários.
 
 Liste as histórias de usuário que fazem parte desta Epic.
 
-- [ ] US01 -
-- [ ] US02 -
-- [ ] US03 -
+- [ ] # US01 -
+- [ ] # US02 -
+- [ ] # US03 -
 
 ---
 
@@ -45,3 +45,13 @@ Liste as histórias de usuário que fazem parte desta Epic.
 ## Observações
 
 Informações adicionais relevantes.
+
+---
+
+## Rastreamento
+
+As User Stories devem referenciar este épico utilizando o campo **Epic** no template de User Story.
+
+Exemplo:
+
+Epic: #ID_DO_EPICO
