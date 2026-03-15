@@ -1,7 +1,7 @@
 ---
 name: User Story
 about: Criar uma nova história de usuário
-title: "USXX - "
+title: "US - "
 labels: user-story
 assignees: ''
 ---
@@ -16,7 +16,7 @@ para **[benefício]**.
 
 ## Descrição
 
-Explique com mais detalhes o contexto da funcionalidade.
+Descreva com mais detalhes a funcionalidade ou necessidade do usuário.
 
 ---
 
@@ -28,16 +28,16 @@ Explique com mais detalhes o contexto da funcionalidade.
 
 ---
 
-## Regras de Negócio (se houver)
+## Regras de Negócio
 
 - Regra 1
 - Regra 2
 
 ---
 
-## Protótipo / Referência (opcional)
+## Protótipo ou Referência
 
-Link para protótipo, mockup ou documentação.
+Link para protótipo, wireframe ou documentação.
 
 ---
 
