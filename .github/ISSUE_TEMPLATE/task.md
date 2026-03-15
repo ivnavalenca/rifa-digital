@@ -1,10 +1,9 @@
-# Task Template
-
-## Título da Task
-
-Descreva brevemente a tarefa técnica a ser realizada.
-
-------------------------------------------------------------------------
+---
+about: Criar uma tarefa técnica relacionada a uma User Story
+labels: task
+name: Task
+title: Task -
+---
 
 ## User Story Relacionada
 
