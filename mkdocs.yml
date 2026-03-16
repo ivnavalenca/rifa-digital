@@ -1,3 +1,4 @@
+
 site_name: Rifa Digital
 site_description: Documentação do sistema Rifa Digital
 site_author: Ivna Valença de Oliveira
@@ -9,6 +10,7 @@ repo_name: ivnavalenca/rifa-digital
 theme:
   name: material
   language: pt-BR
+
   logo: assets/images/logo.png
   favicon: assets/images/favicon.png
 
@@ -33,6 +35,7 @@ theme:
     - navigation.expand
     - navigation.top
     - navigation.indexes
+    - navigation.path
     - content.code.copy
     - search.highlight
     - search.share
@@ -47,7 +50,6 @@ markdown_extensions:
   - md_in_html
   - toc:
       permalink: true
-
   - pymdownx.details
   - pymdownx.tabbed
   - pymdownx.highlight
@@ -68,6 +70,9 @@ extra_javascript:
 extra:
   mermaid:
     theme: default
+
+copyright: |
+  © 2026 Ivna Valença de Oliveira • Projeto educacional — Rifa Digital
 
 nav:
   - Home: index.md
