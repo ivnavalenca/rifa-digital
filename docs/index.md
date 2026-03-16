@@ -1,15 +1,21 @@
-
 # Rifa Digital
+
+![Rifa Digital](assets/images/rifa-digital.png)
 
 Bem-vindo à documentação do sistema **Rifa Digital**.
 
-Este projeto demonstra a engenharia completa de um sistema de software,
-incluindo produto, UX, requisitos, arquitetura, processo de desenvolvimento
-e testes.
+Este projeto demonstra a engenharia completa de um sistema de software, incluindo:
+
+- Produto
+- UX
+- Requisitos
+- Arquitetura
+- Processo de Desenvolvimento
+- Testes
 
 ---
 
-# Estrutura da Documentação
+## Engenharia do Sistema
 
 ```mermaid
 flowchart TD
@@ -24,148 +30,64 @@ Testing --> User[User Documentation]
 
 ---
 
-## Product
+## Navegação da Documentação
 
-Documentos relacionados à **visão do produto**.
+<div class="grid cards" markdown>
 
-Inclui:
+- :material-lightbulb-outline: **Product**
+  ---
+  Visão do produto, stakeholders e roadmap.
 
-- visão do produto
-- roadmap
-- stakeholders
+  [:arrow_right: Acessar](product/README.md)
 
-Diretório:
+- :material-account-group: **UX**
+  ---
+  Personas, jornadas e fluxos de interação.
 
-```
-product/
-```
+  [:arrow_right: Acessar](ux/README.md)
 
----
+- :material-file-document-outline: **Requirements**
+  ---
+  User Stories, casos de uso e rastreabilidade.
 
-## UX
+  [:arrow_right: Acessar](requirements/README.md)
 
-Documentos relacionados à **experiência do usuário**.
+- :material-sitemap: **Architecture**
+  ---
+  Arquitetura do sistema e modelo de dados.
 
-Inclui:
+  [:arrow_right: Acessar](architecture/README.md)
 
-- personas
-- jornada do usuário
-- fluxos de interação
+- :material-cogs: **Process**
+  ---
+  Processo de desenvolvimento adotado.
 
-Diretório:
+  [:arrow_right: Acessar](process/processo-desenvolvimento.md)
 
-```
-ux/
-```
+- :material-test-tube: **Testing**
+  ---
+  Estratégia de testes e garantia de qualidade.
 
----
+  [:arrow_right: Acessar](testing/README.md)
 
-## Requirements
+- :material-book-open-variant: **User**
+  ---
+  Manual de uso do sistema.
 
-Documentação de **engenharia de requisitos**.
+  [:arrow_right: Acessar](user/manual-usuario.md)
 
-Inclui:
-
-- user stories
-- critérios de aceitação
-- casos de uso
-- rastreabilidade
-
-Diretório:
-
-```
-requirements/
-```
+</div>
 
 ---
 
-## Architecture
+## Sobre o Projeto
 
-Documentação da **arquitetura do sistema**.
+O **Rifa Digital** é um sistema desenvolvido para permitir a criação e gestão de rifas digitais.
 
-Inclui:
+Funcionalidades principais:
 
-- visão geral do sistema
-- arquitetura da aplicação
-- modelo C4
-- modelo de dados
-
-Diretório:
-
-```
-architecture/
-```
-
----
-
-## Process
-
-Documentação do **processo de desenvolvimento**.
-
-Inclui:
-
-- metodologia utilizada
-- fluxo de desenvolvimento
-- práticas adotadas pela equipe
-
-Diretório:
-
-```
-process/
-```
-
----
-
-## Testing
-
-Documentação de **qualidade e testes**.
-
-Inclui:
-
-- estratégia de testes
-- plano de testes
-- cenários BDD
-- casos de teste
-- execução de testes
-- métricas de qualidade
-- rastreabilidade
-
-Diretório:
-
-```
-testing/
-```
-
----
-
-## User
-
-Documentação voltada ao **usuário final do sistema**.
-
-Inclui:
-
-- manual do usuário
-- instruções de uso do sistema
-
-Diretório:
-
-```
-user/
-```
-
----
-
-# Navegação Recomendada
-
-Sugere-se seguir a seguinte ordem de leitura:
-
-1. Product
-2. UX
-3. Requirements
-4. Architecture
-5. Process
-6. Testing
-7. User
-
-Essa sequência permite compreender o sistema desde a **visão do produto
-até a validação por testes e uso do sistema**.
+- criação de campanhas
+- seleção de números
+- reserva de números
+- confirmação de pagamento
+- sorteio automático
