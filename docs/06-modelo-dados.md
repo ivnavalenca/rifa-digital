@@ -140,53 +140,7 @@ Rifa 1 --- 1 Sorteio
 
 # 4. Diagrama do Modelo de Dados
 
-``` mermaid
-erDiagram
 
-RIFA ||--o{{ NUMERO : possui
-NUMERO }}o--|| COMPRADOR : pertence
-NUMERO ||--|| PAGAMENTO : possui
-RIFA ||--|| SORTEIO : gera
-
-RIFA {{
-  int id
-  string nome
-  string descricao
-  float valor_numero
-  int quantidade_numeros
-  date data_sorteio
-}}
-
-NUMERO {{
-  int id
-  int numero
-  string status
-  int rifa_id
-  int comprador_id
-}}
-
-COMPRADOR {{
-  int id
-  string nome
-  string telefone
-  string email
-}}
-
-PAGAMENTO {{
-  int id
-  float valor
-  date data_pagamento
-  string status
-  int numero_id
-}}
-
-SORTEIO {{
-  int id
-  int rifa_id
-  int numero_sorteado
-  date data_sorteio
-}}
-```
 
 ------------------------------------------------------------------------
 
