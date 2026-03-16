@@ -42,8 +42,8 @@ pagamentos - realiza sorteio
 **Participante** - visualiza números disponíveis - escolhe números da
 rifa - acompanha resultados
 
-**Usuário mal-intencionado** - tenta explorar falhas do sistema\
-- ajuda a identificar requisitos de segurança e possíveis bugs
+**Usuário mal-intencionado** - tenta explorar falhas do sistema - ajuda
+a identificar requisitos de segurança e possíveis bugs
 
 ------------------------------------------------------------------------
 
@@ -61,9 +61,28 @@ O projeto segue práticas de **Scrum**, incluindo:
 
 Ferramentas utilizadas:
 
+-   GitHub Issues
 -   GitHub Projects
--   Issues
 -   Kanban Board
+
+------------------------------------------------------------------------
+
+# 📊 Gestão do Projeto
+
+A gestão do backlog, sprints e tarefas do projeto é realizada utilizando
+**GitHub Projects**.
+
+O board inclui:
+
+-   Epics
+-   User Stories
+-   Tasks
+-   Bugs
+-   Story Points
+-   Sprints
+
+🔗 Project Board\
+https://github.com/users/ivnavalenca/projects/4
 
 ------------------------------------------------------------------------
 
@@ -146,13 +165,13 @@ O desenvolvimento foi organizado em **4 sprints**:
 
 O projeto utiliza os seguintes artefatos:
 
--   **Epics**
--   **User Stories**
--   **Tasks**
--   **Bugs**
--   **Story Points**
--   **Sprints**
--   **Kanban Board**
+-   Epics
+-   User Stories
+-   Tasks
+-   Bugs
+-   Story Points
+-   Sprints
+-   Kanban Board
 
 Todos gerenciados via **GitHub Projects**.
 
