@@ -1,4 +1,3 @@
-
 site_name: Rifa Digital
 site_description: Documentação do sistema Rifa Digital
 site_author: Ivna Valença
@@ -10,11 +9,29 @@ repo_url: https://github.com/ivnavalenca/rifa-digital
 theme:
   name: material
   language: pt-BR
+
+  palette:
+
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+
   features:
     - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - navigation.path
     - search.highlight
     - content.code.copy
 
