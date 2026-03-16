@@ -9,6 +9,8 @@ repo_name: ivnavalenca/rifa-digital
 theme:
   name: material
   language: pt-BR
+  logo: assets/images/logo.png
+  favicon: assets/images/favicon.png
 
   palette:
     - scheme: default
@@ -41,6 +43,8 @@ plugins:
 markdown_extensions:
   - admonition
   - tables
+  - attr_list
+  - md_in_html
   - toc:
       permalink: true
   - pymdownx.details
