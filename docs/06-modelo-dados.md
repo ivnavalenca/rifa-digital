@@ -1,160 +1,102 @@
-# Modelo de Dados
+# Modelo de Dados --- Rifa Digital
 
-Este documento descreve o modelo de dados do sistema **Rifa Digital**,
-apresentando as entidades principais e seus relacionamentos.
-
-O modelo de dados representa as informações necessárias para o
-funcionamento do sistema, incluindo rifas, números, compradores e
-pagamentos.
+Este documento apresenta o modelo de dados do sistema **Rifa Digital**,
+descrevendo as principais entidades e relacionamentos utilizados para
+armazenar informações da aplicação.
 
 ------------------------------------------------------------------------
 
-# 1. Visão Geral do Modelo
+# 1. Entidades do Sistema
 
-O sistema armazena informações sobre:
+## Rifa
 
--   rifas criadas
--   números disponíveis
--   compradores
--   pagamentos
--   resultados do sorteio
+Representa uma campanha de rifa criada por um organizador.
 
-Principais entidades do sistema:
+Campos principais:
 
--   Rifa
--   Numero
--   Comprador
--   Pagamento
--   Sorteio
-
-------------------------------------------------------------------------
-
-# 2. Entidades do Sistema
-
-## 2.1 Rifa
-
-Representa uma campanha de rifa criada no sistema.
-
-**Atributos:**
-
--   id\
--   nome\
--   descricao\
--   valor_numero\
--   quantidade_numeros\
--   data_sorteio\
+-   id
+-   nome
+-   descricao
+-   valor_numero
+-   quantidade_numeros
+-   data_sorteio
 -   status
 
-**Relacionamentos:**
-
-Uma rifa possui vários números.
-
 ------------------------------------------------------------------------
 
-## 2.2 Numero
+## Número
 
 Representa um número disponível na rifa.
 
-**Atributos:**
+Campos principais:
 
--   id\
--   numero\
--   status\
--   rifa_id\
+-   id
+-   numero
+-   status (disponível, reservado, vendido)
+-   rifa_id
 -   comprador_id
-
-**Status possíveis:**
-
--   disponivel\
--   reservado\
--   vendido
-
-**Relacionamentos:**
-
-Um número pertence a uma rifa.
-
-Um número pode estar associado a um comprador.
 
 ------------------------------------------------------------------------
 
-## 2.3 Comprador
+## Comprador
 
 Representa o participante que compra um número da rifa.
 
-**Atributos:**
+Campos principais:
 
--   id\
--   nome\
--   telefone\
+-   id
+-   nome
+-   telefone
 -   email
 
-**Relacionamentos:**
-
-Um comprador pode possuir um ou mais números da rifa.
-
 ------------------------------------------------------------------------
 
-## 2.4 Pagamento
+## Pagamento
 
-Representa o pagamento realizado pelo comprador.
+Representa o pagamento associado a um número da rifa.
 
-**Atributos:**
+Campos principais:
 
--   id\
--   valor\
--   data_pagamento\
--   status\
+-   id
+-   data_pagamento
+-   valor
+-   status
 -   numero_id
 
-**Relacionamentos:**
+------------------------------------------------------------------------
 
-Um pagamento está associado a um número da rifa.
+# 2. Relacionamentos
+
+-   Uma **rifa** possui vários **números**
+-   Um **número** pertence a uma **rifa**
+-   Um **número** pode estar associado a um **comprador**
+-   Um **pagamento** está associado a um **número**
 
 ------------------------------------------------------------------------
 
-## 2.5 Sorteio
+# 3. Diagrama Conceitual Simplificado
 
-Representa o resultado do sorteio da rifa.
-
-**Atributos:**
-
--   id\
--   rifa_id\
--   numero_sorteado\
--   data_sorteio
-
-**Relacionamentos:**
-
-Um sorteio está associado a uma rifa.
+RIFA\
+↓\
+NUMERO\
+↓\
+COMPRADOR\
+↓\
+PAGAMENTO
 
 ------------------------------------------------------------------------
 
-# 3. Relacionamentos entre Entidades
-
-Rifa 1 --- N Numero\
-Numero 1 --- 1 Comprador\
-Numero 1 --- 1 Pagamento\
-Rifa 1 --- 1 Sorteio
-
-------------------------------------------------------------------------
-
-# 4. Diagrama do Modelo de Dados
-
-
-
-------------------------------------------------------------------------
-
-# 5. Regras Importantes do Modelo
+# 4. Regras de Integridade
 
 -   Cada número pertence a apenas uma rifa.
--   Cada número pode ser vendido apenas uma vez.
--   Um pagamento confirma a venda de um número.
--   O sorteio define o número vencedor da rifa.
+-   Um número só pode ser vendido uma vez.
+-   Um pagamento deve estar associado a um número válido.
+-   Um número só pode ser marcado como vendido após confirmação do
+    pagamento.
 
 ------------------------------------------------------------------------
 
-# 6. Observações
+# 5. Considerações
 
-O modelo de dados foi projetado para garantir integridade das
-informações e evitar inconsistências durante o processo de compra de
-números da rifa.
+O modelo de dados foi projetado para garantir consistência das
+informações e facilitar a implementação das funcionalidades do sistema.
