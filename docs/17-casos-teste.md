@@ -1,146 +1,95 @@
-# Casos de Teste --- Rifa Digital
+# Casos de Teste — Rifa Digital
 
-Este documento descreve os **Casos de Teste (CT)** utilizados para
-validar as **User Stories (US)** e seus **Critérios de Aceitação (AC)**.
+Este documento apresenta a organização dos **casos de teste** do sistema **Rifa Digital**.
 
-Fluxo de rastreabilidade:
+Os casos de teste foram derivados das **User Stories** definidas no backlog do projeto e têm como objetivo validar se os requisitos funcionais e não funcionais estão corretamente implementados.
 
-Requisito → User Story → Critérios de Aceitação → Casos de Teste
+Cada **User Story** possui múltiplos **Casos de Teste (CT)** que verificam:
 
-------------------------------------------------------------------------
+- fluxo principal da funcionalidade
+- validação de entradas
+- regras de negócio
+- cenários alternativos ou de erro
 
-# US01 --- Criar campanha de rifa
+---
 
-**User Story**\
-Como organizador\
-Quero criar uma campanha de rifa\
-Para disponibilizar números para os participantes.
+# Identificação dos Casos de Teste
 
-------------------------------------------------------------------------
+Os casos de teste utilizam identificação sequencial global:
 
-## Critérios de Aceitação
+CT001, CT002, CT003, ...
 
-  ID     Critério
-  ------ --------------------------------------------
-  AC01   Organizador deve informar dados da rifa
-  AC02   Sistema deve validar campos obrigatórios
-  AC03   Sistema deve gerar números automaticamente
-  AC04   Sistema deve registrar a rifa no sistema
-  AC05   Sistema deve exibir a rifa criada
+Essa abordagem facilita:
 
-------------------------------------------------------------------------
+- rastreabilidade
+- organização dos testes
+- manutenção futura
 
-# Casos de Teste
+A relação entre artefatos segue o modelo:
 
-## CT01 --- Criar rifa com dados válidos
+Requisito → User Story → Caso de Teste
 
-**User Story:** US01\
-**ACs Cobertos:** AC01, AC04, AC05\
-**Prioridade:** Alta
+Exemplo:
 
-### Pré‑condições
+RF01 → US01 → CT001–CT005
 
-Usuário possui permissão de organizador.
+---
 
-### Passos
+# Localização dos Casos de Teste
 
-1.  Acessar página de criação de rifa
-2.  Informar nome da rifa
-3.  Informar quantidade de números
-4.  Informar valor por número
-5.  Informar data do sorteio
-6.  Confirmar criação
+Os casos de teste detalhados estão organizados na pasta:
 
-### Resultado Esperado
+docs/testes/
 
--   Rifa criada com sucesso
--   Rifa registrada no sistema
--   Informações exibidas na tela
+Cada caso de teste é armazenado em um arquivo `.md` individual.
 
-### Status
+---
 
-Não executado
+# Distribuição dos Casos de Teste
 
-------------------------------------------------------------------------
+| User Story | Casos de Teste |
+|---|---|
+| US01 | CT001–CT005 |
+| US02 | CT006–CT010 |
+| US03 | CT011–CT015 |
+| US04 | CT016–CT020 |
+| US05 | CT021–CT025 |
+| US06 | CT026–CT030 |
+| US07 | CT031–CT035 |
+| US08 | CT036–CT040 |
+| US09 | CT041–CT045 |
+| US10 | CT046–CT050 |
+| US11 | CT051–CT055 |
+| US12 | CT056–CT060 |
+| US13 | CT061–CT065 |
+| US14 | CT066–CT070 |
+| US15 | CT071–CT075 |
 
-## CT02 --- Validar campos obrigatórios
+---
 
-**User Story:** US01\
-**ACs Cobertos:** AC02\
-**Prioridade:** Alta
+# Estrutura de Arquivos
 
-### Pré‑condições
+docs  
+└ testes  
+   ├ CT001-US01-criar-rifa-valido.md  
+   ├ CT002-US01-criar-rifa-sem-nome.md  
+   ├ CT003-US01-criar-rifa-sem-quantidade.md  
+   ├ CT004-US01-criar-rifa-valor-invalido.md  
+   ├ CT005-US01-criar-rifa-sem-data.md  
+   └ ...
 
-Usuário acessou tela de criação de rifa.
+---
 
-### Passos
+# Cobertura de Testes
 
-1.  Acessar página de criação de rifa
-2.  Deixar campo obrigatório vazio
-3.  Tentar criar rifa
+Os casos de teste cobrem:
 
-### Resultado Esperado
+- funcionalidades principais do sistema
+- validações de entrada
+- regras de negócio
+- cenários alternativos
+- requisitos não funcionais críticos
 
-Sistema impede criação e apresenta mensagem de erro.
+A rastreabilidade completa entre requisitos, histórias de usuário e testes pode ser consultada em:
 
-### Status
-
-Não executado
-
-------------------------------------------------------------------------
-
-## CT03 --- Geração automática de números
-
-**User Story:** US01\
-**ACs Cobertos:** AC03\
-**Prioridade:** Alta
-
-### Pré‑condições
-
-Usuário criou rifa com quantidade de números definida.
-
-### Passos
-
-1.  Criar rifa com 100 números
-2.  Confirmar criação
-
-### Resultado Esperado
-
-Sistema gera automaticamente números de 1 a 100.
-
-### Status
-
-Não executado
-
-------------------------------------------------------------------------
-
-## CT04 --- Exibição da rifa criada
-
-**User Story:** US01\
-**ACs Cobertos:** AC05\
-**Prioridade:** Média
-
-### Pré‑condições
-
-Rifa criada com sucesso.
-
-### Passos
-
-1.  Acessar página da rifa criada
-
-### Resultado Esperado
-
-Sistema exibe: - nome da rifa - lista de números - valor do número -
-data do sorteio
-
-### Status
-
-Não executado
-
-------------------------------------------------------------------------
-
-# Resumo
-
-  User Story   Critérios de Aceitação         Casos de Teste
-  ------------ ------------------------------ ------------------------
-  US01         AC01, AC02, AC03, AC04, AC05   CT01, CT02, CT03, CT04
+docs/19-matriz-rastreabilidade-testes.md
