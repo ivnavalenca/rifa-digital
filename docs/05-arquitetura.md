@@ -1,48 +1,52 @@
-# Arquitetura do Sistema
+# Arquitetura do Sistema --- Rifa Digital
 
-Este documento descreve a arquitetura do sistema **Rifa Digital**, apresentando a estrutura técnica utilizada para implementar as funcionalidades do sistema.
+Este documento descreve a arquitetura do sistema **Rifa Digital**,
+apresentando a organização técnica utilizada para implementar as
+funcionalidades do sistema.
 
----
+------------------------------------------------------------------------
 
 # 1. Visão Geral da Arquitetura
 
-O sistema Rifa Digital segue uma arquitetura baseada em camadas, separando responsabilidades entre interface do usuário, lógica de negócio e persistência de dados.
+O sistema segue uma arquitetura em camadas, separando responsabilidades
+entre interface do usuário, lógica de negócio e persistência de dados.
 
-Arquitetura geral:
+Fluxo geral:
 
-Usuário  
-↓  
-Frontend (Interface Web)  
-↓  
-API Backend  
-↓  
+Usuário\
+↓\
+Frontend (Interface Web)\
+↓\
+Backend / API\
+↓\
 Banco de Dados
 
-Essa separação facilita manutenção, escalabilidade e evolução do sistema.
+Essa separação facilita manutenção, evolução e escalabilidade do
+sistema.
 
----
+------------------------------------------------------------------------
 
 # 2. Camadas do Sistema
 
 ## 2.1 Camada de Apresentação (Frontend)
 
-Responsável pela interface com o usuário.
+Responsável pela interação com o usuário.
 
 Principais funções:
 
-- exibir informações da rifa
-- mostrar números disponíveis
-- permitir seleção de números
-- exibir resultados do sorteio
+-   exibir informações da rifa
+-   mostrar números disponíveis
+-   permitir seleção de números
+-   exibir resultados do sorteio
 
-Exemplos de tecnologias:
+Tecnologias possíveis:
 
-- HTML
-- CSS
-- JavaScript
-- React (opcional)
+-   HTML
+-   CSS
+-   JavaScript
+-   React (opcional)
 
----
+------------------------------------------------------------------------
 
 ## 2.2 Camada de Aplicação (Backend)
 
@@ -50,20 +54,20 @@ Responsável pela lógica de negócio do sistema.
 
 Principais responsabilidades:
 
-- gerenciamento de rifas
-- controle de números disponíveis
-- registro de compradores
-- validação de pagamentos
-- realização do sorteio
+-   gerenciamento de rifas
+-   controle de números disponíveis
+-   registro de compradores
+-   validação de pagamentos
+-   realização do sorteio
 
-Exemplos de tecnologias:
+Tecnologias possíveis:
 
-- Node.js
-- Python
-- Java
-- API REST
+-   Node.js
+-   Python
+-   Java
+-   API REST
 
----
+------------------------------------------------------------------------
 
 ## 2.3 Camada de Persistência (Banco de Dados)
 
@@ -71,135 +75,123 @@ Responsável pelo armazenamento das informações do sistema.
 
 Principais dados armazenados:
 
-- rifas
-- números da rifa
-- compradores
-- pagamentos
-- resultados do sorteio
+-   rifas
+-   números da rifa
+-   compradores
+-   pagamentos
+-   resultados do sorteio
 
-Exemplos de tecnologias:
+Tecnologias possíveis:
 
-- PostgreSQL
-- MySQL
-- MongoDB
+-   PostgreSQL
+-   MySQL
+-   MongoDB
 
----
+------------------------------------------------------------------------
 
 # 3. Componentes do Sistema
-
-Principais componentes do sistema:
 
 ## Gerenciamento de Rifa
 
 Responsável por:
 
-- criar campanha de rifa
-- definir número de bilhetes
-- configurar data do sorteio
+-   criar campanha de rifa
+-   definir número de bilhetes
+-   configurar data do sorteio
 
-Relacionado às User Stories:
+User Stories relacionadas:
 
-US01 - Criar campanha de rifa  
+US01 - Criar campanha de rifa\
 US02 - Visualizar informações da rifa
 
----
+------------------------------------------------------------------------
 
 ## Compra de Números
 
 Responsável por:
 
-- exibir números disponíveis
-- permitir seleção de números
-- registrar compradores
+-   exibir números disponíveis
+-   permitir seleção de números
+-   registrar compradores
 
-Relacionado às User Stories:
+User Stories relacionadas:
 
-US03 - Visualizar números disponíveis  
-US04 - Escolher número da rifa  
+US03 - Visualizar números disponíveis\
+US04 - Escolher número da rifa\
 US05 - Registrar comprador
 
----
+------------------------------------------------------------------------
 
 ## Pagamento
 
 Responsável por:
 
-- registrar pagamento
-- confirmar venda do número
+-   registrar pagamento
+-   confirmar venda do número
 
-Relacionado às User Stories:
+User Stories relacionadas:
 
-US06 - Registrar pagamento  
-US07 - Marcar número vendido
+US06 - Registrar pagamento\
+US07 - Marcar número como vendido
 
----
+------------------------------------------------------------------------
 
 ## Sorteio
 
 Responsável por:
 
-- realizar sorteio
-- divulgar resultado
+-   realizar sorteio
+-   divulgar resultado
 
-Relacionado às User Stories:
+User Stories relacionadas:
 
-US10 - Realizar sorteio  
+US10 - Realizar sorteio\
 US11 - Divulgar resultado
 
----
+------------------------------------------------------------------------
 
 # 4. Fluxo de Dados
 
 Exemplo de fluxo de operação:
 
-Participante acessa a rifa  
-↓  
-Frontend solicita números disponíveis  
-↓  
-Backend consulta banco de dados  
-↓  
-Sistema retorna números disponíveis  
-↓  
-Usuário escolhe número  
-↓  
-Sistema registra comprador  
-↓  
-Pagamento é registrado  
-↓  
+Participante acessa a rifa\
+↓\
+Frontend solicita números disponíveis\
+↓\
+Backend consulta banco de dados\
+↓\
+Sistema retorna números disponíveis\
+↓\
+Usuário escolhe número\
+↓\
+Sistema registra comprador\
+↓\
+Pagamento é registrado\
+↓\
 Número é marcado como vendido
 
----
+------------------------------------------------------------------------
 
 # 5. Considerações de Segurança
 
-O sistema deve implementar medidas para evitar fraudes e inconsistências.
+O sistema deve implementar medidas para evitar fraudes e
+inconsistências.
 
 Principais cuidados:
 
-- impedir seleção simultânea do mesmo número
-- validar dados recebidos
-- registrar logs das operações
-- proteger dados dos usuários
+-   impedir seleção simultânea do mesmo número
+-   validar dados recebidos
+-   registrar logs das operações
+-   proteger dados dos usuários
 
-Relacionamento com requisitos:
+------------------------------------------------------------------------
 
-RNF01 - impedir duplicação de números  
-RNF03 - validação de dados  
-RNF08 - proteção de dados pessoais
+# 6. Evolução do Sistema
 
----
+A arquitetura permite evolução do sistema para incluir funcionalidades
+como:
 
-# 6. Escalabilidade e Evolução
-
-A arquitetura proposta permite evolução do sistema para incluir novas funcionalidades, como:
-
-- integração com meios de pagamento
-- autenticação de usuários
-- notificações automáticas
-- painel administrativo
-
----
-
-# 7. Observações
-
-A arquitetura apresentada busca garantir organização, segurança e facilidade de manutenção do sistema Rifa Digital.
+-   integração com meios de pagamento
+-   autenticação de usuários
+-   notificações automáticas
+-   painel administrativo
