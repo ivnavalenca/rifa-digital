@@ -1,0 +1,46 @@
+site_name: Rifa Digital
+site_description: Documentação do sistema Rifa Digital
+site_author: Projeto Engenharia de Software
+
+theme:
+  name: material
+
+nav:
+  - Home: README.md
+
+  - Product:
+      - Visão do Produto: docs/product/visao-produto.md
+      - Roadmap: docs/product/roadmap.md
+      - Stakeholders: docs/product/stakeholders.md
+
+  - UX:
+      - Personas: docs/ux/personas.md
+      - Jornada do Usuário: docs/ux/jornada-usuario.md
+      - Sequência: docs/ux/sequencia.md
+
+  - Requirements:
+      - Requisitos: docs/requirements/requisitos.md
+      - Casos de Uso: docs/requirements/casos-de-uso.md
+      - Priorização: docs/requirements/priorizacao-requisitos.md
+      - Rastreabilidade: docs/requirements/rastreabilidade.md
+
+  - Architecture:
+      - Arquitetura: docs/architecture/arquitetura.md
+      - Modelo de Dados: docs/architecture/modelo-dados.md
+
+  - Process:
+      - Processo de Desenvolvimento: docs/process/processo-desenvolvimento.md
+
+  - Testing:
+      - Estratégia de Testes: docs/testing/strategy/estrategia-testes.md
+      - Plano de Testes: docs/testing/strategy/plano-testes.md
+      - Test Pyramid: docs/testing/strategy/test-pyramid.md
+      - BDD Scenarios: docs/testing/design/bdd-scenarios.md
+      - Casos de Teste: docs/testing/design/casos-de-teste.md
+      - Execução de Testes: docs/testing/execution/test-execution-report.md
+      - Quality Dashboard: docs/testing/execution/quality-dashboard.md
+
+  - User:
+      - Manual do Usuário: docs/user/manual-usuario.md
+
+  - Glossário: docs/glossario.md
