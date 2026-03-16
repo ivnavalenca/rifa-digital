@@ -1,38 +1,70 @@
----
-about: Reportar um erro no sistema
-labels: bug
-name: Bug report
-title: BUG -
----
+# BUGXX - Título do Bug
 
-## Descrição do problema
+## Descrição do Problema
 
-Descreva claramente o erro encontrado.
+Descreva claramente o problema encontrado no sistema.
 
 ------------------------------------------------------------------------
 
-## Passos para reproduzir
+## Passos para Reproduzir
 
-1.  Passo 1
-2.  Passo 2
-3.  Passo 3
-
-------------------------------------------------------------------------
-
-## Comportamento esperado
-
-Explique o que deveria acontecer.
+1.  Acessar a página ou funcionalidade
+2.  Executar a ação que causa o erro
+3.  Repetir o processo
+4.  Observar o comportamento inesperado
 
 ------------------------------------------------------------------------
 
-## Evidências
+## Resultado Esperado
 
-Adicione screenshots, logs ou mensagens de erro.
+Descreva o comportamento correto esperado do sistema.
 
 ------------------------------------------------------------------------
 
-## Ambiente
+## Resultado Atual
 
+Descreva o comportamento que realmente está acontecendo.
+
+------------------------------------------------------------------------
+
+## Impacto
+
+Explique como o bug afeta o sistema ou os usuários.
+
+Exemplos: - Usuários conseguem selecionar o mesmo número da rifa -
+Inconsistência no sorteio - Falha na experiência do usuário
+
+------------------------------------------------------------------------
+
+## Critérios de Correção
+
+-   [ ] Bug reproduzido pela equipe
+-   [ ] Correção implementada
+-   [ ] Testes realizados
+-   [ ] Teste de regressão executado
+-   [ ] Bug validado após correção
+
+------------------------------------------------------------------------
+
+## Informações do Ambiente
+
+-   Sistema: Web / Mobile
 -   Navegador:
--   Sistema operacional:
--   Versão do sistema:
+-   Versão:
+-   Data do teste:
+
+------------------------------------------------------------------------
+
+## Relacionamentos
+
+Epic: E05 - Correção de Defeitos\
+User Story relacionada: (ex: US04 - Escolher número da rifa)
+
+------------------------------------------------------------------------
+
+## Campos recomendados no Board
+
+Tipo: Bug\
+Priority: P0 / P1 / P2\
+Sprint: definir conforme planejamento\
+Story Points: normalmente vazio
