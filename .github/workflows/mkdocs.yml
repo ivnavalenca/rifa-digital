@@ -1,0 +1,52 @@
+site_name: Rifa Digital
+site_description: Documentação do sistema Rifa Digital
+site_author: Ivna Valença
+site_url: https://ivnavalenca.github.io/rifa-digital
+
+repo_name: ivnavalenca/rifa-digital
+repo_url: https://github.com/ivnavalenca/rifa-digital
+
+theme:
+  name: material
+  language: pt-BR
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+
+docs_dir: docs
+site_dir: site
+
+plugins:
+  - search
+  - awesome-pages
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.emoji
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ivnavalenca/rifa-digital
+
+extra_css:
+  - stylesheets/extra.css
