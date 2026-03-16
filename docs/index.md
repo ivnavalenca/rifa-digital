@@ -2,9 +2,7 @@
 
 Bem-vindo à documentação do sistema **Rifa Digital**.
 
-Este portal reúne toda a documentação do projeto organizada por áreas de engenharia.
-
-## Seções
+## Documentação
 
 - Product
 - UX
@@ -13,5 +11,3 @@ Este portal reúne toda a documentação do projeto organizada por áreas de eng
 - Process
 - Testing
 - User
-
-Utilize o menu lateral para navegar pela documentação.
