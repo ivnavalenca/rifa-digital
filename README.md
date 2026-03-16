@@ -1,201 +1,245 @@
 # 🎟️ Rifa Digital
 
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
-![Metodologia](https://img.shields.io/badge/metodologia-Scrum%20%2B%20Kanban-blue)
-![Documentação](https://img.shields.io/badge/docs-disponível-green)
-![Disciplina](https://img.shields.io/badge/Disciplina-Processo%20e%20Requisitos%20de%20Software-lightgrey)
+![GitHub last
+commit](https://img.shields.io/github/last-commit/ivnavalenca/rifa-digital)
+![GitHub repo
+size](https://img.shields.io/github/repo-size/ivnavalenca/rifa-digital)
+![GitHub Pages](https://img.shields.io/badge/docs-github%20pages-blue)
+![License](https://img.shields.io/github/license/ivnavalenca/rifa-digital)
 
 Sistema web para **criação e gerenciamento de rifas digitais**,
-permitindo que organizadores criem campanhas e participantes escolham
-números para concorrer a prêmios.
+permitindo que organizadores publiquem campanhas e participantes
+escolham números para concorrer a prêmios.
 
-Este projeto foi desenvolvido como atividade da disciplina **Processo e
-Requisitos de Software (PRS)** e demonstra a aplicação de práticas de
-**Engenharia de Requisitos** e **Gestão Ágil**.
-
-------------------------------------------------------------------------
-
-# 📌 Visão do Projeto
-
-O sistema **Rifa Digital** tem como objetivo facilitar a organização de
-rifas, permitindo:
-
--   criação de campanhas de rifa
--   escolha de números pelos participantes
--   registro de compradores
--   controle de pagamentos
--   realização de sorteios
--   divulgação de resultados
-
-O sistema busca substituir processos manuais, reduzindo erros e
-aumentando a transparência das rifas.
+O projeto foi desenvolvido com foco em **engenharia de software,
+arquitetura, experiência do usuário e garantia de qualidade**.
 
 ------------------------------------------------------------------------
 
-# 👥 Usuários do Sistema
+# 🌐 Documentação
 
-O sistema considera três perfis principais de usuários:
+A documentação completa do projeto está disponível em:
 
-**Organizador** - cria campanhas de rifa - acompanha vendas - registra
-pagamentos - realiza sorteio
+https://ivnavalenca.github.io/rifa-digital/
 
-**Participante** - visualiza números disponíveis - escolhe números da
-rifa - acompanha resultados
+Ou diretamente no repositório:
 
-**Usuário mal-intencionado** - tenta explorar falhas do sistema - ajuda
-a identificar requisitos de segurança
+    docs/
 
 ------------------------------------------------------------------------
 
-# 🧠 Engenharia de Requisitos
+# 📑 Índice
 
-O projeto utiliza técnicas de **engenharia de requisitos**, incluindo:
-
--   identificação de stakeholders
--   definição de personas
--   modelagem de jornada do usuário
--   especificação de requisitos funcionais e não funcionais
--   casos de uso
--   rastreabilidade de requisitos
-
-Esses artefatos estão documentados na pasta **docs**.
-
-------------------------------------------------------------------------
-
-# ⚙️ Processo de Desenvolvimento
-
-O projeto utiliza um **processo de desenvolvimento ágil baseado em Scrum
-e Kanban (Scrumban)**.
-
-Principais práticas utilizadas:
-
--   Product Backlog
--   Epics
--   User Stories
--   Tasks
--   Bugs
--   Story Points
--   Sprints
--   Kanban Board
-
-A gestão do trabalho é realizada através de **GitHub Issues** e **GitHub
-Projects**.
-
-🔗 **Project Board**\
-https://github.com/users/ivnavalenca/projects/4
+-   Documentação
+-   Funcionalidades
+-   Fluxo do Sistema
+-   Arquitetura (C4 Model)
+-   Estrutura da Documentação
+-   Qualidade e Testes
+-   Tecnologias
+-   Executar documentação localmente
+-   Autoria
 
 ------------------------------------------------------------------------
 
-# 🗂️ Estrutura do Repositório
-
-    rifa-digital
-    │
-    ├ docs
-    │   ├ 01-visao-produto.md
-    │   ├ 02-requisitos.md
-    │   ├ 03-personas.md
-    │   ├ 04-jornada-usuario.md
-    │   ├ 05-arquitetura.md
-    │   ├ 06-modelo-dados.md
-    │   ├ 07-roadmap.md
-    │   ├ 08-rastreabilidade.md
-    │   ├ 09-processo-desenvolvimento.md
-    │   ├ 10-casos-de-uso.md
-    │   ├ 11-priorizacao-requisitos.md
-    │   ├ 12-stakeholders.md
-    │   ├ 13-sequencia.md
-    │   └ 14-rnf-classificacao.md
-    │
-    ├ .github
-    │   └ ISSUE_TEMPLATE
-    │
-    └ README.md
-
-------------------------------------------------------------------------
-
-# 📚 Documentação
-
-A documentação completa do projeto está disponível na pasta **docs**.
-```
-  -------------------------------------------------------------------------------------------
-  Documento                                               Descrição
-  ------------------------------------------------------- -----------------------------------
-  [Visão do Produto](docs/01-visao-produto.md)            Descrição geral do sistema
-
-  [Requisitos](docs/02-requisitos.md)                     Requisitos funcionais e não
-                                                          funcionais
-
-  [Personas](docs/03-personas.md)                         Perfis de usuários
-
-  [Jornada do Usuário](docs/04-jornada-usuario.md)        Fluxos de uso
-
-  [Arquitetura](docs/05-arquitetura.md)                   Estrutura técnica
-
-  [Modelo de Dados](docs/06-modelo-dados.md)              Entidades e relacionamentos
-
-  [Roadmap](docs/07-roadmap.md)                           Planejamento das sprints
-
-  [Rastreabilidade](docs/08-rastreabilidade.md)           Relação entre requisitos e backlog
-
-  [Processo de                                            Processo ágil adotado
-  Desenvolvimento](docs/09-processo-desenvolvimento.md)   
-
-  [Casos de Uso](docs/10-casos-de-uso.md)                 Interações do sistema
-
-  [Priorização de                                         Método MoSCoW
-  Requisitos](docs/11-priorizacao-requisitos.md)          
-
-  [Stakeholders](docs/12-stakeholders.md)                 Interessados no sistema
-
-  [Sequência](docs/13-sequencia.md)                       Interação entre componentes
-
-  [Classificação de RNF](docs/14-rnf-classificacao.md)    Organização dos requisitos não
-                                                          funcionais
-  -------------------------------------------------------------------------------------------
-```
-------------------------------------------------------------------------
-
-# 🗺️ Roadmap
-
-O desenvolvimento foi planejado em **4 sprints**:
-```
-  Sprint     Objetivo
-  ---------- ---------------------------
-  Sprint 1   Estrutura inicial da rifa
-  Sprint 2   Compra de números
-  Sprint 3   Pagamentos e controle
-  Sprint 4   Sorteio e finalização
-```
-------------------------------------------------------------------------
-
-# 🚀 Funcionalidades Principais
+# ✨ Funcionalidades
 
 -   Criar campanha de rifa
+-   Visualizar informações da rifa
 -   Visualizar números disponíveis
 -   Escolher número da rifa
--   Registrar compradores
--   Registrar pagamentos
+-   Registrar comprador
+-   Registrar pagamento
+-   Visualizar números vendidos
+-   Acompanhar progresso da rifa
 -   Realizar sorteio
--   Divulgar resultados
+-   Divulgar resultado
 
 ------------------------------------------------------------------------
 
-# 📊 Artefatos Ágeis
+# 🧭 Fluxo do Sistema
 
-O projeto utiliza os seguintes artefatos:
+``` mermaid
+flowchart LR
 
--   Epics
--   User Stories
--   Tasks
--   Bugs
--   Story Points
--   Sprints
--   Kanban Board
-
-Todos gerenciados via **GitHub Projects**.
+A[Organizador cria rifa] --> B[Rifa publicada]
+B --> C[Participantes escolhem números]
+C --> D[Pagamento registrado]
+D --> E[Número confirmado]
+E --> F[Sorteio realizado]
+F --> G[Divulgação do vencedor]
+```
 
 ------------------------------------------------------------------------
 
-# 🧾 Licença
+# 🏗️ Arquitetura (C4 Model)
 
-Este projeto foi desenvolvido para fins **acadêmicos**.
+## Contexto do Sistema
+
+``` mermaid
+flowchart LR
+
+U[Participante] --> S[Rifa Digital]
+O[Organizador] --> S
+
+S --> DB[(Banco de Dados)]
+S --> P[Processo de Sorteio]
+```
+
+## Containers
+
+``` mermaid
+flowchart LR
+
+User[Usuário]
+
+Frontend[Interface Web]
+Backend[Aplicação Rifa Digital]
+Database[(Banco de Dados)]
+
+User --> Frontend
+Frontend --> Backend
+Backend --> Database
+```
+
+## Componentes
+
+``` mermaid
+flowchart LR
+
+API[API da Aplicação]
+
+Rifa[Gestão de Rifas]
+Numero[Gestão de Números]
+Pagamento[Registro de Pagamento]
+Sorteio[Sorteio]
+
+DB[(Banco de Dados)]
+
+API --> Rifa
+API --> Numero
+API --> Pagamento
+API --> Sorteio
+
+Rifa --> DB
+Numero --> DB
+Pagamento --> DB
+Sorteio --> DB
+```
+
+------------------------------------------------------------------------
+
+# 📂 Estrutura da Documentação
+
+A documentação do projeto está organizada por áreas de engenharia de
+software.
+
+  Área           Descrição
+  -------------- ---------------------------------
+  Product        visão e planejamento do produto
+  UX             personas e jornada do usuário
+  Requirements   engenharia de requisitos
+  Architecture   arquitetura do sistema
+  Process        processo de desenvolvimento
+  Testing        estratégia e execução de testes
+  User           manual do usuário
+
+Estrutura:
+
+    docs
+    ├ product
+    ├ ux
+    ├ requirements
+    ├ architecture
+    ├ process
+    ├ testing
+    └ user
+
+------------------------------------------------------------------------
+
+# 🧪 Qualidade e Testes
+
+O projeto possui uma estrutura completa de **Quality Assurance (QA)**.
+
+Inclui:
+
+-   estratégia de testes
+-   plano de testes
+-   cenários BDD
+-   casos de teste
+-   execução de testes
+-   métricas de qualidade
+-   rastreabilidade
+
+Estrutura:
+
+    docs/testing
+    ├ strategy
+    ├ design
+    ├ execution
+    ├ traceability
+    ├ process
+    └ cases
+
+------------------------------------------------------------------------
+
+# 🧰 Tecnologias Utilizadas
+
+-   GitHub
+-   Markdown
+-   MkDocs
+-   Material for MkDocs
+-   GitHub Pages
+-   Mermaid (diagramas)
+
+------------------------------------------------------------------------
+
+# 🚀 Executar a documentação localmente
+
+Instalar MkDocs:
+
+    pip install mkdocs-material
+
+Executar servidor local:
+
+    mkdocs serve
+
+Abrir no navegador:
+
+    http://127.0.0.1:8000
+
+------------------------------------------------------------------------
+
+# 📊 Objetivo do Projeto
+
+Este projeto demonstra práticas de:
+
+-   Engenharia de Requisitos
+-   Arquitetura de Software
+-   UX Design
+-   Garantia de Qualidade (QA)
+-   Documentação técnica profissional
+
+------------------------------------------------------------------------
+
+# 🚧 Status do Projeto
+
+Projeto acadêmico em desenvolvimento com foco em **engenharia de
+software e qualidade**.
+
+Componentes já modelados:
+
+✔ requisitos\
+✔ arquitetura\
+✔ UX\
+✔ estratégia de testes\
+✔ documentação técnica
+
+------------------------------------------------------------------------
+
+# 👩‍💻 Autoria
+
+**Ivna Valença**
+
+Projeto acadêmico desenvolvido para estudos de **Engenharia de Software
+e Qualidade de Software**.
