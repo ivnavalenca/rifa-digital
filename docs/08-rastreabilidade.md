@@ -10,7 +10,7 @@ sistema.
 ------------------------------------------------------------------------
 
 # 1. Rastreabilidade de Requisitos Funcionais
-
+```
   -----------------------------------------------------------------------
   Requisito                  Épico           User Story
   -------------------------- --------------- ----------------------------
@@ -55,11 +55,11 @@ sistema.
   RF15                       E01 - Gestão da US15 - Visualizar histórico
                              Rifa            da rifa
   -----------------------------------------------------------------------
-
+```
 ------------------------------------------------------------------------
 
 # 2. Rastreabilidade de Requisitos Não Funcionais
-
+```
   Requisito Não Funcional                         Relacionamento
   ----------------------------------------------- ----------------
   RNF01 - Impedir seleção simultânea de números   US04
@@ -70,11 +70,11 @@ sistema.
   RNF06 - Acesso por dispositivos móveis          Frontend
   RNF07 - Proteção de dados pessoais              Segurança
   RNF08 - Histórico de transações                 US15
-
+```
 ------------------------------------------------------------------------
 
 # 3. Rastreabilidade com Tasks
-
+```
   User Story   Tasks
   ------------ -------------------------
   US01         T01, T02, T03, T04, T05
@@ -83,15 +83,15 @@ sistema.
   US05         T10
   US06         T11
   US10         T12
-
+```
 ------------------------------------------------------------------------
 
 # 4. Rastreabilidade com Bugs
-
+```
   Bug                        Requisito   User Story
   -------------------------- ----------- ------------
   BUG01 - Número duplicado   RNF01       US04
-
+```
 ------------------------------------------------------------------------
 
 # 5. Visão Geral da Rastreabilidade
