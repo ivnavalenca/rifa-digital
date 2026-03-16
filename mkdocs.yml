@@ -9,12 +9,31 @@ repo_name: ivnavalenca/rifa-digital
 theme:
   name: material
   language: pt-BR
+
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Modo escuro
+
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Modo claro
+
   features:
     - navigation.tabs
     - navigation.sections
     - navigation.expand
-    - search.highlight
+    - navigation.top
+    - navigation.indexes
     - content.code.copy
+    - search.highlight
+    - search.share
 
 plugins:
   - search
@@ -26,7 +45,7 @@ markdown_extensions:
       permalink: true
   - pymdownx.details
   - pymdownx.tabbed
-
+  - pymdownx.highlight
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
