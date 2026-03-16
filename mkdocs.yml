@@ -1,4 +1,3 @@
-
 site_name: Rifa Digital
 site_description: Documentação do sistema Rifa Digital
 site_author: Ivna Valença de Oliveira
@@ -26,8 +25,8 @@ markdown_extensions:
   - toc:
       permalink: true
   - pymdownx.details
-  - pymdownx.superfences
   - pymdownx.tabbed
+
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
