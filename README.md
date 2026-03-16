@@ -91,7 +91,7 @@ Ferramentas utilizadas:
 # 📚 Documentação
 
 A documentação completa do projeto está disponível na pasta **docs**.
-
+```
   -----------------------------------------------------------------------------------
   Documento                                       Descrição
   ----------------------------------------------- -----------------------------------
@@ -114,20 +114,20 @@ A documentação completa do projeto está disponível na pasta **docs**.
   [Rastreabilidade](docs/08-rastreabilidade.md)   Relação entre requisitos, backlog e
                                                   implementação
   -----------------------------------------------------------------------------------
-
+```
 ------------------------------------------------------------------------
 
 # 🗺️ Roadmap do Projeto
 
 O desenvolvimento foi organizado em **4 sprints**:
-
+```
   Sprint     Objetivo
   ---------- ---------------------------
   Sprint 1   Estrutura inicial da rifa
   Sprint 2   Compra de números
   Sprint 3   Pagamentos e controle
   Sprint 4   Sorteio e finalização
-
+```
 ------------------------------------------------------------------------
 
 # 🚀 Funcionalidades Principais
