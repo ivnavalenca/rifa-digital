@@ -1,56 +1,73 @@
+
 site_name: Rifa Digital
 site_description: Documentação do sistema Rifa Digital
-site_author: Ivna Valença
-site_url: https://ivnavalenca.github.io/rifa-digital
+site_author: Ivna Valença de Oliveira
+site_url: https://ivnavalenca.github.io/rifa-digital/
 
-repo_name: ivnavalenca/rifa-digital
 repo_url: https://github.com/ivnavalenca/rifa-digital
+repo_name: ivnavalenca/rifa-digital
 
 theme:
   name: material
   language: pt-BR
-
-  palette:
-
-    - scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/weather-night
-        name: Dark mode
-
-    - scheme: slate
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/weather-sunny
-        name: Light mode
-
   features:
     - navigation.tabs
     - navigation.sections
     - navigation.expand
-    - navigation.top
-    - navigation.path
     - search.highlight
     - content.code.copy
 
-docs_dir: docs
-site_dir: site
-
 plugins:
   - search
-  - awesome-pages
 
 markdown_extensions:
   - admonition
   - tables
   - toc:
       permalink: true
-  - attr_list
-  - md_in_html
-  - pymdownx.highlight
-  - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true
   - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed
+
+nav:
+  - Home: index.md
+
+  - Product:
+      - Overview: product/README.md
+      - Visão do Produto: product/visao-produto.md
+      - Roadmap: product/roadmap.md
+      - Stakeholders: product/stakeholders.md
+
+  - UX:
+      - Overview: ux/README.md
+      - Personas: ux/personas.md
+      - Jornada do Usuário: ux/jornada-usuario.md
+      - Fluxos: ux/sequencia.md
+
+  - Requirements:
+      - Overview: requirements/README.md
+      - User Stories: requirements/user-stories.md
+      - Casos de Uso: requirements/casos-uso.md
+      - Rastreabilidade: requirements/rastreabilidade.md
+
+  - Architecture:
+      - Overview: architecture/README.md
+      - System Overview: architecture/system-overview.md
+      - Arquitetura: architecture/arquitetura.md
+      - C4 Model: architecture/c4-model.md
+      - Modelo de Dados: architecture/data/modelo-dados.md
+      - Dicionário de Dados: architecture/data/dicionario-dados.md
+
+  - Process:
+      - Processo de Desenvolvimento: process/processo-desenvolvimento.md
+
+  - Testing:
+      - Overview: testing/README.md
+      - Estratégia de Testes: testing/strategy/estrategia-testes.md
+      - Plano de Testes: testing/design/plano-testes.md
+      - Pirâmide de Testes: testing/design/test-pyramid.md
+      - Casos de Teste: testing/cases/
+      - Rastreabilidade: testing/traceability/matriz-rastreabilidade-testes.md
+
+  - User:
+      - Manual do Usuário: user/manual-usuario.md
