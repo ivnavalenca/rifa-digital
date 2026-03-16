@@ -1,7 +1,7 @@
 
 # 🎟️ Rifa Digital
 
-![Rifa Digital](assets/images/rifa-digital.png)
+![Rifa Digital](assets/images/banner.png)
 
 Bem-vindo à documentação do sistema **Rifa Digital**.
 
