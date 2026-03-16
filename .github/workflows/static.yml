@@ -25,6 +25,7 @@ jobs:
         run: |
           pip install mkdocs
           pip install mkdocs-material
+          pip install mkdocs-awesome-pages-plugin
 
       - name: Deploy documentation
         run: mkdocs gh-deploy --force
