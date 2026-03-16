@@ -35,46 +35,46 @@ Testing --> User[User Documentation]
 <div class="grid cards" markdown>
 
 - :material-lightbulb-outline: **Product**
-  ---
+  
   Visão do produto, stakeholders e roadmap.
 
-  [:arrow_right: Acessar](product/README.md)
+  [➡ Acessar](product/README.md)
 
 - :material-account-group: **UX**
-  ---
+  
   Personas, jornadas e fluxos de interação.
 
-  [:arrow_right: Acessar](ux/README.md)
+  [➡ Acessar](ux/README.md)
 
 - :material-file-document-outline: **Requirements**
-  ---
+  
   User Stories, casos de uso e rastreabilidade.
 
-  [:arrow_right: Acessar](requirements/README.md)
+  [➡ Acessar](requirements/README.md)
 
 - :material-sitemap: **Architecture**
-  ---
+  
   Arquitetura do sistema e modelo de dados.
 
-  [:arrow_right: Acessar](architecture/README.md)
+  [➡ Acessar](architecture/README.md)
 
 - :material-cogs: **Process**
-  ---
+  
   Processo de desenvolvimento adotado.
 
-  [:arrow_right: Acessar](process/processo-desenvolvimento.md)
+  [➡ Acessar](process/processo-desenvolvimento.md)
 
 - :material-test-tube: **Testing**
-  ---
+  
   Estratégia de testes e garantia de qualidade.
 
-  [:arrow_right: Acessar](testing/README.md)
+  [➡ Acessar](testing/README.md)
 
 - :material-book-open-variant: **User**
-  ---
+  
   Manual de uso do sistema.
 
-  [:arrow_right: Acessar](user/manual-usuario.md)
+  [➡ Acessar](user/manual-usuario.md)
 
 </div>
 
