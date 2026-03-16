@@ -1,6 +1,8 @@
-# Documentação — Rifa Digital
+# Rifa Digital
 
-Bem-vindo à documentação do sistema.
+Bem-vindo à documentação do sistema **Rifa Digital**.
+
+Este portal reúne toda a documentação do projeto organizada por áreas de engenharia.
 
 ## Seções
 
@@ -11,3 +13,5 @@ Bem-vindo à documentação do sistema.
 - Process
 - Testing
 - User
+
+Utilize o menu lateral para navegar pela documentação.
