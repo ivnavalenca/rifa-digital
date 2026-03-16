@@ -1,15 +1,22 @@
-name: Documentation Check
+name: Deploy Docs
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  markdown-check:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Markdown Lint
-        uses: avto-dev/markdown-lint@v1
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+
+      - run: pip install mkdocs-material
+
+      - run: mkdocs gh-deploy --force
