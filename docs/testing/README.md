@@ -4,8 +4,13 @@ Este diretório contém toda a **documentação de qualidade e testes** do
 projeto **Rifa Digital**.
 
 A organização segue boas práticas de **QA, ISTQB e Engenharia de
-Software**, cobrindo planejamento, projeto, execução e rastreabilidade
-de testes.
+Software**, cobrindo:
+
+-   planejamento
+-   projeto de testes
+-   execução
+-   métricas de qualidade
+-   rastreabilidade
 
 ------------------------------------------------------------------------
 
@@ -18,6 +23,7 @@ Requisitos → User Stories → Estratégia de Testes → Plano de Testes → BD
 
 ``` mermaid
 flowchart TD
+
 A[Requisitos] --> B[User Stories]
 B --> C[BDD Scenarios]
 C --> D[Test Cases]
@@ -35,8 +41,8 @@ F --> H[Test Process]
 
 Documentos relacionados ao **planejamento da estratégia de testes**.
 
--   `estrategia-testes.md` --- abordagem geral de testes
--   `plano-testes.md` --- plano detalhado de execução
+-   `estrategia-testes.md` --- abordagem geral de testes\
+-   `plano-testes.md` --- plano detalhado de execução\
 -   `test-pyramid.md` --- estratégia de automação e níveis de testes
 
 ------------------------------------------------------------------------
@@ -46,8 +52,8 @@ Documentos relacionados ao **planejamento da estratégia de testes**.
 Documentos relacionados ao **projeto de testes**.
 
 -   `bdd-scenarios.md` --- cenários Given--When--Then derivados das User
-    Stories
--   `casos-de-teste.md` --- especificação dos casos de teste
+    Stories\
+-   `casos-de-teste.md` --- especificação dos casos de teste\
 -   `test-data.md` --- dados utilizados durante os testes
 
 ------------------------------------------------------------------------
@@ -56,7 +62,7 @@ Documentos relacionados ao **projeto de testes**.
 
 Documentos relacionados à **execução dos testes e resultados**.
 
--   `test-execution-report.md` --- relatório de execução dos testes
+-   `test-execution-report.md` --- relatório de execução dos testes\
 -   `quality-dashboard.md` --- métricas de qualidade e cobertura de
     testes
 
@@ -66,7 +72,7 @@ Documentos relacionados à **execução dos testes e resultados**.
 
 Documentos que garantem **rastreabilidade entre requisitos e testes**.
 
--   `matriz-rastreabilidade-testes.md` --- matriz RF → US → CT
+-   `matriz-rastreabilidade-testes.md` --- matriz RF → US → CT\
 -   `test-traceability-diagram.md` --- diagrama visual de
     rastreabilidade
 
@@ -76,7 +82,7 @@ Documentos que garantem **rastreabilidade entre requisitos e testes**.
 
 Documentos relacionados ao **processo de qualidade**.
 
--   `plano-qualidade.md` --- práticas de garantia da qualidade
+-   `plano-qualidade.md` --- práticas de garantia da qualidade\
 -   `test-process-diagram.md` --- diagrama do processo de testes
 
 ------------------------------------------------------------------------
@@ -87,11 +93,11 @@ Contém os **casos de teste detalhados**.
 
 Cada caso de teste segue o padrão:
 
-    CTXXX-USYY-descricao.md
+CTXXX-USYY-descricao.md
 
 Exemplo:
 
-    CT005-US01-criar-rifa-sem-data-de-sorteio.md
+CT005-US01-criar-rifa-sem-data-de-sorteio.md
 
 ------------------------------------------------------------------------
 
