@@ -1,211 +1,177 @@
+# MER --- Modelo Entidade-Relacionamento Completo
 
-# Modelo Entidade-Relacionamento (MER) — Rifa Digital
+Este documento apresenta o **Modelo Entidade‑Relacionamento (MER)**
+completo do sistema **Rifa Digital**.
 
-Este documento apresenta o **Modelo Entidade-Relacionamento (MER)** do sistema **Rifa Digital**.
+O objetivo é representar as **entidades principais do domínio**, seus
+**atributos** e os **relacionamentos** entre elas.
 
-O modelo conceitual descreve as **entidades, atributos e relacionamentos** do sistema, sem considerar ainda detalhes de implementação do banco de dados.
+------------------------------------------------------------------------
 
----
+# Diagrama MER
 
-# 1. Objetivo do Modelo
-
-O MER tem como objetivo representar:
-
-- as **entidades principais do sistema**
-- os **atributos de cada entidade**
-- os **relacionamentos entre entidades**
-- as **cardinalidades dos relacionamentos**
-
-Este modelo corresponde ao **nível conceitual da modelagem de dados**.
-
----
-
-# 2. Entidades do Sistema
-
-O sistema Rifa Digital possui as seguintes entidades principais:
-
-- **RIFA**
-- **NUMERO**
-- **PARTICIPANTE**
-- **RESERVA**
-- **PAGAMENTO**
-
----
-
-# 3. Descrição das Entidades
-
-## 3.1 RIFA
-
-Representa uma campanha de rifa.
-
-**Atributos:**
-
-- id_rifa (identificador)
-- titulo
-- descricao
-- data_sorteio
-- valor_numero
-- quantidade_numeros
-- status
-
----
-
-## 3.2 NUMERO
-
-Representa um número disponível para participação na rifa.
-
-**Atributos:**
-
-- id_numero
-- numero
-- status
-- id_rifa
-
-Status possíveis:
-
-- disponível
-- reservado
-- pago
-
----
-
-## 3.3 PARTICIPANTE
-
-Representa uma pessoa que participa da rifa.
-
-**Atributos:**
-
-- id_participante
-- nome
-- telefone
-- email
-
----
-
-## 3.4 RESERVA
-
-Representa a reserva de um número por um participante.
-
-**Atributos:**
-
-- id_reserva
-- data_reserva
-- status
-- id_numero
-- id_participante
-
----
-
-## 3.5 PAGAMENTO
-
-Representa o pagamento realizado para confirmar a participação.
-
-**Atributos:**
-
-- id_pagamento
-- valor
-- data_pagamento
-- metodo_pagamento
-- status
-- id_reserva
-
----
-
-# 4. Relacionamentos
-
-Os relacionamentos entre as entidades são:
-
-| Entidade A | Relacionamento | Entidade B | Cardinalidade |
-|-------------|---------------|-------------|---------------|
-| RIFA | possui | NUMERO | 1 : N |
-| NUMERO | pode gerar | RESERVA | 1 : 0..1 |
-| PARTICIPANTE | realiza | RESERVA | 1 : N |
-| RESERVA | gera | PAGAMENTO | 1 : 1 |
-
----
-
-# 5. Diagrama Entidade-Relacionamento
-
-O diagrama abaixo representa o modelo conceitual utilizando notação de entidade-relacionamento.
-
-```mermaid
+``` mermaid
 erDiagram
 
-RIFA ||--o{ NUMERO : possui
-NUMERO ||--o| RESERVA : reservado
-PARTICIPANTE ||--o{ RESERVA : realiza
-RESERVA ||--|| PAGAMENTO : gera
-
 RIFA {
-  int id_rifa
-  string titulo
-  string descricao
-  date data_sorteio
-  decimal valor_numero
-  int quantidade_numeros
-  string status
+    int id
+    string titulo
+    string descricao
+    decimal valor_numero
+    int quantidade_numeros
+    date data_sorteio
+    string status
 }
 
 NUMERO {
-  int id_numero
-  int numero
-  string status
+    int id
+    int numero
+    string status
 }
 
 PARTICIPANTE {
-  int id_participante
-  string nome
-  string telefone
-  string email
+    int id
+    string nome
+    string telefone
+    string email
 }
 
 RESERVA {
-  int id_reserva
-  datetime data_reserva
-  string status
+    int id
+    datetime data_reserva
+    string status
 }
 
 PAGAMENTO {
-  int id_pagamento
-  decimal valor
-  datetime data_pagamento
-  string metodo_pagamento
-  string status
+    int id
+    datetime data_pagamento
+    decimal valor
+    string status
 }
+
+SORTEIO {
+    int id
+    datetime data_sorteio
+    int numero_vencedor
+}
+
+RIFA ||--o{ NUMERO : possui
+NUMERO ||--o{ RESERVA : reservado
+PARTICIPANTE ||--o{ RESERVA : realiza
+RESERVA ||--|| PAGAMENTO : gera
+RIFA ||--|| SORTEIO : realiza
 ```
 
----
+------------------------------------------------------------------------
 
-# 6. Regras de Negócio
+# Entidades
 
-O modelo segue as seguintes regras:
+## Rifa
 
-1. Uma **rifa possui vários números**.
-2. Cada **número pertence a apenas uma rifa**.
-3. Um **participante pode reservar vários números**.
-4. Um **número pode ser reservado apenas uma vez**.
-5. Cada **reserva gera exatamente um pagamento**.
+Representa uma campanha de rifa criada por um organizador.
 
----
+Principais atributos:
 
-# 7. Nível da Modelagem
+-   id
+-   titulo
+-   descricao
+-   valor_numero
+-   quantidade_numeros
+-   data_sorteio
+-   status
 
-Este modelo corresponde ao:
+------------------------------------------------------------------------
 
-**Modelo Conceitual de Dados**
+## Número
 
-Fluxo da modelagem no projeto:
+Representa um número individual pertencente a uma rifa.
 
-MER → Modelo Relacional → SQL → Banco de Dados
+Atributos:
 
----
+-   id
+-   numero
+-   status
 
-# 8. Próximos Passos
+Status possíveis:
 
-A partir do MER são derivados:
+-   disponível
+-   reservado
+-   vendido
 
-- **Modelo Relacional**
-- **Script SQL do banco de dados**
-- **Dicionário de dados**
+------------------------------------------------------------------------
 
-Esses artefatos fazem parte da arquitetura de dados do sistema.
+## Participante
+
+Representa o usuário que participa da rifa.
+
+Atributos:
+
+-   id
+-   nome
+-   telefone
+-   email
+
+------------------------------------------------------------------------
+
+## Reserva
+
+Representa a reserva temporária de um número por um participante.
+
+Atributos:
+
+-   id
+-   data_reserva
+-   status
+
+------------------------------------------------------------------------
+
+## Pagamento
+
+Representa o pagamento associado a uma reserva.
+
+Atributos:
+
+-   id
+-   data_pagamento
+-   valor
+-   status
+
+------------------------------------------------------------------------
+
+## Sorteio
+
+Representa o sorteio realizado ao final da campanha.
+
+Atributos:
+
+-   id
+-   data_sorteio
+-   numero_vencedor
+
+------------------------------------------------------------------------
+
+# Relacionamentos
+
+  Entidade       Relacionamento   Entidade
+  -------------- ---------------- -----------
+  Rifa           possui           Número
+  Número         pode gerar       Reserva
+  Participante   realiza          Reserva
+  Reserva        gera             Pagamento
+  Rifa           possui           Sorteio
+
+------------------------------------------------------------------------
+
+# Observações
+
+Este modelo conceitual serve como base para:
+
+-   modelo relacional
+-   implementação SQL
+-   definição das regras de integridade do banco
+
+Ele também está diretamente relacionado aos documentos:
+
+-   `modelo-relacional.md`
+-   `schema-sql.md`
+-   `dicionario-dados.md`
