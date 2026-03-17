@@ -1,139 +1,175 @@
-# C4 Model --- Arquitetura do Sistema
 
-Este documento apresenta a arquitetura do sistema **Rifa Digital**
-utilizando o **modelo C4**, que descreve o sistema em diferentes níveis
-de abstração.
+# C4 Model — Rifa Digital
 
-O modelo C4 é dividido em:
+Este documento apresenta a **Arquitetura do Sistema Rifa Digital** utilizando o **modelo C4**.
 
--   Context Diagram
--   Container Diagram
--   Component Diagram
+O modelo C4 descreve a arquitetura de software em diferentes níveis de abstração:
 
-------------------------------------------------------------------------
+1. Contexto (System Context)
+2. Containers
+3. Componentes
+4. Código (opcional)
 
-# 1. Context Diagram
+Neste documento são apresentados os três primeiros níveis.
 
-O diagrama de contexto mostra como o sistema se relaciona com usuários
-externos.
+---
 
-``` mermaid
+# 1. System Context
+
+O **System Context Diagram** mostra o sistema como uma caixa única e suas interações com atores externos.
+
+```mermaid
 flowchart LR
 
-Participante[Participante] --> Sistema[Rifa Digital]
-Organizador[Organizador] --> Sistema
+USER[Participante / Usuário]
+ADMIN[Organizador]
+SYSTEM[Rifa Digital System]
 
-Sistema --> Banco[(Banco de Dados)]
-Sistema --> Sorteio[Processo de Sorteio]
+USER -->|Seleciona números| SYSTEM
+USER -->|Realiza pagamento| SYSTEM
+
+ADMIN -->|Cria rifa| SYSTEM
+ADMIN -->|Define sorteio| SYSTEM
 ```
 
-## Descrição
+### Atores
 
-O sistema é utilizado por dois tipos de usuários:
+**Participante**
+- seleciona números
+- realiza reserva
+- efetua pagamento
 
-### Participante
+**Organizador**
+- cria rifas
+- define data do sorteio
+- acompanha participantes
 
-Responsável por:
-
--   visualizar rifas
--   escolher números
--   realizar pagamento
--   acompanhar resultados
-
-### Organizador
-
-Responsável por:
-
--   criar rifas
--   gerenciar números
--   acompanhar vendas
--   realizar sorteio
-
-------------------------------------------------------------------------
+---
 
 # 2. Container Diagram
 
-O diagrama de containers apresenta os principais componentes técnicos do
-sistema.
+O **Container Diagram** mostra os principais blocos tecnológicos do sistema.
 
-``` mermaid
+```mermaid
 flowchart LR
 
-User[Usuário]
+USER[Usuário]
 
-Frontend[Interface Web]
-Backend[Aplicação Rifa Digital]
-Database[(Banco de Dados)]
+WEB[Interface Web
+HTML / CSS / JavaScript]
 
-User --> Frontend
-Frontend --> Backend
-Backend --> Database
+API[Backend API
+Aplicação]
+
+DB[(Banco de Dados Relacional)]
+
+USER --> WEB
+WEB --> API
+API --> DB
 ```
 
-## Containers
-```
-  -----------------------------------------------------------------------
-  Container                           Descrição
-  ----------------------------------- -----------------------------------
-  Frontend                            Interface web utilizada pelos
-                                      usuários
+### Containers
 
-  Backend                             Serviço responsável pela lógica de
-                                      negócio
+**Interface Web**
+- exibe as rifas
+- mostra números disponíveis
+- permite reserva de números
 
-  Database                            Banco de dados responsável pela
-                                      persistência das informações
-  -----------------------------------------------------------------------
-```
-------------------------------------------------------------------------
+**Backend / API**
+- implementa regras de negócio
+- valida reservas
+- processa pagamentos
+
+**Banco de Dados**
+- armazena rifas
+- armazena números
+- registra reservas
+- registra pagamentos
+
+---
 
 # 3. Component Diagram
 
-O diagrama de componentes detalha os módulos internos da aplicação.
+O **Component Diagram** detalha os módulos do backend.
 
-``` mermaid
-flowchart LR
+```mermaid
+flowchart TD
 
-API[API da Aplicação]
+API[Backend API]
 
-Rifa[Gestão de Rifas]
-Numero[Gestão de Números]
-Reserva[Gestão de Reservas]
-Pagamento[Gestão de Pagamentos]
-Sorteio[Processo de Sorteio]
+RIFA_SERVICE[Rifa Service]
+NUMERO_SERVICE[Numero Service]
+RESERVA_SERVICE[Reserva Service]
+PAGAMENTO_SERVICE[Pagamento Service]
 
-Database[(Banco de Dados)]
+DB[(Database)]
 
-API --> Rifa
-API --> Numero
-API --> Reserva
-API --> Pagamento
-API --> Sorteio
+API --> RIFA_SERVICE
+API --> NUMERO_SERVICE
+API --> RESERVA_SERVICE
+API --> PAGAMENTO_SERVICE
 
-Rifa --> Database
-Numero --> Database
-Reserva --> Database
-Pagamento --> Database
-Sorteio --> Database
+RIFA_SERVICE --> DB
+NUMERO_SERVICE --> DB
+RESERVA_SERVICE --> DB
+PAGAMENTO_SERVICE --> DB
 ```
 
-## Componentes
-```
-  Componente             Responsabilidade
-  ---------------------- ----------------------------------
-  Gestão de Rifas        criação e gerenciamento de rifas
-  Gestão de Números      controle dos números disponíveis
-  Gestão de Reservas     reserva temporária de números
-  Gestão de Pagamentos   confirmação de pagamentos
-  Sorteio                definição do número vencedor
-```
-------------------------------------------------------------------------
+### Componentes
 
-# 4. Benefícios da Arquitetura
+**Rifa Service**
+- criação de rifas
+- gerenciamento de campanhas
 
-A arquitetura adotada permite:
+**Numero Service**
+- geração de números
+- controle de disponibilidade
 
--   separação clara de responsabilidades
--   manutenção facilitada
--   escalabilidade do sistema
--   organização da lógica de negócio
+**Reserva Service**
+- reserva de números
+- associação com participantes
+
+**Pagamento Service**
+- registro de pagamentos
+- confirmação de reserva
+
+---
+
+# 4. Relação com Arquitetura de Dados
+
+Os componentes do sistema manipulam as seguintes entidades:
+
+- RIFA
+- NUMERO
+- PARTICIPANTE
+- RESERVA
+- PAGAMENTO
+
+Essas entidades são definidas na **Arquitetura de Dados**:
+
+MER → Modelo Relacional → SQL
+
+---
+
+# 5. Integração com a Documentação
+
+Este documento se conecta com:
+
+- System Overview — visão geral do sistema
+- System + Data Architecture — integração sistema + dados
+- Data Architecture — modelagem de dados
+- Testing — estratégia de testes
+
+---
+
+# Conclusão
+
+O modelo C4 ajuda a entender a arquitetura do sistema em diferentes níveis:
+
+Contexto → Containers → Componentes
+
+Essa abordagem facilita:
+
+- comunicação entre equipes
+- documentação da arquitetura
+- evolução do sistema
