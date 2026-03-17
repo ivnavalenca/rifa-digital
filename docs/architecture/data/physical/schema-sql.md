@@ -1,265 +1,177 @@
+# Schema SQL --- Rifa Digital
 
-# Schema SQL — Rifa Digital
+Este documento apresenta o **schema SQL** do banco de dados do sistema
+**Rifa Digital**.
 
-Este documento apresenta o **schema SQL (DDL)** do banco de dados do sistema **Rifa Digital**.
+O schema representa a implementação física do **modelo relacional** no
+banco de dados. Ele define:
 
-O script SQL é derivado do **Modelo Relacional** e representa o **nível físico da modelagem de dados**, contendo a definição das tabelas, chaves primárias, chaves estrangeiras e restrições de integridade.
+-   tabelas
+-   chaves primárias
+-   chaves estrangeiras
+-   tipos de dados
+-   regras de integridade
 
----
+------------------------------------------------------------------------
 
-# 1. Criação do Banco de Dados
+# Estrutura do Banco de Dados
 
-```sql
-CREATE DATABASE rifa_digital;
-```
+O banco de dados é composto pelas seguintes tabelas:
 
-Selecionar o banco:
+-   rifa
+-   numero
+-   participante
+-   reserva
+-   pagamento
+-   sorteio
 
-```sql
-USE rifa_digital;
-```
+------------------------------------------------------------------------
 
----
+# Tabela RIFA
 
-# 2. Tabela RIFA
-
-Armazena informações sobre cada campanha de rifa.
-
-```sql
+``` sql
 CREATE TABLE rifa (
-    id_rifa INT PRIMARY KEY AUTO_INCREMENT,
+    id SERIAL PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL,
     descricao TEXT,
-    data_sorteio DATE NOT NULL,
     valor_numero DECIMAL(10,2) NOT NULL,
-    quantidade_numeros INT NOT NULL,
-    status VARCHAR(30) DEFAULT 'ativa',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    quantidade_numeros INTEGER NOT NULL,
+    data_sorteio DATE,
+    status VARCHAR(20)
 );
 ```
 
----
+------------------------------------------------------------------------
 
-# 3. Tabela NUMERO
+# Tabela NUMERO
 
-Armazena os números disponíveis de cada rifa.
-
-```sql
+``` sql
 CREATE TABLE numero (
-    id_numero INT PRIMARY KEY AUTO_INCREMENT,
-    numero INT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    numero INTEGER NOT NULL,
     status VARCHAR(20) DEFAULT 'disponivel',
-    id_rifa INT NOT NULL,
-
-    CONSTRAINT fk_numero_rifa
-        FOREIGN KEY (id_rifa)
-        REFERENCES rifa(id_rifa)
-        ON DELETE CASCADE
+    rifa_id INTEGER NOT NULL,
+    
+    CONSTRAINT fk_rifa
+        FOREIGN KEY (rifa_id)
+        REFERENCES rifa(id)
 );
 ```
 
-Relacionamento:
+------------------------------------------------------------------------
 
-```
-RIFA (1) ---- (N) NUMERO
-```
+# Tabela PARTICIPANTE
 
----
-
-# 4. Tabela PARTICIPANTE
-
-Armazena os participantes da rifa.
-
-```sql
+``` sql
 CREATE TABLE participante (
-    id_participante INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(150) NOT NULL,
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(120) NOT NULL,
     telefone VARCHAR(20),
-    email VARCHAR(150),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    email VARCHAR(120)
 );
 ```
 
----
+------------------------------------------------------------------------
 
-# 5. Tabela RESERVA
+# Tabela RESERVA
 
-Representa a reserva de um número por um participante.
-
-```sql
+``` sql
 CREATE TABLE reserva (
-    id_reserva INT PRIMARY KEY AUTO_INCREMENT,
-    data_reserva DATETIME DEFAULT CURRENT_TIMESTAMP,
-    status VARCHAR(20) DEFAULT 'reservado',
-    id_numero INT NOT NULL,
-    id_participante INT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    data_reserva TIMESTAMP NOT NULL,
+    status VARCHAR(20),
+    numero_id INTEGER NOT NULL,
+    participante_id INTEGER NOT NULL,
 
-    CONSTRAINT fk_reserva_numero
-        FOREIGN KEY (id_numero)
-        REFERENCES numero(id_numero),
+    CONSTRAINT fk_numero
+        FOREIGN KEY (numero_id)
+        REFERENCES numero(id),
 
-    CONSTRAINT fk_reserva_participante
-        FOREIGN KEY (id_participante)
-        REFERENCES participante(id_participante)
+    CONSTRAINT fk_participante
+        FOREIGN KEY (participante_id)
+        REFERENCES participante(id)
 );
 ```
 
-Relacionamentos:
+------------------------------------------------------------------------
 
-```
-NUMERO (1) ---- (0..1) RESERVA
-PARTICIPANTE (1) ---- (N) RESERVA
-```
+# Tabela PAGAMENTO
 
----
-
-# 6. Tabela PAGAMENTO
-
-Representa o pagamento associado a uma reserva.
-
-```sql
+``` sql
 CREATE TABLE pagamento (
-    id_pagamento INT PRIMARY KEY AUTO_INCREMENT,
-    valor DECIMAL(10,2) NOT NULL,
-    data_pagamento DATETIME,
-    metodo_pagamento VARCHAR(50),
-    status VARCHAR(20) DEFAULT 'pendente',
-    id_reserva INT UNIQUE,
+    id SERIAL PRIMARY KEY,
+    data_pagamento TIMESTAMP,
+    valor DECIMAL(10,2),
+    status VARCHAR(20),
+    reserva_id INTEGER NOT NULL,
 
-    CONSTRAINT fk_pagamento_reserva
-        FOREIGN KEY (id_reserva)
-        REFERENCES reserva(id_reserva)
+    CONSTRAINT fk_reserva
+        FOREIGN KEY (reserva_id)
+        REFERENCES reserva(id)
 );
 ```
 
-Relacionamento:
+------------------------------------------------------------------------
 
+# Tabela SORTEIO
+
+``` sql
+CREATE TABLE sorteio (
+    id SERIAL PRIMARY KEY,
+    data_sorteio TIMESTAMP,
+    numero_vencedor INTEGER,
+    rifa_id INTEGER NOT NULL,
+
+    CONSTRAINT fk_rifa_sorteio
+        FOREIGN KEY (rifa_id)
+        REFERENCES rifa(id)
+);
 ```
-RESERVA (1) ---- (1) PAGAMENTO
-```
 
----
+------------------------------------------------------------------------
 
-# 7. Índices
+# Índices Recomendados
 
-Índices são utilizados para melhorar o desempenho das consultas.
+Para melhorar a performance das consultas, alguns índices podem ser
+criados:
 
-```sql
+``` sql
 CREATE INDEX idx_numero_rifa
-ON numero(id_rifa);
-
-CREATE INDEX idx_reserva_participante
-ON reserva(id_participante);
+ON numero(rifa_id);
 
 CREATE INDEX idx_reserva_numero
-ON reserva(id_numero);
+ON reserva(numero_id);
+
+CREATE INDEX idx_reserva_participante
+ON reserva(participante_id);
 ```
 
----
+------------------------------------------------------------------------
 
-# 8. Regras de Integridade
+# Regras de Integridade
 
-O banco de dados implementa:
+O banco de dados garante:
 
-### Integridade de Entidade
+-   integridade referencial entre tabelas
+-   consistência dos dados
+-   controle das relações entre entidades
 
-Garantida pelas **chaves primárias (PRIMARY KEY)**.
+Principais regras:
 
-Exemplo:
+-   um número pertence a apenas uma rifa
+-   uma reserva está associada a um número e a um participante
+-   um pagamento está associado a uma reserva
+-   cada rifa possui um sorteio final
 
-```
-id_rifa
-id_numero
-id_participante
-id_reserva
-id_pagamento
-```
+------------------------------------------------------------------------
 
----
+# Relação com Outros Documentos
 
-### Integridade Referencial
+Este documento está relacionado com:
 
-Garantida pelas **chaves estrangeiras (FOREIGN KEY)**.
+-   `conceptual/mer.md` --- modelo conceitual
+-   `logical/modelo-relacional.md` --- modelo relacional
+-   `dictionary/dicionario-dados.md` --- descrição detalhada dos campos
 
-Principais vínculos:
-
-```
-numero.id_rifa → rifa.id_rifa
-reserva.id_numero → numero.id_numero
-reserva.id_participante → participante.id_participante
-pagamento.id_reserva → reserva.id_reserva
-```
-
----
-
-# 9. Script Completo Consolidado
-
-```sql
-CREATE DATABASE rifa_digital;
-USE rifa_digital;
-
-CREATE TABLE rifa (
-    id_rifa INT PRIMARY KEY AUTO_INCREMENT,
-    titulo VARCHAR(150) NOT NULL,
-    descricao TEXT,
-    data_sorteio DATE NOT NULL,
-    valor_numero DECIMAL(10,2) NOT NULL,
-    quantidade_numeros INT NOT NULL,
-    status VARCHAR(30) DEFAULT 'ativa',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE numero (
-    id_numero INT PRIMARY KEY AUTO_INCREMENT,
-    numero INT NOT NULL,
-    status VARCHAR(20) DEFAULT 'disponivel',
-    id_rifa INT NOT NULL,
-    FOREIGN KEY (id_rifa) REFERENCES rifa(id_rifa)
-);
-
-CREATE TABLE participante (
-    id_participante INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(150) NOT NULL,
-    telefone VARCHAR(20),
-    email VARCHAR(150),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE reserva (
-    id_reserva INT PRIMARY KEY AUTO_INCREMENT,
-    data_reserva DATETIME DEFAULT CURRENT_TIMESTAMP,
-    status VARCHAR(20) DEFAULT 'reservado',
-    id_numero INT NOT NULL,
-    id_participante INT NOT NULL,
-    FOREIGN KEY (id_numero) REFERENCES numero(id_numero),
-    FOREIGN KEY (id_participante) REFERENCES participante(id_participante)
-);
-
-CREATE TABLE pagamento (
-    id_pagamento INT PRIMARY KEY AUTO_INCREMENT,
-    valor DECIMAL(10,2) NOT NULL,
-    data_pagamento DATETIME,
-    metodo_pagamento VARCHAR(50),
-    status VARCHAR(20) DEFAULT 'pendente',
-    id_reserva INT UNIQUE,
-    FOREIGN KEY (id_reserva) REFERENCES reserva(id_reserva)
-);
-```
-
----
-
-# 10. Fluxo da Modelagem de Dados
-
-O schema SQL é o último nível da modelagem de dados.
-
-```
-MER (Modelo Conceitual)
-        ↓
-Modelo Relacional (Modelo Lógico)
-        ↓
-Schema SQL (Modelo Físico)
-        ↓
-Banco de Dados
-```
-
-Este fluxo representa o processo clássico de **engenharia de dados em bancos relacionais**.
+O schema SQL representa a **implementação final da arquitetura de
+dados**.
