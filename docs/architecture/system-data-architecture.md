@@ -1,37 +1,45 @@
+# System + Data Architecture --- Rifa Digital
 
-# System + Data Architecture — Rifa Digital
-
-Este documento apresenta uma visão integrada da **Arquitetura do Sistema** e da **Arquitetura de Dados** do projeto **Rifa Digital**.
+Este documento apresenta uma visão integrada da **Arquitetura do
+Sistema** e da **Arquitetura de Dados** do projeto **Rifa Digital**.
 
 O objetivo é mostrar como:
 
-- os **usuários interagem com o sistema**
-- a **aplicação processa os dados**
-- os **dados são armazenados no banco**
-- a **modelagem de dados sustenta o banco de dados**
+-   os usuários interagem com o sistema
+-   a aplicação processa os dados
+-   os dados são armazenados no banco
+-   a modelagem de dados sustenta o banco de dados
 
-Essa visão conecta **arquitetura de software** com **arquitetura de dados**.
+Essa visão conecta **arquitetura de software** com **arquitetura de
+dados**.
 
----
+------------------------------------------------------------------------
 
 # Visão Geral da Arquitetura
 
-```mermaid
+``` mermaid
 flowchart TD
+
+subgraph SYSTEM[Arquitetura do Sistema]
 
 USER[Usuário]
 
-WEB[Interface Web<br>Rifa Digital]
+WEB[Interface Web]
 
 API[Backend / API]
+
+SERVICE[Serviços de Negócio]
 
 DB[(Banco de Dados)]
 
 USER --> WEB
 WEB --> API
-API --> DB
+API --> SERVICE
+SERVICE --> DB
 
-subgraph DATA_ARCHITECTURE[Arquitetura de Dados]
+end
+
+subgraph DATA[Arquitetura de Dados]
 
 MER[MER<br>Modelo Conceitual]
 
@@ -48,106 +56,125 @@ SQL --> DB
 
 end
 
-API --> MER
+SERVICE --> MER
 ```
 
----
+------------------------------------------------------------------------
 
 # 1. Usuário
 
 O **usuário** interage com o sistema através da interface web.
 
-Exemplos de ações:
+Principais ações:
 
-- visualizar uma rifa
-- escolher números disponíveis
-- reservar números
-- confirmar pagamento
+-   visualizar rifas disponíveis
+-   escolher números
+-   reservar números
+-   confirmar pagamento
 
----
+------------------------------------------------------------------------
 
 # 2. Interface Web
 
 A interface web é responsável por:
 
-- apresentar informações da rifa
-- mostrar números disponíveis
-- permitir seleção de números
-- enviar dados para o backend
+-   apresentar informações da rifa
+-   mostrar números disponíveis
+-   permitir seleção de números
+-   enviar dados para o backend
 
 Exemplos de páginas:
 
-- lista de rifas
-- página da rifa
-- confirmação de reserva
+-   lista de rifas
+-   página da rifa
+-   confirmação de reserva
 
----
+------------------------------------------------------------------------
 
 # 3. Backend / API
 
-O **backend** implementa as regras de negócio.
+O **backend** implementa a lógica da aplicação.
 
 Responsabilidades:
 
-- validar reservas
-- registrar participantes
-- processar pagamentos
-- atualizar status dos números
+-   validar dados
+-   gerenciar reservas
+-   registrar participantes
+-   processar pagamentos
+-   atualizar status dos números
 
-O backend também realiza:
+------------------------------------------------------------------------
 
-- consultas ao banco de dados
-- inserção de registros
-- atualização de status
+# 4. Serviços de Negócio
 
----
+Os serviços organizam a lógica do sistema.
 
-# 4. Banco de Dados
+Exemplos:
 
-O banco de dados armazena as informações do sistema.
+-   RifaService
+-   NumeroService
+-   ReservaService
+-   PagamentoService
+-   SorteioService
+
+Esses serviços acessam diretamente o banco de dados.
+
+------------------------------------------------------------------------
+
+# 5. Banco de Dados
+
+O banco armazena os dados do sistema.
 
 Principais tabelas:
 
-- RIFA
-- NUMERO
-- PARTICIPANTE
-- RESERVA
-- PAGAMENTO
+-   RIFA
+-   NUMERO
+-   PARTICIPANTE
+-   RESERVA
+-   PAGAMENTO
+-   SORTEIO
 
-Essas tabelas foram definidas através da **modelagem de dados**.
+Essas tabelas são resultado da modelagem de dados.
 
----
+------------------------------------------------------------------------
 
-# 5. Arquitetura de Dados
+# 6. Arquitetura de Dados
 
-A arquitetura de dados define como os dados são estruturados antes de serem implementados no banco.
+A arquitetura de dados define como os dados são estruturados antes da
+implementação no banco.
 
 O processo segue três níveis principais de modelagem.
 
----
+------------------------------------------------------------------------
 
-# 6. Modelo Conceitual (MER)
+# 7. Modelo Conceitual (MER)
 
-O **Modelo Entidade-Relacionamento (MER)** representa os dados de forma conceitual.
+O **Modelo Entidade-Relacionamento** representa os dados de forma
+conceitual.
 
 Define:
 
-- entidades
-- atributos
-- relacionamentos
-- cardinalidade
+-   entidades
+-   atributos
+-   relacionamentos
+-   cardinalidade
 
-Entidades do sistema:
+Entidades principais:
 
-- RIFA
-- NUMERO
-- PARTICIPANTE
-- RESERVA
-- PAGAMENTO
+-   Rifa
+-   Numero
+-   Participante
+-   Reserva
+-   Pagamento
+-   Sorteio
 
----
+Documento relacionado:
 
-# 7. Modelo Lógico (Modelo Relacional)
+`architecture/data/conceptual/mer.md`
+
+------------------------------------------------------------------------
+
+# 8. Modelo Lógico (Modelo Relacional)
 
 O modelo lógico transforma o MER em **tabelas relacionais**.
 
@@ -155,37 +182,39 @@ Cada entidade torna-se uma tabela.
 
 Exemplo:
 
-```
-RIFA(
- id_rifa PK,
- titulo,
- data_sorteio,
- valor_numero
-)
+    RIFA(
+     id_rifa PK,
+     titulo,
+     data_sorteio,
+     valor_numero
+    )
 
-NUMERO(
- id_numero PK,
- numero,
- status,
- id_rifa FK
-)
-```
+    NUMERO(
+     id_numero PK,
+     numero,
+     status,
+     id_rifa FK
+    )
 
 Neste nível aparecem:
 
-- chaves primárias (PK)
-- chaves estrangeiras (FK)
-- relacionamentos entre tabelas
+-   chaves primárias
+-   chaves estrangeiras
+-   relacionamentos entre tabelas
 
----
+Documento relacionado:
 
-# 8. Modelo Físico (SQL)
+`architecture/data/logical/modelo-relacional.md`
 
-O modelo físico representa a **implementação real do banco**.
+------------------------------------------------------------------------
+
+# 9. Modelo Físico (SQL)
+
+O modelo físico representa a **implementação real do banco de dados**.
 
 Exemplo:
 
-```sql
+``` sql
 CREATE TABLE rifa (
  id_rifa INT PRIMARY KEY,
  titulo VARCHAR(150),
@@ -196,63 +225,71 @@ CREATE TABLE rifa (
 
 Aqui são definidos:
 
-- tipos de dados
-- constraints
-- integridade referencial
-- índices
+-   tipos de dados
+-   constraints
+-   integridade referencial
+-   índices
 
----
+Documento relacionado:
 
-# 9. Dicionário de Dados
+`architecture/data/physical/schema-sql.md`
 
-O dicionário de dados documenta cada campo do banco.
+------------------------------------------------------------------------
+
+# 10. Dicionário de Dados
+
+O **dicionário de dados** documenta cada campo do banco.
 
 Ele descreve:
 
-- nome do campo
-- tipo de dado
-- significado do campo
-- obrigatoriedade
+-   nome do campo
+-   tipo de dado
+-   significado do campo
+-   obrigatoriedade
 
 Exemplo:
 
-| Tabela | Campo | Tipo | Descrição |
-|------|------|------|------|
-| RIFA | id_rifa | INT | Identificador da rifa |
-| NUMERO | numero | INT | Número da rifa |
-| RESERVA | data_reserva | DATETIME | Data da reserva |
+  Tabela    Campo          Tipo       Descrição
+  --------- -------------- ---------- -----------------------
+  RIFA      id_rifa        INT        Identificador da rifa
+  NUMERO    numero         INT        Número da rifa
+  RESERVA   data_reserva   DATETIME   Data da reserva
 
----
+Documento relacionado:
+
+`architecture/data/dictionary/dicionario-dados.md`
+
+------------------------------------------------------------------------
 
 # Fluxo Completo do Sistema
 
 O funcionamento completo do sistema pode ser representado como:
 
-```
-Usuário
-   ↓
-Interface Web
-   ↓
-Backend / API
-   ↓
-Banco de Dados
-```
+    Usuário
+       ↓
+    Interface Web
+       ↓
+    Backend / API
+       ↓
+    Serviços
+       ↓
+    Banco de Dados
 
-A estrutura do banco é resultado do processo de modelagem:
+A estrutura do banco resulta do processo de modelagem:
 
-```
-MER → Modelo Relacional → SQL → Banco de Dados
-```
+    MER → Modelo Relacional → SQL → Banco de Dados
 
----
+------------------------------------------------------------------------
 
 # Conclusão
 
-A integração entre **arquitetura de sistema** e **arquitetura de dados** permite:
+A integração entre **arquitetura de sistema** e **arquitetura de dados**
+permite:
 
-- melhor organização do sistema
-- maior consistência dos dados
-- facilidade de evolução da aplicação
-- melhor compreensão do funcionamento do sistema
+-   melhor organização do sistema
+-   maior consistência dos dados
+-   facilidade de evolução da aplicação
+-   melhor compreensão do funcionamento do sistema
 
-Esse modelo também facilita a documentação técnica e o ensino de conceitos de **Engenharia de Software e Banco de Dados**.
+Esse modelo também facilita a documentação técnica e o ensino de
+conceitos de **Engenharia de Software e Banco de Dados**.
