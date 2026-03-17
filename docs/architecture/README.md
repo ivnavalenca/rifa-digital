@@ -1,148 +1,137 @@
-# Arquitetura do Sistema --- Rifa Digital
 
-Esta seção apresenta a **arquitetura do sistema Rifa Digital**,
-incluindo a visão geral do sistema, modelo arquitetural, modelo C4 e
-documentação do banco de dados.
+# Architecture — Rifa Digital
 
-A arquitetura foi documentada para facilitar:
+Esta seção apresenta a **arquitetura do sistema Rifa Digital**, descrevendo
+como o sistema é estruturado e como seus componentes interagem.
 
--   entendimento do funcionamento do sistema
--   evolução e manutenção do software
--   alinhamento entre desenvolvedores
--   organização da documentação técnica
+A documentação de arquitetura foi organizada para fornecer diferentes níveis
+de visão do sistema, desde uma **visão geral** até os **detalhes da arquitetura
+de dados**.
 
-------------------------------------------------------------------------
+---
 
 # Estrutura da Arquitetura
 
-A documentação de arquitetura está organizada nos seguintes documentos:
+```
+architecture
+├ README.md
+├ system-overview.md
+├ c4-model.md
+├ system-data-architecture.md
+└ data
+    ├ README.md
+    ├ data-architecture.md
+    ├ conceptual
+    │   └ mer.md
+    ├ logical
+    │   └ modelo-relacional.md
+    ├ physical
+    │   └ schema-sql.md
+    └ dictionary
+        └ dicionario-dados.md
+```
 
-  Documento                  Descrição
-  -------------------------- --------------------------------------------
-  system-overview.md         visão geral do sistema
-  arquitetura.md             descrição da arquitetura do sistema
-  c4-model.md                diagramas arquiteturais usando o modelo C4
-  data/modelo-dados.md       modelo de dados do sistema
-  data/dicionario-dados.md   dicionário de dados do banco
-  data/schema.sql            script SQL do banco de dados
-  data/der.png               diagrama entidade-relacionamento
+---
 
-------------------------------------------------------------------------
+# Visão Geral da Arquitetura
+
+A arquitetura do sistema segue uma estrutura típica de aplicações web:
+
+```mermaid
+flowchart LR
+
+USER[Usuário]
+
+WEB[Interface Web]
+
+API[Backend / API]
+
+DB[(Banco de Dados)]
+
+USER --> WEB
+WEB --> API
+API --> DB
+```
+
+---
 
 # Documentos de Arquitetura
 
 ## System Overview
 
-Apresenta uma visão geral do sistema, incluindo:
+📄 `system-overview.md`
 
--   objetivo do sistema
--   funcionalidades principais
--   tipos de usuários
--   fluxo do sistema
--   visão arquitetural simplificada
+Apresenta uma visão geral do sistema:
 
-Arquivo:
+- propósito do sistema
+- principais funcionalidades
+- atores do sistema
+- fluxo básico de funcionamento
 
-    system-overview.md
+---
 
-------------------------------------------------------------------------
+## C4 Model
 
-## Arquitetura do Sistema
+📄 `c4-model.md`
 
-Descreve a arquitetura adotada pelo sistema, incluindo:
+Descreve a arquitetura utilizando o **modelo C4**, incluindo:
 
--   organização da aplicação
--   responsabilidades dos componentes
--   decisões arquiteturais
+- **System Context** — interação do sistema com usuários
+- **Containers** — principais blocos tecnológicos
+- **Componentes** — módulos internos do backend
 
-Arquivo:
+---
 
-    arquitetura.md
+## System + Data Architecture
 
-------------------------------------------------------------------------
+📄 `system-data-architecture.md`
 
-## Modelo C4
+Integra a arquitetura do sistema com a arquitetura de dados,
+mostrando como:
 
-Apresenta a arquitetura utilizando o **modelo C4**, que descreve o
-sistema em diferentes níveis:
+- o sistema processa dados
+- os dados são armazenados
+- a modelagem de dados sustenta o banco
 
-1.  Context Diagram
-2.  Container Diagram
-3.  Component Diagram
-
-Arquivo:
-
-    c4-model.md
-
-------------------------------------------------------------------------
+---
 
 # Arquitetura de Dados
 
-A documentação de dados descreve o banco de dados utilizado pelo
-sistema.
+A pasta `data/` contém toda a documentação da **modelagem de dados**.
 
-## Modelo de Dados
+Fluxo da modelagem:
 
-Contém o diagrama MER e a descrição das entidades do sistema.
+```
+MER → Modelo Relacional → SQL → Banco de Dados
+```
 
-Arquivo:
+Documentos disponíveis:
 
-    data/modelo-dados.md
+- **Data Architecture** — visão geral da arquitetura de dados
+- **MER** — modelo entidade-relacionamento
+- **Modelo Relacional** — transformação em tabelas
+- **Schema SQL** — implementação do banco
+- **Dicionário de Dados** — descrição detalhada dos campos
 
-------------------------------------------------------------------------
+---
 
-## Dicionário de Dados
+# Relação com Outras Partes da Documentação
 
-Descreve detalhadamente cada campo das tabelas do banco de dados.
+A arquitetura se conecta com:
 
-Arquivo:
+- **Product** — visão do produto
+- **UX** — experiência do usuário
+- **Requirements** — requisitos do sistema
+- **Process** — processo de desenvolvimento
+- **Testing** — estratégia de testes
 
-    data/dicionario-dados.md
+---
 
-------------------------------------------------------------------------
+# Objetivo da Arquitetura
 
-## Script SQL
+A documentação de arquitetura tem como objetivos:
 
-Contém o script SQL para criação das tabelas do banco de dados.
-
-Arquivo:
-
-    data/schema.sql
-
-------------------------------------------------------------------------
-
-# Diagrama Entidade‑Relacionamento
-
-O DER do sistema pode ser encontrado em:
-
-    data/der.png
-
-Este diagrama apresenta:
-
--   entidades do sistema
--   atributos principais
--   relacionamentos
--   cardinalidades
-
-------------------------------------------------------------------------
-
-# Benefícios da Documentação de Arquitetura
-
-A documentação de arquitetura permite:
-
--   melhor entendimento do sistema
--   facilidade de manutenção
--   padronização do desenvolvimento
--   apoio à evolução do software
-
-------------------------------------------------------------------------
-
-# Documentação Relacionada
-
-Outras seções da documentação do projeto:
-
--   Product --- visão do produto
--   UX --- experiência do usuário
--   Requirements --- requisitos do sistema
--   Testing --- estratégia e execução de testes
--   User --- manual do usuário
+- facilitar a compreensão do sistema
+- apoiar o desenvolvimento do software
+- documentar decisões arquiteturais
+- servir como material de apoio para ensino de Engenharia de Software
