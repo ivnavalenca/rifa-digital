@@ -12,8 +12,8 @@ copyright: © 2026 Ivna Valença de Oliveira
 theme:
   name: material
   language: pt-BR
-  logo: assets/logo.png
-  favicon: assets/favicon.png
+  logo: assets/images/logo.png
+  favicon: assets/images/favicon.png
 
   features:
     - navigation.instant
