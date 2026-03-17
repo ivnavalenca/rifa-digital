@@ -95,7 +95,7 @@ nav:
       - Casos de Uso: requirements/casos-uso.md
       - Rastreabilidade: requirements/rastreabilidade.md
 
-- Architecture:
+  - Architecture:
       - Overview: architecture/README.md
       - System Overview: architecture/system-overview.md
       - C4 Model: architecture/c4-model.md
