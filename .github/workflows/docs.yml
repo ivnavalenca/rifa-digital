@@ -1,4 +1,4 @@
-name: Docs CI/CD
+name: Documentation CI/CD
 
 on:
   push:
@@ -10,40 +10,53 @@ permissions:
   contents: write
 
 jobs:
-  build-docs:
+  build:
     runs-on: ubuntu-latest
 
     steps:
 
+      # Checkout do repositório
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
+      # Configurar Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.x
+          python-version: '3.11'
 
+      # Cache de dependências Python (acelera pipeline)
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # Instalar dependências
       - name: Install dependencies
         run: |
           pip install mkdocs-material
           npm install -g markdownlint-cli
 
-      # 1️⃣ Markdown Lint
-      - name: Check Markdown formatting
+      # Markdown Lint
+      - name: Lint Markdown
         run: markdownlint docs/**/*.md
 
-      # 2️⃣ Verificação de links quebrados
-      - name: Link checker
+      # Verificar links quebrados
+      - name: Check broken links
         uses: lycheeverse/lychee-action@v1
         with:
           args: --verbose docs/**/*.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 3️⃣ Build do site
-      - name: Build documentation
+      # Build da documentação
+      - name: Build docs
         run: mkdocs build
 
-      # 4️⃣ Deploy automático
-      - name: Deploy to GitHub Pages
+      # Deploy para GitHub Pages
+      - name: Deploy docs
+        if: github.ref == 'refs/heads/main'
         run: mkdocs gh-deploy --force
