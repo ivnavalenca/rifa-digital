@@ -1,146 +1,149 @@
 
-# 🎟️ Rifa Digital
+# Rifa Digital
 
-![Rifa Digital](assets/images/banner.png)
+![Banner](assets/banner.png)
 
-Bem-vindo à documentação do sistema **Rifa Digital**.
+## Plataforma de Rifa Digital
 
-Este projeto demonstra a engenharia completa de um sistema de software, incluindo:
+Sistema para criação e gerenciamento de **rifas digitais** utilizado para arrecadação de recursos para eventos e atividades escolares.
 
-- Produto
-- UX
-- Requisitos
-- Arquitetura
-- Processo de Desenvolvimento
-- Testes
-- Documentação de Usuário
+Este portal apresenta toda a engenharia do sistema, incluindo:
+
+- Engenharia de requisitos
+- Arquitetura de software
+- Modelagem de dados
+- Engenharia de testes
+- Qualidade de software
+- DevOps
+- Observabilidade de engenharia
 
 ---
 
-## Engenharia do Sistema
+## 🚀 Quick Start
 
-```mermaid
-flowchart TD
+Clone o repositório:
 
-Product[Product] --> UX[UX]
-UX --> Requirements[Requirements]
-Requirements --> Architecture[Architecture]
-Architecture --> Process[Process]
-Process --> Testing[Testing]
-Testing --> User[User Documentation]
+```bash
+git clone https://github.com/ivnavalenca/rifa-digital.git
+cd rifa-digital
+mkdocs serve
 ```
 
-A documentação está organizada seguindo boas práticas de **Engenharia de Software, Arquitetura e Qualidade de Software**.
+Acesse no navegador:
+
+http://localhost:8000
 
 ---
 
-## Navegação da Documentação
+## Arquitetura do Sistema
 
-<div class="grid cards" markdown>
+```mermaid
+graph TD
 
-- :material-lightbulb-outline: **Product**
+User[Usuário]
 
-  Documentos relacionados à **visão do produto**.
+Frontend[Frontend Web]
 
-  Conteúdo:
-  - Visão do Produto
-  - Roadmap
-  - Stakeholders
+Backend[API Backend]
 
-  [➡ Acessar](product/README.md)
+Database[(Database)]
 
-- :material-account-group: **UX**
+User --> Frontend
+Frontend --> Backend
+Backend --> Database
+```
 
-  Documentação da **experiência do usuário**.
+---
 
-  Conteúdo:
-  - Personas
-  - Jornada do Usuário
-  - Fluxos
+## Portal de Engenharia
 
-  [➡ Acessar](ux/README.md)
+### Product
 
-- :material-file-document-outline: **Requirements**
+- [Visão do Produto](product/visao-produto.md)
+- [Stakeholders](product/stakeholders.md)
+- [Roadmap](product/roadmap.md)
 
-  Engenharia de **levantamento e gestão de requisitos**.
+### UX
 
-  Conteúdo:
-  - User Stories
-  - Casos de Uso
-  - Rastreabilidade
+- [Personas](ux/personas.md)
+- [Jornada do Usuário](ux/jornada-usuario.md)
+- [Diagrama de Sequência](ux/sequencia.md)
 
-  [➡ Acessar](requirements/README.md)
+### Requirements
 
-- :material-sitemap: **Architecture**
+- [Requisitos](requirements/requisitos.md)
+- [Casos de Uso](requirements/casos-de-uso.md)
+- [Priorização](requirements/priorizacao.md)
+- [Rastreabilidade](requirements/rastreabilidade.md)
 
-  Arquitetura do sistema e modelagem técnica.
+### Architecture
 
-  Conteúdo:
-  - System Overview
-  - C4 Model
-  - Modelo de Dados
-  - Dicionário de Dados
+- [System Overview](architecture/system-overview.md)
+- [Component Diagram](architecture/component-diagram.md)
+- [Class Diagram](architecture/class-diagram.md)
+- [Sequence Diagram](architecture/sequence-diagram.md)
+- [C4 Model](architecture/c4-model.md)
 
-  [➡ Acessar](architecture/README.md)
+### Data Architecture
 
-- :material-cogs: **Process**
+- [Data Architecture](data/data-architecture.md)
+- [MER](data/mer.md)
+- [Modelo Relacional](data/modelo-relacional.md)
+- [Schema SQL](data/schema-sql.md)
+- [Dicionário de Dados](data/dicionario-dados.md)
 
-  Processo de desenvolvimento adotado no projeto.
+### Testing
 
-  Conteúdo:
-  - Processo de Desenvolvimento
-  - Práticas de Engenharia
+- [Estratégia de Testes](testing/estrategia-testes.md)
+- [Plano de Testes](testing/plano-testes.md)
+- [Casos de Teste](testing/casos-de-teste.md)
+- [BDD Scenarios](testing/bdd-scenarios.md)
+- [Test Execution Report](testing/test-execution-report.md)
 
-  [➡ Acessar](process/processo-desenvolvimento.md)
+### Quality
 
-- :material-test-tube: **Testing**
+- [Plano de Qualidade](testing/plano-qualidade.md)
+- [Quality Dashboard](testing/quality-dashboard.md)
 
-  Estratégia de **qualidade e testes de software**.
+### Engineering
 
-  Conteúdo:
-  - Estratégia de Testes
-  - Plano de Testes
-  - Casos de Teste
-  - Rastreabilidade
+- [Engineering Map](engineering/engineering-map.md)
+- [Knowledge Graph](engineering/knowledge-graph.md)
+- [Traceability Graph](engineering/traceability-graph.md)
+- [Architecture Explorer](engineering/architecture-explorer.md)
+- [System Atlas](engineering/system-atlas.md)
+- [Interactive System Map](engineering/system-map.md)
+- [3D Architecture Map](engineering/system-map-3d.md)
+- [AI Engineering Assistant](engineering/assistant.md)
 
-  [➡ Acessar](testing/README.md)
+### Process
 
-- :material-book-open-variant: **User**
+- [Processo de Desenvolvimento](process/processo-desenvolvimento.md)
+- [Engineering Dashboard](process/engineering-dashboard.md)
+- [Project Health](process/project-health.md)
 
-  Documentação voltada ao **usuário final**.
+### User
 
-  Conteúdo:
-  - Manual do Usuário
-
-  [➡ Acessar](user/manual-usuario.md)
-
-</div>
+- [Manual do Usuário](user/manual-usuario.md)
 
 ---
 
 ## Sobre o Projeto
 
-O **Rifa Digital** é um sistema desenvolvido para permitir a criação e gestão de rifas digitais.
+O sistema **Rifa Digital** foi desenvolvido como estudo de **Engenharia de Software**, contemplando:
 
-Funcionalidades principais:
-
-- criação de campanhas de rifa
-- geração de números da rifa
-- reserva de números por participantes
-- confirmação de pagamento
-- sorteio do vencedor
+- Engenharia de requisitos
+- Arquitetura de software
+- Modelagem de dados
+- Engenharia de testes
+- DevOps
+- Observabilidade de engenharia
+- Documentação técnica completa
 
 ---
 
-## Objetivo da Documentação
+## Repositório
 
-Esta documentação foi estruturada para demonstrar um projeto completo de engenharia de software, incluindo:
+Código disponível em:
 
-- **Product Management**
-- **UX Design**
-- **Requirements Engineering**
-- **Software Architecture**
-- **Software Testing (QA)**
-- **User Documentation**
-
-A organização segue práticas utilizadas por **equipes profissionais de desenvolvimento de software**.
+https://github.com/ivnavalenca/rifa-digital
