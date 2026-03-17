@@ -10,21 +10,23 @@ permissions:
   contents: write
 
 jobs:
+
   docs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout do repositório
+
+      # Checkout do repositório
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Configurar Python
+      # Configurar Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      # 3. Cache do pip (acelera builds)
+      # Cache pip
       - name: Cache pip
         uses: actions/cache@v3
         with:
@@ -33,17 +35,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      # 4. Instalar dependências
+      # Instalar dependências
       - name: Install dependencies
         run: |
           pip install mkdocs-material
+          pip install matplotlib
+          pip install requests
+          pip install langchain
+          pip install chromadb
+          pip install tiktoken
           npm install -g markdownlint-cli
 
-      # 5. Validar Markdown
+      # Lint Markdown
       - name: Markdown lint
         run: markdownlint docs/**/*.md
 
-      # 6. Verificar links quebrados
+      # Verificar links quebrados
       - name: Check broken links
         uses: lycheeverse/lychee-action@v1
         with:
@@ -51,16 +58,48 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 7. Build da documentação
+      # Gerar métricas de engenharia
+      - name: Generate engineering metrics
+        run: python scripts/generate_metrics.py
+
+      # Gerar grafo de rastreabilidade
+      - name: Generate traceability graph
+        run: python scripts/generate_traceability_graph.py
+
+      # Gerar knowledge graph
+      - name: Generate knowledge graph
+        run: python scripts/generate_knowledge_graph.py
+
+      # Gerar system atlas
+      - name: Generate system atlas
+        run: python scripts/generate_system_atlas.py
+
+      # Gerar grafo da arquitetura
+      - name: Generate architecture graph
+        run: python scripts/generate_architecture_graph.py
+
+      # Executar agente de engenharia
+      - name: Run engineering agent
+        run: python copilot/agent.py
+
+      # Executar auto architect
+      - name: Run auto architect
+        run: python copilot/auto_architect.py
+
+      # Executar agente evolutivo
+      - name: Run self evolving agent
+        run: python copilot/self_evolving_agent.py
+
+      # Build da documentação
       - name: Build MkDocs
         run: mkdocs build
 
-      # 8. Deploy automático (apenas na branch main)
+      # Deploy no GitHub Pages
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
         run: mkdocs gh-deploy --force
 
-      # 9. Preview da documentação em Pull Requests
+      # Preview da documentação em PR
       - name: Upload docs preview
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
