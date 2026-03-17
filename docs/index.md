@@ -1,7 +1,7 @@
 
 # Rifa Digital
 
-![Banner](assets/banner.png)
+![Banner](assets/images/banner.png)
 
 ## Plataforma de Rifa Digital
 
