@@ -108,6 +108,16 @@ nav:
       - Test Execution Report: testing/test-execution-report.md
       - Matriz de Rastreabilidade: testing/matriz-rastreabilidade-testes.md
 
+  - Agile:
+      - Product Backlog: agile/backlog.md
+      - Sprint Planning: agile/sprint-planning.md
+      - Sprint Backlog: agile/sprint-backlog.md
+      - Daily Scrum: agile/daily-scrum.md
+      - Sprint Review: agile/sprint-review.md
+      - Sprint Retrospective: agile/sprint-retrospective.md
+      - Agile Metrics: agile/metrics.md
+      - Agile Dashboard: agile/agile-dashboard.md
+
   - Quality:
       - Plano de Qualidade: testing/plano-qualidade.md
       - Quality Dashboard: testing/quality-dashboard.md
