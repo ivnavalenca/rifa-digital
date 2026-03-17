@@ -10,22 +10,21 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  docs:
     runs-on: ubuntu-latest
 
     steps:
-
-      # Checkout do repositório
+      # 1. Checkout do repositório
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Configurar Python
+      # 2. Configurar Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      # Cache de dependências Python (acelera pipeline)
+      # 3. Cache do pip (acelera builds)
       - name: Cache pip
         uses: actions/cache@v3
         with:
@@ -34,17 +33,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      # Instalar dependências
+      # 4. Instalar dependências
       - name: Install dependencies
         run: |
           pip install mkdocs-material
           npm install -g markdownlint-cli
 
-      # Markdown Lint
-      - name: Lint Markdown
+      # 5. Validar Markdown
+      - name: Markdown lint
         run: markdownlint docs/**/*.md
 
-      # Verificar links quebrados
+      # 6. Verificar links quebrados
       - name: Check broken links
         uses: lycheeverse/lychee-action@v1
         with:
@@ -52,11 +51,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Build da documentação
-      - name: Build docs
+      # 7. Build da documentação
+      - name: Build MkDocs
         run: mkdocs build
 
-      # Deploy para GitHub Pages
-      - name: Deploy docs
+      # 8. Deploy automático (apenas na branch main)
+      - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
         run: mkdocs gh-deploy --force
+
+      # 9. Preview da documentação em Pull Requests
+      - name: Upload docs preview
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-preview
+          path: site
