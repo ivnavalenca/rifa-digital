@@ -1,8 +1,14 @@
 # Agile Dashboard
 
+Painel visual de métricas ágeis do projeto.
+
+---
+
 ## Velocity por Sprint
 
 <canvas id="velocityChart"></canvas>
+
+---
 
 ## Burndown Chart
 
@@ -16,6 +22,7 @@ fetch("../assets/agile-metrics.json")
 .then(r => r.json())
 .then(data => {
 
+// Velocity Chart
 const velocityCtx = document.getElementById('velocityChart');
 
 new Chart(velocityCtx, {
@@ -30,6 +37,7 @@ data: data.velocity
 });
 
 
+// Burndown Chart
 const burnCtx = document.getElementById('burndownChart');
 
 new Chart(burnCtx, {
@@ -52,3 +60,18 @@ data: data.burndown.actual
 });
 
 </script>
+
+---
+
+## Descrição
+
+Este dashboard apresenta métricas ágeis do projeto:
+
+- Velocity por sprint
+- Burndown da sprint atual
+
+Os dados são carregados automaticamente do arquivo:
+
+docs/assets/agile-metrics.json
+
+Esse arquivo pode ser gerado automaticamente por um script no pipeline CI/CD.
