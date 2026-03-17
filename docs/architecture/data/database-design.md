@@ -1,160 +1,24 @@
+# Database Design --- Rifa Digital
 
-# Database Design — Rifa Digital
+Este documento descreve o **design do banco de dados** do sistema **Rifa
+Digital**, mostrando como a modelagem evolui do **MER (Modelo
+Entidade‑Relacionamento)** até a implementação do banco utilizando
+**SQL**.
 
-Este documento apresenta o **processo de modelagem de dados** do sistema **Rifa Digital**.
+O objetivo é apresentar de forma clara as etapas de modelagem de dados
+utilizadas no projeto.
 
-Ele demonstra como um banco de dados é projetado em três etapas principais:
+------------------------------------------------------------------------
 
-1. **Modelo Conceitual — MER**
-2. **Modelo Lógico — Modelo Relacional**
-3. **Modelo Físico — SQL (DDL)**
+# Visão Geral do Design do Banco
 
-Esse fluxo corresponde ao processo clássico de **engenharia de banco de dados**.
-
----
-
-# Visão Geral da Modelagem
-
-```mermaid
+``` mermaid
 flowchart LR
 
-MER[Modelo Conceitual<br>MER] --> REL[Modelo Lógico<br>Modelo Relacional]
-REL --> SQL[Modelo Físico<br>SQL]
-SQL --> DB[(Banco de Dados)]
-```
-
----
-
-# 1. Modelo Conceitual — MER
-
-O **Modelo Entidade‑Relacionamento** descreve:
-
-- entidades
-- atributos
-- relacionamentos
-- cardinalidades
-
-Neste nível **não existem tabelas**, apenas conceitos.
-
-### Entidades do sistema
-
-- RIFA
-- NUMERO
-- PARTICIPANTE
-- RESERVA
-- PAGAMENTO
-
-### Diagrama MER
-
-```mermaid
-erDiagram
-
-RIFA ||--o{ NUMERO : possui
-NUMERO ||--o| RESERVA : reservado
-PARTICIPANTE ||--o{ RESERVA : realiza
-RESERVA ||--|| PAGAMENTO : gera
-```
-
----
-
-# 2. Modelo Lógico — Modelo Relacional
-
-O modelo relacional transforma as entidades em **tabelas**.
-
-### Tabelas
-
-```
-RIFA(
- id_rifa PK,
- titulo,
- data_sorteio,
- valor_numero
-)
-
-NUMERO(
- id_numero PK,
- numero,
- status,
- id_rifa FK
-)
-
-PARTICIPANTE(
- id_participante PK,
- nome,
- telefone
-)
-
-RESERVA(
- id_reserva PK,
- id_numero FK,
- id_participante FK
-)
-
-PAGAMENTO(
- id_pagamento PK,
- id_reserva FK
-)
-```
-
-Neste nível aparecem:
-
-- **Primary Keys (PK)**
-- **Foreign Keys (FK)**
-- relacionamentos entre tabelas
-
----
-
-# 3. Modelo Físico — SQL
-
-O modelo físico representa a implementação no banco.
-
-### Exemplo SQL
-
-```sql
-CREATE TABLE rifa (
-  id_rifa INT PRIMARY KEY,
-  titulo VARCHAR(150),
-  data_sorteio DATE,
-  valor_numero DECIMAL(10,2)
-);
-
-CREATE TABLE numero (
-  id_numero INT PRIMARY KEY,
-  numero INT,
-  status VARCHAR(20),
-  id_rifa INT,
-  FOREIGN KEY (id_rifa) REFERENCES rifa(id_rifa)
-);
-```
-
-Aqui definimos:
-
-- tipos de dados
-- constraints
-- índices
-- integridade referencial
-
----
-
-# Comparação dos Modelos
-
-| Nível | Modelo | Objetivo |
-|------|------|------|
-| Conceitual | MER | Entender o domínio do problema |
-| Lógico | Modelo Relacional | Estruturar tabelas |
-| Físico | SQL | Implementar no banco de dados |
-
----
-
-# Fluxo Completo da Modelagem
-
-```mermaid
-flowchart TD
-
 A[Requisitos do Sistema]
-B[MER]
-C[Modelo Relacional]
-D[SQL]
+B[Modelo Conceitual - MER]
+C[Modelo Lógico - Modelo Relacional]
+D[Modelo Físico - SQL]
 E[(Banco de Dados)]
 
 A --> B
@@ -163,18 +27,149 @@ C --> D
 D --> E
 ```
 
----
+Cada etapa representa um nível diferente de abstração na modelagem de
+dados.
 
-# Conclusão
+------------------------------------------------------------------------
 
-A modelagem de dados segue uma evolução:
+# 1. Modelo Conceitual (MER)
 
+O **Modelo Entidade‑Relacionamento** descreve o domínio do problema.
+
+Entidades principais do sistema:
+
+-   Rifa
+-   Número
+-   Participante
+-   Reserva
+-   Pagamento
+-   Sorteio
+
+Este modelo identifica:
+
+-   entidades
+-   atributos
+-   relacionamentos
+-   cardinalidades
+
+Documento relacionado:
+
+`conceptual/mer.md`
+
+------------------------------------------------------------------------
+
+# 2. Modelo Lógico (Modelo Relacional)
+
+O modelo relacional transforma as entidades do MER em **tabelas**.
+
+Regras principais de transformação:
+
+  MER              Modelo Relacional
+  ---------------- -------------------
+  Entidade         Tabela
+  Atributo         Coluna
+  Identificador    Chave Primária
+  Relacionamento   Chave Estrangeira
+
+Exemplo simplificado:
+
+    RIFA(
+     id PK,
+     titulo,
+     descricao,
+     valor_numero,
+     data_sorteio
+    )
+
+    NUMERO(
+     id PK,
+     numero,
+     status,
+     rifa_id FK
+    )
+
+Documento relacionado:
+
+`logical/modelo-relacional.md`
+
+------------------------------------------------------------------------
+
+# 3. Modelo Físico (SQL)
+
+O modelo físico representa a implementação real no banco de dados.
+
+Exemplo de criação das tabelas:
+
+``` sql
+CREATE TABLE rifa (
+ id SERIAL PRIMARY KEY,
+ titulo VARCHAR(150) NOT NULL,
+ descricao TEXT,
+ valor_numero DECIMAL(10,2),
+ data_sorteio DATE
+);
+
+CREATE TABLE participante (
+ id SERIAL PRIMARY KEY,
+ nome VARCHAR(120),
+ telefone VARCHAR(20),
+ email VARCHAR(120)
+);
+
+CREATE TABLE numero (
+ id SERIAL PRIMARY KEY,
+ numero INTEGER,
+ status VARCHAR(20),
+ rifa_id INTEGER REFERENCES rifa(id),
+ participante_id INTEGER REFERENCES participante(id)
+);
 ```
-MER → Modelo Relacional → SQL → Banco de Dados
-```
 
-Essa abordagem permite:
+Documento relacionado:
 
-- melhor entendimento do domínio
-- organização correta dos dados
-- implementação segura no banco de dados
+`physical/schema-sql.md`
+
+------------------------------------------------------------------------
+
+# 4. Integridade dos Dados
+
+O banco foi projetado para garantir:
+
+-   integridade referencial
+-   consistência dos dados
+-   controle de relacionamentos
+
+Exemplos de regras:
+
+-   um número pertence a apenas uma rifa
+-   um número não pode ser vendido duas vezes
+-   um pagamento deve estar associado a uma reserva válida
+
+------------------------------------------------------------------------
+
+# 5. Dicionário de Dados
+
+O **dicionário de dados** documenta cada campo do banco.
+
+Ele descreve:
+
+-   nome da coluna
+-   tipo de dado
+-   descrição
+-   obrigatoriedade
+-   relacionamentos
+
+Documento relacionado:
+
+`dictionary/dicionario-dados.md`
+
+------------------------------------------------------------------------
+
+# Benefícios da Modelagem
+
+Seguir esse processo de design traz vantagens importantes:
+
+-   maior clareza na estrutura dos dados
+-   facilidade de manutenção do banco
+-   redução de erros de modelagem
+-   melhor rastreabilidade entre requisitos e dados
