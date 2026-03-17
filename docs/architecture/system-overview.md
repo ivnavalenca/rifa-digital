@@ -1,138 +1,191 @@
-# System Overview --- Rifa Digital
 
-## 1. Visão Geral
+# System Overview — Rifa Digital
 
-O **Rifa Digital** é um sistema web desenvolvido para permitir a criação
-e gerenciamento de campanhas de rifas digitais.
+Este documento apresenta uma **visão geral do sistema Rifa Digital**, descrevendo seus principais objetivos, componentes e fluxo de funcionamento.
 
-O sistema permite que organizadores publiquem rifas e que participantes
-escolham números para concorrer a prêmios.
+O objetivo do *System Overview* é fornecer uma compreensão rápida de:
 
-O objetivo do sistema é **facilitar a gestão de rifas**, garantindo
-organização, transparência e controle das vendas de números.
+- propósito do sistema
+- principais funcionalidades
+- componentes da arquitetura
+- interação entre usuários e sistema
 
-------------------------------------------------------------------------
+---
 
-# 2. Principais Funcionalidades
+# 1. Visão Geral do Sistema
 
-O sistema oferece as seguintes funcionalidades principais:
+O **Rifa Digital** é um sistema web que permite a criação e gestão de rifas online.
 
--   criação de campanhas de rifa
--   visualização de rifas disponíveis
--   escolha de números pelos participantes
--   registro de compradores
--   reserva de números
--   confirmação de pagamento
--   acompanhamento das vendas
--   realização do sorteio
--   divulgação do número vencedor
+O sistema possibilita:
 
-------------------------------------------------------------------------
+- criação de campanhas de rifa
+- geração de números da rifa
+- reserva de números por participantes
+- registro de pagamento
+- realização de sorteio
 
-# 3. Usuários do Sistema
+---
 
-O sistema possui dois tipos principais de usuários.
+# 2. Objetivo do Sistema
 
-## Organizador
+O sistema tem como objetivo facilitar a **organização e gestão de rifas digitais**, permitindo que organizadores e participantes interajam de forma simples e segura.
+
+Benefícios:
+
+- organização automática dos números
+- controle de reservas
+- registro de pagamentos
+- transparência no processo de sorteio
+
+---
+
+# 3. Atores do Sistema
+
+Os principais atores do sistema são:
+
+### Organizador
 
 Responsável por:
 
--   criar rifas
--   definir quantidade de números
--   definir valor de cada número
--   acompanhar vendas
--   realizar o sorteio
+- criar a rifa
+- definir valor dos números
+- definir data do sorteio
 
-## Participante
+### Participante
 
 Responsável por:
 
--   visualizar rifas disponíveis
--   escolher números
--   realizar pagamento
--   acompanhar resultados
+- escolher números
+- realizar reserva
+- efetuar pagamento
 
-------------------------------------------------------------------------
+---
 
-# 4. Fluxo do Sistema
+# 4. Componentes do Sistema
 
-O funcionamento geral do sistema segue o fluxo abaixo.
+O sistema é composto por três principais camadas:
 
-``` mermaid
-flowchart LR
+- Interface Web
+- Backend / API
+- Banco de Dados
 
-A[Organizador cria rifa] --> B[Rifa publicada]
-B --> C[Participantes escolhem números]
-C --> D[Número reservado]
-D --> E[Pagamento confirmado]
-E --> F[Número vendido]
-F --> G[Sorteio realizado]
-G --> H[Divulgação do vencedor]
+---
+
+# 5. Arquitetura Simplificada
+
+```mermaid
+flowchart TD
+
+USER[Usuário]
+
+WEB[Interface Web]
+
+API[Backend / API]
+
+DB[(Banco de Dados)]
+
+USER --> WEB
+WEB --> API
+API --> DB
 ```
 
-------------------------------------------------------------------------
+---
 
-# 5. Componentes Principais
+# 6. Principais Funcionalidades
 
-O sistema é composto por três componentes principais.
+O sistema oferece as seguintes funcionalidades:
+
+### Gestão de Rifas
+
+- criação de rifas
+- definição de data de sorteio
+- definição do valor do número
+
+### Gestão de Números
+
+- geração automática de números
+- visualização de números disponíveis
+- atualização de status
+
+### Participação
+
+- seleção de números
+- reserva de números
+- confirmação de pagamento
+
+### Pagamentos
+
+- registro de pagamento
+- atualização do status da reserva
+
+### Sorteio
+
+- identificação do número vencedor
+- associação do vencedor ao participante
+
+---
+
+# 7. Fluxo Básico de Uso
+
+O fluxo principal do sistema ocorre da seguinte forma:
+
 ```
-  -----------------------------------------------------------------------
-  Componente                          Descrição
-  ----------------------------------- -----------------------------------
-  Frontend                            Interface web utilizada pelos
-                                      usuários
-
-  Backend                             Aplicação responsável pela lógica
-                                      de negócio
-
-  Banco de Dados                      Armazena rifas, números, reservas,
-                                      pagamentos e resultados
-  -----------------------------------------------------------------------
-```
-------------------------------------------------------------------------
-
-# 6. Visão Arquitetural Simplificada
-
-``` mermaid
-flowchart LR
-
-User[Usuário]
-
-Frontend[Interface Web]
-Backend[Aplicação Rifa Digital]
-Database[(Banco de Dados)]
-
-User --> Frontend
-Frontend --> Backend
-Backend --> Database
+Organizador cria rifa
+        ↓
+Sistema gera números da rifa
+        ↓
+Participante escolhe números
+        ↓
+Participante reserva números
+        ↓
+Participante realiza pagamento
+        ↓
+Sistema confirma reserva
+        ↓
+Realização do sorteio
 ```
 
-------------------------------------------------------------------------
+---
 
-# 7. Entidades Principais
+# 8. Estrutura de Dados do Sistema
 
-As principais entidades do sistema são:
+Os dados do sistema são organizados nas seguintes entidades principais:
 
--   **Rifa**
--   **Número**
--   **Comprador**
--   **Reserva**
--   **Pagamento**
--   **Sorteio**
+- RIFA
+- NUMERO
+- PARTICIPANTE
+- RESERVA
+- PAGAMENTO
 
-Essas entidades compõem o modelo de dados responsável por armazenar as
-informações do sistema.
+Essas entidades são modeladas através de:
 
-------------------------------------------------------------------------
+```
+MER → Modelo Relacional → SQL
+```
 
-# 8. Documentação Relacionada
+---
 
-A documentação completa do sistema pode ser encontrada nas seguintes
-seções:
+# 9. Integração com a Arquitetura
 
--   Product --- visão do produto
--   UX --- experiência do usuário
--   Requirements --- requisitos do sistema
--   Architecture --- arquitetura do sistema
--   Testing --- estratégia e execução de testes
--   User --- manual do usuário
+O System Overview se conecta com outros documentos da arquitetura:
+
+- **C4 Model** — visão estrutural do sistema
+- **System + Data Architecture** — integração entre sistema e dados
+- **Data Architecture** — modelagem de dados
+- **Testing** — estratégia de testes
+
+---
+
+# 10. Conclusão
+
+O sistema **Rifa Digital** demonstra um exemplo completo de aplicação web com:
+
+- interface de usuário
+- backend de processamento
+- banco de dados relacional
+
+A documentação foi estruturada para apoiar:
+
+- compreensão do sistema
+- ensino de engenharia de software
+- ensino de banco de dados
