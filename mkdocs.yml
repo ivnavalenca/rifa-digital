@@ -95,13 +95,19 @@ nav:
       - Casos de Uso: requirements/casos-uso.md
       - Rastreabilidade: requirements/rastreabilidade.md
 
-  - Architecture:
+- Architecture:
       - Overview: architecture/README.md
       - System Overview: architecture/system-overview.md
-      - Arquitetura: architecture/arquitetura.md
       - C4 Model: architecture/c4-model.md
-      - Modelo de Dados: architecture/data/modelo-dados.md
-      - Dicionário de Dados: architecture/data/dicionario-dados.md
+      - System + Data Architecture: architecture/system-data-architecture.md
+      - Data Architecture:
+            - Overview: architecture/data/README.md
+            - Data Architecture: architecture/data/data-architecture.md
+            - Database Design: architecture/data/database-design.md
+            - Conceptual Model (MER): architecture/data/conceptual/mer.md
+            - Logical Model: architecture/data/logical/modelo-relacional.md
+            - Physical Model (SQL): architecture/data/physical/schema-sql.md
+            - Data Dictionary: architecture/data/dictionary/dicionario-dados.md
 
   - Process:
       - Processo de Desenvolvimento: process/processo-desenvolvimento.md
