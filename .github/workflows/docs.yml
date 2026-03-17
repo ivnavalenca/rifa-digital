@@ -1,18 +1,20 @@
-name: Build and Deploy Docs
+name: Docs CI/CD
 
 on:
   push:
     branches:
       - main
+  pull_request:
 
 permissions:
   contents: write
 
 jobs:
-  deploy:
+  build-docs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -21,12 +23,27 @@ jobs:
         with:
           python-version: 3.x
 
-      - name: Install MkDocs
+      - name: Install dependencies
         run: |
           pip install mkdocs-material
+          npm install -g markdownlint-cli
 
+      # 1️⃣ Markdown Lint
+      - name: Check Markdown formatting
+        run: markdownlint docs/**/*.md
+
+      # 2️⃣ Verificação de links quebrados
+      - name: Link checker
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --verbose docs/**/*.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 3️⃣ Build do site
       - name: Build documentation
         run: mkdocs build
 
+      # 4️⃣ Deploy automático
       - name: Deploy to GitHub Pages
         run: mkdocs gh-deploy --force
