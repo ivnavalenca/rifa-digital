@@ -1,244 +1,161 @@
+# Data Architecture --- Rifa Digital
 
-# Data Architecture — Rifa Digital
+Este documento descreve a **arquitetura de dados** do sistema **Rifa
+Digital**. O objetivo é apresentar como os dados são organizados,
+modelados e armazenados dentro do sistema.
 
-Este documento apresenta a **Arquitetura de Dados** do sistema **Rifa Digital**.
+A arquitetura de dados conecta os seguintes elementos:
 
-Ele descreve como os dados do sistema são modelados desde o entendimento do domínio até a implementação do banco de dados.
+-   Modelo Conceitual (MER)
+-   Modelo Lógico (Modelo Relacional)
+-   Modelo Físico (SQL)
+-   Banco de Dados
 
-A modelagem segue o processo clássico da **Engenharia de Banco de Dados**:
-
-1. Modelo Conceitual — MER
-2. Modelo Lógico — Modelo Relacional
-3. Modelo Físico — SQL
-4. Dicionário de Dados
-
----
+------------------------------------------------------------------------
 
 # Visão Geral da Arquitetura de Dados
 
-```mermaid
-flowchart TD
+``` mermaid
+flowchart LR
 
-REQ[Requisitos do Sistema]
+A[Requisitos]
+B[Modelo Conceitual - MER]
+C[Modelo Lógico - Modelo Relacional]
+D[Modelo Físico - SQL]
+E[(Banco de Dados)]
 
-MER[Modelo Conceitual<br>MER]
-
-REL[Modelo Lógico<br>Modelo Relacional]
-
-SQL[Modelo Físico<br>Schema SQL]
-
-DB[(Banco de Dados)]
-
-DICT[Dicionário de Dados]
-
-REQ --> MER
-MER --> REL
-REL --> SQL
-SQL --> DB
-
-REL --> DICT
-SQL --> DICT
+A --> B
+B --> C
+C --> D
+D --> E
 ```
 
----
+Cada nível representa um grau diferente de abstração da modelagem.
 
-# 1. Requisitos de Dados
+------------------------------------------------------------------------
 
-O primeiro passo da modelagem consiste em entender os **dados necessários para o sistema**.
+# Componentes da Arquitetura de Dados
 
-Para o sistema **Rifa Digital**, os principais conceitos identificados são:
+## Modelo Conceitual
 
-- Rifa
-- Número
-- Participante
-- Reserva
-- Pagamento
+Representa o domínio do sistema de forma conceitual.
 
-Esses conceitos representam as **entidades do domínio do sistema**.
+Elementos principais:
 
----
+-   entidades
+-   atributos
+-   relacionamentos
+-   cardinalidades
 
-# 2. Modelo Conceitual — MER
+Principais entidades do sistema:
 
-O **Modelo Entidade-Relacionamento (MER)** representa os dados de forma conceitual.
+-   Rifa
+-   Número
+-   Participante
+-   Reserva
+-   Pagamento
+-   Sorteio
 
-Neste nível são definidos:
+Documento relacionado:
 
-- entidades
-- atributos
-- relacionamentos
-- cardinalidade
+`conceptual/mer.md`
 
-### Entidades
+------------------------------------------------------------------------
 
-- RIFA
-- NUMERO
-- PARTICIPANTE
-- RESERVA
-- PAGAMENTO
+## Modelo Lógico
 
-### Diagrama MER
+Transforma o modelo conceitual em **estrutura relacional**.
 
-```mermaid
-erDiagram
+Principais elementos:
 
-RIFA ||--o{ NUMERO : possui
-NUMERO ||--o| RESERVA : reservado
-PARTICIPANTE ||--o{ RESERVA : realiza
-RESERVA ||--|| PAGAMENTO : gera
+-   tabelas
+-   chaves primárias
+-   chaves estrangeiras
+-   relacionamentos
+
+Documento relacionado:
+
+`logical/modelo-relacional.md`
+
+------------------------------------------------------------------------
+
+## Modelo Físico
+
+Define como os dados serão implementados no banco.
+
+Inclui:
+
+-   tipos de dados
+-   constraints
+-   índices
+-   integridade referencial
+
+Documento relacionado:
+
+`physical/schema-sql.md`
+
+------------------------------------------------------------------------
+
+# Entidades Principais
+
+A arquitetura de dados é baseada nas seguintes entidades:
+
+  Entidade       Descrição
+  -------------- ------------------------------------
+  Rifa           Campanha de rifa criada no sistema
+  Número         Número participante da rifa
+  Participante   Usuário que compra números
+  Reserva        Reserva temporária de número
+  Pagamento      Registro de pagamento
+  Sorteio        Resultado do sorteio da rifa
+
+------------------------------------------------------------------------
+
+# Integração com o Sistema
+
+Os dados são utilizados por diferentes componentes do sistema:
+
+``` mermaid
+flowchart LR
+
+Frontend[Frontend]
+Backend[Backend/API]
+Database[(Banco de Dados)]
+
+Frontend --> Backend
+Backend --> Database
 ```
 
-Relacionamentos principais:
+O **backend** é responsável por:
 
-```
-RIFA 1 ---- N NUMERO
-NUMERO 1 ---- 0..1 RESERVA
-PARTICIPANTE 1 ---- N RESERVA
-RESERVA 1 ---- 1 PAGAMENTO
-```
+-   validar dados
+-   aplicar regras de negócio
+-   persistir dados no banco
 
----
+------------------------------------------------------------------------
 
-# 3. Modelo Lógico — Modelo Relacional
+# Dicionário de Dados
 
-O **Modelo Relacional** transforma o MER em **tabelas relacionais**.
-
-Cada entidade se torna uma tabela.
-
-### Estrutura das tabelas
-
-```
-RIFA(
- id_rifa PK,
- titulo,
- data_sorteio,
- valor_numero
-)
-
-NUMERO(
- id_numero PK,
- numero,
- status,
- id_rifa FK
-)
-
-PARTICIPANTE(
- id_participante PK,
- nome,
- telefone,
- email
-)
-
-RESERVA(
- id_reserva PK,
- id_numero FK,
- id_participante FK,
- data_reserva
-)
-
-PAGAMENTO(
- id_pagamento PK,
- id_reserva FK,
- valor,
- status
-)
-```
-
-Neste nível aparecem:
-
-- **Primary Keys (PK)**
-- **Foreign Keys (FK)**
-- integridade referencial
-
----
-
-# 4. Modelo Físico — SQL
-
-O modelo físico representa a **implementação real do banco de dados**.
-
-Exemplo de criação de tabelas:
-
-```sql
-CREATE TABLE rifa (
- id_rifa INT PRIMARY KEY,
- titulo VARCHAR(150),
- data_sorteio DATE,
- valor_numero DECIMAL(10,2)
-);
-
-CREATE TABLE numero (
- id_numero INT PRIMARY KEY,
- numero INT,
- status VARCHAR(20),
- id_rifa INT,
- FOREIGN KEY (id_rifa) REFERENCES rifa(id_rifa)
-);
-```
-
-Aqui são definidos:
-
-- tipos de dados
-- constraints
-- integridade referencial
-- índices
-
----
-
-# 5. Dicionário de Dados
-
-O **Dicionário de Dados** descreve cada campo das tabelas.
+O dicionário de dados descreve cada campo presente nas tabelas.
 
 Ele inclui:
 
-- nome do campo
-- tipo de dado
-- descrição
-- obrigatoriedade
+-   nome do campo
+-   tipo de dado
+-   descrição
+-   obrigatoriedade
 
-Exemplo:
+Documento relacionado:
 
-| Tabela | Campo | Tipo | Descrição |
-|------|------|------|------|
-| RIFA | id_rifa | INT | Identificador da rifa |
-| RIFA | titulo | VARCHAR | Nome da rifa |
-| NUMERO | numero | INT | Número da rifa |
-| RESERVA | data_reserva | DATETIME | Data da reserva |
+`dictionary/dicionario-dados.md`
 
-O dicionário de dados facilita:
+------------------------------------------------------------------------
 
-- entendimento do banco
-- manutenção do sistema
-- integração entre sistemas
+# Benefícios da Arquitetura de Dados
 
----
+A definição clara da arquitetura de dados permite:
 
-# Fluxo Completo da Modelagem
-
-A arquitetura de dados segue a sequência:
-
-```
-Requisitos
-    ↓
-MER (Modelo Conceitual)
-    ↓
-Modelo Relacional (Modelo Lógico)
-    ↓
-Schema SQL (Modelo Físico)
-    ↓
-Banco de Dados
-```
-
-Esse fluxo representa o processo completo de **engenharia de dados em bancos relacionais**.
-
----
-
-# Conclusão
-
-A arquitetura de dados garante:
-
-- organização das informações
-- integridade dos dados
-- consistência entre tabelas
-- facilidade de manutenção
-
-A separação entre **MER, Modelo Relacional e SQL** permite evoluir o sistema de forma estruturada e segura.
+-   melhor organização da informação
+-   maior consistência dos dados
+-   facilidade de manutenção do banco
+-   escalabilidade do sistema
