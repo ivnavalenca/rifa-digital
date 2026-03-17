@@ -1,106 +1,119 @@
+# Evolução do Modelo de Dados --- Rifa Digital
 
-# Evolução da Modelagem de Dados
+Este documento descreve a evolução da modelagem de dados do sistema
+**Rifa Digital**, desde a análise de requisitos até a implementação
+física do banco de dados.
 
-Este documento apresenta a evolução da modelagem de dados utilizada no
-sistema **Rifa Digital**, mostrando a transformação do modelo conceitual
-até a implementação física no banco de dados.
+A modelagem segue o processo clássico da **Engenharia de Banco de
+Dados**:
 
-A modelagem segue as etapas clássicas da engenharia de banco de dados:
+1.  Modelo Conceitual --- MER\
+2.  Modelo Lógico --- Modelo Relacional\
+3.  Modelo Físico --- SQL\
+4.  Banco de Dados Implementado
 
-1. Modelo Conceitual (MER)
-2. Modelo Lógico (Relacional)
-3. Modelo Físico (SQL)
-4. Banco de Dados Implementado
+------------------------------------------------------------------------
 
----
+# Processo de Modelagem de Dados
 
-# Fluxo da Modelagem
+``` mermaid
+flowchart TD
 
-```mermaid
-flowchart LR
+A[Requisitos do Sistema]
+B[Modelo Conceitual - MER]
+C[Modelo Lógico - Modelo Relacional]
+D[Modelo Físico - SQL]
+E[(Banco de Dados)]
 
-MER["Modelo Entidade-Relacionamento (MER)
-• Entidades
-• Relacionamentos
-• Cardinalidades"]
-
-REL["Modelo Relacional
-• Tabelas
-• Chaves Primárias
-• Chaves Estrangeiras"]
-
-SQL["Schema SQL
-• CREATE TABLE
-• Constraints
-• Integridade"]
-
-DB[(Banco de Dados)]
-
-MER --> REL
-REL --> SQL
-SQL --> DB
+A --> B
+B --> C
+C --> D
+D --> E
 ```
 
----
+Cada etapa possui um nível diferente de abstração.
 
-# 1. Modelo Conceitual — MER
+------------------------------------------------------------------------
 
-O **Modelo Entidade-Relacionamento** representa o domínio do problema de
-forma conceitual.
+# Modelo Conceitual (MER)
 
-Elementos principais:
+O **Modelo Entidade-Relacionamento (MER)** descreve os dados do sistema
+de forma conceitual.
 
-- Entidades
-- Atributos
-- Relacionamentos
-- Cardinalidades
+Ele representa:
 
-Exemplo de entidades do sistema:
+-   entidades
+-   atributos
+-   relacionamentos
+-   cardinalidades
 
-- Rifa
-- Número
-- Participante
-- Reserva
-- Pagamento
+Nesta etapa **não existem tabelas ou SQL**.
+
+Principais entidades do sistema:
+
+-   Rifa
+-   Número
+-   Participante
+-   Reserva
+-   Pagamento
+-   Sorteio
 
 Documento relacionado:
 
 `conceptual/mer.md`
 
----
+------------------------------------------------------------------------
 
-# 2. Modelo Lógico — Modelo Relacional
+# Modelo Lógico (Modelo Relacional)
 
-O **Modelo Relacional** transforma o MER em estruturas de banco de dados.
+O modelo relacional traduz o MER para uma estrutura baseada em
+**tabelas**.
 
 Transformações principais:
 
-| MER | Modelo Relacional |
-|----|----|
-| Entidade | Tabela |
-| Atributo | Coluna |
-| Identificador | Chave Primária |
-| Relacionamento | Chave Estrangeira |
+  MER              Modelo Relacional
+  ---------------- -------------------
+  Entidade         Tabela
+  Atributo         Coluna
+  Identificador    Chave Primária
+  Relacionamento   Chave Estrangeira
+
+Exemplo:
+
+    RIFA(
+     id,
+     titulo,
+     valor_numero,
+     data_sorteio,
+     status
+    )
 
 Documento relacionado:
 
 `logical/modelo-relacional.md`
 
----
+------------------------------------------------------------------------
 
-# 3. Modelo Físico — SQL
+# Modelo Físico (SQL)
 
-No modelo físico o banco é implementado usando **SQL**.
+O modelo físico define a implementação no banco de dados.
 
-Exemplo de estrutura:
+São definidos:
 
-```sql
+-   tipos de dados
+-   constraints
+-   chaves estrangeiras
+-   índices
+
+Exemplo:
+
+``` sql
 CREATE TABLE rifa (
-    id_rifa INT PRIMARY KEY,
-    titulo VARCHAR(100),
-    descricao TEXT,
-    valor_numero DECIMAL(10,2),
-    data_sorteio DATE
+ id SERIAL PRIMARY KEY,
+ titulo VARCHAR(150) NOT NULL,
+ valor_numero DECIMAL(10,2),
+ data_sorteio DATE,
+ status VARCHAR(20)
 );
 ```
 
@@ -108,42 +121,50 @@ Documento relacionado:
 
 `physical/schema-sql.md`
 
----
+------------------------------------------------------------------------
 
-# 4. Banco de Dados
+# Dicionário de Dados
 
-Após a criação do schema SQL, o banco de dados passa a armazenar
-as informações do sistema.
+O **Dicionário de Dados** documenta cada campo do banco.
 
-O banco de dados do **Rifa Digital** armazena:
+Ele descreve:
 
-- rifas
-- números disponíveis
-- participantes
-- reservas
-- pagamentos
-- resultados de sorteio
+-   nome da coluna
+-   tipo
+-   descrição
+-   obrigatoriedade
+-   relacionamentos
 
----
+Documento relacionado:
 
-# Relação com Outros Documentos
+`dictionary/dicionario-dados.md`
 
-Esta evolução está documentada nos seguintes arquivos:
+------------------------------------------------------------------------
 
-| Documento | Descrição |
-|-----------|-----------|
-| mer.md | modelo entidade-relacionamento |
-| modelo-relacional.md | modelo relacional |
-| schema-sql.md | implementação SQL |
-| dicionario-dados.md | descrição dos campos |
+# Visão Geral da Arquitetura de Dados
 
----
+``` mermaid
+flowchart LR
 
-# Benefícios dessa Estrutura
+REQ[Requisitos]
+MER[MER]
+REL[Modelo Relacional]
+SQL[SQL]
+DB[(Banco de Dados)]
 
-Essa abordagem permite:
+REQ --> MER
+MER --> REL
+REL --> SQL
+SQL --> DB
+```
 
-- compreensão progressiva da modelagem
-- rastreabilidade entre modelos
-- documentação clara da arquitetura de dados
-- apoio didático para ensino de banco de dados
+------------------------------------------------------------------------
+
+# Benefícios dessa abordagem
+
+Separar os modelos permite:
+
+-   melhor entendimento do domínio
+-   redução de erros de modelagem
+-   rastreabilidade entre requisitos e banco
+-   maior qualidade na estrutura de dados
