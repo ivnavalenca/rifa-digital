@@ -1,12 +1,14 @@
 # Agile Dashboard
 
-Painel automático de métricas ágeis do projeto.
+## Velocity por Sprint
 
----
+<canvas id="velocityChart"></canvas>
 
-## Métricas do Backlog
+## Burndown Chart
 
-<div id="agile-metrics"></div>
+<canvas id="burndownChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
 
@@ -14,14 +16,39 @@ fetch("../assets/agile-metrics.json")
 .then(r => r.json())
 .then(data => {
 
-document.getElementById("agile-metrics").innerHTML = `
-<ul>
-<li>Total User Stories: ${data.total_user_stories}</li>
-<li>Concluídas: ${data.done}</li>
-<li>No Backlog: ${data.backlog}</li>
-</ul>
-`
+const velocityCtx = document.getElementById('velocityChart');
 
-})
+new Chart(velocityCtx, {
+type: 'bar',
+data: {
+labels: data.sprints,
+datasets: [{
+label: 'Velocity',
+data: data.velocity
+}]
+}
+});
+
+
+const burnCtx = document.getElementById('burndownChart');
+
+new Chart(burnCtx, {
+type: 'line',
+data: {
+labels: ["Day 1","Day 2","Day 3","Day 4","Day 5"],
+datasets: [
+{
+label: "Planned",
+data: data.burndown.planned
+},
+{
+label: "Actual",
+data: data.burndown.actual
+}
+]
+}
+});
+
+});
 
 </script>
