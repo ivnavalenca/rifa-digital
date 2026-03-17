@@ -102,7 +102,8 @@ nav:
       - System + Data Architecture: architecture/system-data-architecture.md
       - Data Architecture:
             - Overview: architecture/data/README.md
-            - Data Architecture: architecture/data/data-architecture.md
+            - Arquitetura de Dados: architecture/data/data-architecture.md
+            - Evolução da Modelagem: architecture/data/data-model-evolution.md
             - Database Design: architecture/data/database-design.md
             - Conceptual Model (MER): architecture/data/conceptual/mer.md
             - Logical Model: architecture/data/logical/modelo-relacional.md
