@@ -100,6 +100,13 @@ nav:
       - System Overview: architecture/system-overview.md
       - C4 Model: architecture/c4-model.md
       - System + Data Architecture: architecture/system-data-architecture.md
+
+      - UML Diagrams:
+            - Use Case Diagram: architecture/uml/use-case-diagram.md
+            - Class Diagram: architecture/uml/class-diagram.md
+            - Sequence Diagram: architecture/uml/sequence-diagram.md
+            - Component Diagram: architecture/uml/component-diagram.md
+          
       - Data Architecture:
             - Overview: architecture/data/README.md
             - Arquitetura de Dados: architecture/data/data-architecture.md
