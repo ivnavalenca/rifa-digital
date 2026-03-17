@@ -66,6 +66,9 @@ jobs:
       - name: Generate traceability graph
         run: python scripts/generate_traceability_graph.py
 
+      - name: Generate agile dashboard
+        run: python scripts/generate_agile_dashboard.py
+
       # Gerar knowledge graph
       - name: Generate knowledge graph
         run: python scripts/generate_knowledge_graph.py
