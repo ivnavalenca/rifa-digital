@@ -5,6 +5,7 @@ openai
 
 langchain
 langchain-community
+langchain-text-splitters
 
 chromadb
 tiktoken
