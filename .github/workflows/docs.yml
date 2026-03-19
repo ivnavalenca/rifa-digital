@@ -1,34 +1,43 @@
-name: Docs Deploy
+name: Documentation CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+  pull_request:
 
 permissions:
   contents: write
 
 jobs:
-  deploy:
+
+  docs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: '3.11'
 
-      - run: |
-          pip install mkdocs-material
-          pip install -r requirements.txt || true
+      - name: Install dependencies
+        run: |
+          pip install mkdocs-material matplotlib requests
+          npm install -g markdownlint-cli
 
-      # 🚀 Apenas o essencial
-      - run: python scripts/generate_metrics.py
-      - run: python scripts/generate_agile_dashboard.py
+      - name: Markdown lint
+        run: markdownlint docs/**/*.md || true
 
-      - run: mkdocs build
+      - name: Build MkDocs
+        run: mkdocs build
 
-      - uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
