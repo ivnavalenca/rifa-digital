@@ -70,7 +70,7 @@ Este ambiente integra:
   
   Assistente inteligente baseado no projeto.
 
-  👉 [Abrir](assistant.md)
+  👉 [Abrir](docs/assistant.md)
 
 </div>
 
