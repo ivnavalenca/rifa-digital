@@ -1,59 +1,53 @@
 # 🧩 Quality Command Center
 
-Central de qualidade do sistema Rifa Digital.
+Central de qualidade do sistema **Rifa Digital**.
 
 ---
 
 ## 🎯 Objetivo
 
-Garantir:
+Garantir a qualidade do sistema através de:
 
-- confiabilidade
-- desempenho
-- manutenibilidade
-- qualidade contínua
+- validação contínua
+- testes estruturados
+- rastreabilidade
+- métricas e monitoramento
 
 ---
 
-## 🚀 Quality Dashboard
+## 🚀 Explorar Qualidade
 
 <div class="grid cards" markdown>
 
-- 📊 **Quality Dashboard**
+- 🧠 **Strategy**
   
-  Visão geral da qualidade do sistema.
+  Planejamento e abordagem de testes.
 
-  👉 [Abrir](quality-dashboard.md)
+  👉 [Abrir](strategy/plano-testes.md)
 
-- 📋 **Plano de Qualidade**
+- 🧩 **Design**
   
-  Estratégia e diretrizes de qualidade.
+  Casos de teste, BDD e dados de teste.
 
-  👉 [Abrir](plano-qualidade.md)
+  👉 [Abrir](design/casos-de-teste.md)
 
-- 🧪 **Plano de Testes**
+- 🧪 **Execution**
   
-  Abordagem e cobertura de testes.
+  Execução dos testes e resultados.
 
-  👉 [Abrir](plano-testes.md)
+  👉 [Abrir](execution/test-execution-report.md)
 
-- ⚙️ **Estratégia de Testes**
+- 🔗 **Traceability**
   
-  Técnicas e tipos de testes utilizados.
+  Relação entre requisitos e testes.
 
-  👉 [Abrir](estrategia-testes.md)
+  👉 [Abrir](traceability/matriz-rastreabilidade-testes.md)
 
-- 📈 **Relatório de Execução**
+- ⚙️ **Process**
   
-  Resultados dos testes.
+  Plano de qualidade e governança.
 
-  👉 [Abrir](test-execution-report.md)
-
-- 🔗 **Rastreabilidade**
-  
-  Ligação entre requisitos e testes.
-
-  👉 [Abrir](matriz-rastreabilidade-testes.md)
+  👉 [Abrir](process/plano-qualidade.md)
 
 </div>
 
@@ -61,10 +55,10 @@ Garantir:
 
 ## 📊 Indicadores de Qualidade
 
-- ✔ Testes implementados
-- ✔ Rastreabilidade definida
-- ⚠ Cobertura parcial
-- 🔄 Evolução contínua
+- ✔ Casos de teste definidos
+- ✔ Rastreabilidade implementada
+- ⚠ Cobertura em evolução
+- 🔄 Execução contínua
 
 ---
 
@@ -73,17 +67,26 @@ Garantir:
 Este módulo integra:
 
 - 📊 dashboards automáticos
-- 🔗 rastreabilidade
+- 🔗 rastreabilidade entre artefatos
 - 🤖 análise com IA
-- 🔄 CI/CD
+- 🔄 integração com CI/CD
 
 ---
 
-## 📌 Resumo
+## 📌 Visão Geral
 
 A qualidade no projeto é garantida por:
 
-- testes estruturados
-- métricas contínuas
-- automação
-- validação integrada
+- testes em múltiplos níveis
+- validação contínua
+- monitoramento de métricas
+- alinhamento com requisitos
+
+---
+
+## 🔎 Navegação Rápida
+
+- 📈 [Quality Dashboard](execution/quality-dashboard.md)
+- 📋 [Plano de Testes](strategy/plano-testes.md)
+- 🧪 [Casos de Teste](design/casos-de-teste.md)
+- 🔗 [Matriz de Rastreabilidade](traceability/matriz-rastreabilidade-testes.md)
