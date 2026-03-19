@@ -21,15 +21,15 @@
       "type": "service"
     },
     {
-      "id": "NUMERO",
-      "type": "table"
-    },
-    {
       "id": "RIFA",
       "type": "table"
     },
     {
       "id": "PAGAMENTO",
+      "type": "table"
+    },
+    {
+      "id": "NUMERO",
       "type": "table"
     },
     {
@@ -44,15 +44,15 @@
   "links": [
     {
       "source": "RifaService",
-      "target": "NUMERO"
-    },
-    {
-      "source": "RifaService",
       "target": "RIFA"
     },
     {
       "source": "RifaService",
       "target": "PAGAMENTO"
+    },
+    {
+      "source": "RifaService",
+      "target": "NUMERO"
     },
     {
       "source": "RifaService",
@@ -64,15 +64,15 @@
     },
     {
       "source": "NumeroService",
-      "target": "NUMERO"
-    },
-    {
-      "source": "NumeroService",
       "target": "RIFA"
     },
     {
       "source": "NumeroService",
       "target": "PAGAMENTO"
+    },
+    {
+      "source": "NumeroService",
+      "target": "NUMERO"
     },
     {
       "source": "NumeroService",
@@ -84,15 +84,15 @@
     },
     {
       "source": "PagamentoService",
-      "target": "NUMERO"
-    },
-    {
-      "source": "PagamentoService",
       "target": "RIFA"
     },
     {
       "source": "PagamentoService",
       "target": "PAGAMENTO"
+    },
+    {
+      "source": "PagamentoService",
+      "target": "NUMERO"
     },
     {
       "source": "PagamentoService",
@@ -104,15 +104,15 @@
     },
     {
       "source": "SorteioService",
-      "target": "NUMERO"
-    },
-    {
-      "source": "SorteioService",
       "target": "RIFA"
     },
     {
       "source": "SorteioService",
       "target": "PAGAMENTO"
+    },
+    {
+      "source": "SorteioService",
+      "target": "NUMERO"
     },
     {
       "source": "SorteioService",
@@ -124,15 +124,15 @@
     },
     {
       "source": "ReservaService",
-      "target": "NUMERO"
-    },
-    {
-      "source": "ReservaService",
       "target": "RIFA"
     },
     {
       "source": "ReservaService",
       "target": "PAGAMENTO"
+    },
+    {
+      "source": "ReservaService",
+      "target": "NUMERO"
     },
     {
       "source": "ReservaService",
