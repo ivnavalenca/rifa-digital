@@ -14,18 +14,16 @@ const box = document.getElementById("chat-box");
 
 box.innerHTML += `<p><b>Você:</b> ${input}</p>`;
 
-const res = await fetch("../assets/assistant-api.json");
+// 🔥 CHAMANDO A API
+const res = await fetch("http://localhost:5000/chat", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ question: input })
+});
+
 const data = await res.json();
 
-let response = "Não sei responder ainda.";
-
-for (const key in data){
-  if(input.toLowerCase().includes(key)){
-    response = data[key];
-  }
-}
-
-box.innerHTML += `<p><b>AI:</b> ${response}</p>`;
+box.innerHTML += `<p><b>AI:</b> ${data.answer}</p>`;
 
 }
 
