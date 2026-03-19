@@ -1,4 +1,13 @@
 flask
 flask-cors
+
 openai
+
+langchain
+langchain-community
+
+chromadb
 tiktoken
+
+requests
+python-dotenv
