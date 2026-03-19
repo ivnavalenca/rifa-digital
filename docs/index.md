@@ -6,41 +6,41 @@ Painel central do sistema.
 
 <div class="grid cards">
 
-- **⚙️ Engineering Dashboard**
+<div class="card">
+<h3>⚙️ Engineering Dashboard</h3>
+<p>Monitoramento da arquitetura e serviços.</p>
+<a href="engineering/engineering-map/">👉 Abrir</a>
+</div>
 
-  Monitoramento da arquitetura e serviços.
+<div class="card">
+<h3>📊 Agile Dashboard</h3>
+<p>Métricas das sprints (Velocity e Burndown).</p>
+<a href="agile/agile-dashboard/">👉 Abrir</a>
+</div>
 
-  [Abrir](engineering/engineering-map/)
+<div class="card">
+<h3>🧪 Quality Dashboard</h3>
+<p>Indicadores de qualidade e testes.</p>
+<a href="testing/quality-dashboard/">👉 Abrir</a>
+</div>
 
-- **📊 Agile Dashboard**
+<div class="card">
+<h3>📈 Project Health</h3>
+<p>Saúde do projeto.</p>
+<a href="process/project-health/">👉 Abrir</a>
+</div>
 
-  Métricas das sprints (Velocity e Burndown).
+<div class="card">
+<h3>🌐 System Digital Twin</h3>
+<p>Visualização interativa da arquitetura.</p>
+<a href="engineering/system-digital-twin/">👉 Abrir</a>
+</div>
 
-  [Abrir](agile/agile-dashboard/)
-
-- **🧪 Quality Dashboard**
-
-  Indicadores de qualidade e testes.
-
-  [Abrir](testing/quality-dashboard/)
-
-- **📈 Project Health**
-
-  Saúde do projeto.
-
-  [Abrir](process/project-health/)
-
-- **🌐 System Digital Twin**
-
-  Visualização interativa da arquitetura.
-
-  [Abrir](engineering/system-digital-twin/)
-
-- **🧭 Architecture Navigator**
-
-  Navegação entre requisitos, testes e arquitetura.
-
-  [Abrir](engineering/architecture-navigator/)
+<div class="card">
+<h3>🧭 Architecture Navigator</h3>
+<p>Navegação entre requisitos, testes e arquitetura.</p>
+<a href="engineering/architecture-navigator/">👉 Abrir</a>
+</div>
 
 </div>
 
@@ -69,25 +69,3 @@ document.getElementById("metrics").innerHTML = `
 })
 
 </script>
-
----
-
-## 📘 Sobre o Projeto
-
-O sistema **Rifa Digital** integra:
-
-- Engenharia de Software  
-- Arquitetura  
-- Testes  
-- DevOps  
-- Gestão Ágil  
-
----
-
-## 🧭 Navegação Rápida
-
-- Product → visão do sistema  
-- Requirements → funcionalidades  
-- Agile → gestão das sprints  
-- Engineering → mapas e grafos  
-- Testing → validação  
