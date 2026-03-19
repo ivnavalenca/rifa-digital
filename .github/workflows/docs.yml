@@ -42,6 +42,12 @@ jobs:
           pip install mkdocs-material matplotlib requests
           npm install -g markdownlint-cli
 
+      # 🤖 Ingestão (AGORA NO LUGAR CERTO)
+      - name: Ingest documents
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python copilot/ingest.py
+
       # 🧪 Lint (não quebra)
       - name: Markdown lint
         run: markdownlint docs/**/*.md || true
