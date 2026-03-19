@@ -1,1 +1,34 @@
+{
+  "project": "Rifa Digital",
 
+  "requirements": [
+    "O sistema deve permitir criar rifas digitais",
+    "O sistema deve permitir comprar números",
+    "O sistema deve realizar sorteio automático"
+  ],
+
+  "user_stories": [
+    "US01 - Criar rifa",
+    "US02 - Comprar número",
+    "US03 - Realizar sorteio"
+  ],
+
+  "tests": [
+    "CT001 - Criar rifa com sucesso",
+    "CT002 - Criar rifa sem título",
+    "CT003 - Compra de número válida"
+  ],
+
+  "architecture": [
+    "Frontend em HTML/JS",
+    "Backend em Flask",
+    "Integração com OpenAI",
+    "Banco de dados relacional"
+  ],
+
+  "documents": [
+    "engineering-map.md",
+    "quality-dashboard.md",
+    "agile-dashboard.md"
+  ]
+}
