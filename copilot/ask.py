@@ -1,34 +1,62 @@
-from langchain.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
 from openai import OpenAI
+import os
 
 client = OpenAI()
 
-# 🔍 Carrega base vetorial
+# 🔗 URL base do seu site
+BASE_URL = "https://ivnavalenca.github.io/rifa-digital/"
+
+# 🧠 carregar banco vetorial
 embeddings = OpenAIEmbeddings()
 db = Chroma(persist_directory="copilot/db", embedding_function=embeddings)
 
+def build_links(docs):
+    links = []
+
+    for doc in docs:
+        source = doc.metadata.get("source", "")
+
+        if "docs/" in source:
+            page = source.replace("docs/", "").replace(".md", "")
+            url = BASE_URL + page + "/"
+            links.append(f"- {url}")
+
+    return "\n".join(set(links))
+
+
 def ask(question):
 
-    # 🔎 Busca semântica
-    docs = db.similarity_search(question, k=3)
+    # 🔎 busca semântica
+    docs = db.similarity_search(question, k=4)
 
     context = "\n\n".join([doc.page_content for doc in docs])
+    links = build_links(docs)
 
-    # 🤖 IA responde com contexto
+    prompt = f"""
+Você é um especialista no sistema Rifa Digital.
+
+Use o contexto abaixo para responder:
+
+{context}
+
+Regras:
+- Responda de forma clara e didática
+- Seja objetivo
+- Use linguagem simples
+- Se possível, explique como um professor
+- No final, adicione a seção:
+
+🔗 Referências:
+{links}
+
+Pergunta: {question}
+"""
+
     response = client.chat.completions.create(
         model="gpt-4o-mini",
-        messages=[
-            {
-                "role": "system",
-                "content": f"Responda baseado no contexto abaixo:\n{context}"
-            },
-            {
-                "role": "user",
-                "content": question
-            }
-        ]
+        messages=[{"role": "user", "content": prompt}]
     )
 
     return response.choices[0].message.content
