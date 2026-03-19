@@ -1,49 +1,36 @@
 import os
-from langchain.document_loaders import DirectoryLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import Chroma
-from langchain.embeddings import OpenAIEmbeddings
+import json
 
-print("📥 Iniciando ingestão dos documentos...")
-
-# 📂 Pasta de documentação
 DOCS_PATH = "docs"
+OUTPUT_FILE = "copilot/knowledge.json"
 
-# 📦 Carregar arquivos Markdown
-loader = DirectoryLoader(DOCS_PATH, glob="**/*.md")
-documents = loader.load()
+def load_documents():
+    docs = []
 
-print(f"📄 {len(documents)} documentos carregados")
+    for root, _, files in os.walk(DOCS_PATH):
+        for file in files:
+            if file.endswith(".md"):
+                path = os.path.join(root, file)
 
-# ✂️ Dividir em chunks
-splitter = RecursiveCharacterTextSplitter(
-    chunk_size=500,
-    chunk_overlap=50
-)
+                with open(path, "r", encoding="utf-8") as f:
+                    content = f.read()
 
-chunks = splitter.split_documents(documents)
+                docs.append({
+                    "file": path,
+                    "content": content[:2000]  # evita textos enormes
+                })
 
-print(f"✂️ {len(chunks)} chunks gerados")
+    return docs
 
-# 🔐 API Key (OpenAI)
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-if not OPENAI_API_KEY:
-    raise ValueError("❌ OPENAI_API_KEY não configurada")
+def main():
+    docs = load_documents()
 
-# 🧠 Criar embeddings
-embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(docs, f, indent=2, ensure_ascii=False)
 
-# 💾 Criar banco vetorial
-DB_PATH = "copilot/db"
+    print(f"{len(docs)} documentos ingeridos")
 
-db = Chroma.from_documents(
-    chunks,
-    embeddings,
-    persist_directory=DB_PATH
-)
 
-db.persist()
-
-print("✅ Base vetorial criada com sucesso!")
-print(f"📍 Local: {DB_PATH}")
+if __name__ == "__main__":
+    main()
