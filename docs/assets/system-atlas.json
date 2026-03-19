@@ -1,11 +1,11 @@
 {
   "nodes": [
     {
-      "id": "NumeroService",
+      "id": "RifaService",
       "type": "service"
     },
     {
-      "id": "SorteioService",
+      "id": "NumeroService",
       "type": "service"
     },
     {
@@ -17,11 +17,11 @@
       "type": "service"
     },
     {
-      "id": "RifaService",
+      "id": "SorteioService",
       "type": "service"
     },
     {
-      "id": "PAGAMENTO",
+      "id": "NUMERO",
       "type": "table"
     },
     {
@@ -29,7 +29,7 @@
       "type": "table"
     },
     {
-      "id": "NUMERO",
+      "id": "PAGAMENTO",
       "type": "table"
     },
     {
@@ -43,8 +43,28 @@
   ],
   "links": [
     {
-      "source": "NumeroService",
+      "source": "RifaService",
+      "target": "NUMERO"
+    },
+    {
+      "source": "RifaService",
+      "target": "PARTICIPANTE"
+    },
+    {
+      "source": "RifaService",
       "target": "PAGAMENTO"
+    },
+    {
+      "source": "RifaService",
+      "target": "RIFA"
+    },
+    {
+      "source": "RifaService",
+      "target": "RESULTADO"
+    },
+    {
+      "source": "NumeroService",
+      "target": "NUMERO"
     },
     {
       "source": "NumeroService",
@@ -52,7 +72,7 @@
     },
     {
       "source": "NumeroService",
-      "target": "NUMERO"
+      "target": "PAGAMENTO"
     },
     {
       "source": "NumeroService",
@@ -63,28 +83,8 @@
       "target": "RESULTADO"
     },
     {
-      "source": "SorteioService",
-      "target": "PAGAMENTO"
-    },
-    {
-      "source": "SorteioService",
-      "target": "PARTICIPANTE"
-    },
-    {
-      "source": "SorteioService",
-      "target": "NUMERO"
-    },
-    {
-      "source": "SorteioService",
-      "target": "RIFA"
-    },
-    {
-      "source": "SorteioService",
-      "target": "RESULTADO"
-    },
-    {
       "source": "ReservaService",
-      "target": "PAGAMENTO"
+      "target": "NUMERO"
     },
     {
       "source": "ReservaService",
@@ -92,7 +92,7 @@
     },
     {
       "source": "ReservaService",
-      "target": "NUMERO"
+      "target": "PAGAMENTO"
     },
     {
       "source": "ReservaService",
@@ -104,7 +104,7 @@
     },
     {
       "source": "PagamentoService",
-      "target": "PAGAMENTO"
+      "target": "NUMERO"
     },
     {
       "source": "PagamentoService",
@@ -112,7 +112,7 @@
     },
     {
       "source": "PagamentoService",
-      "target": "NUMERO"
+      "target": "PAGAMENTO"
     },
     {
       "source": "PagamentoService",
@@ -123,23 +123,23 @@
       "target": "RESULTADO"
     },
     {
-      "source": "RifaService",
-      "target": "PAGAMENTO"
-    },
-    {
-      "source": "RifaService",
-      "target": "PARTICIPANTE"
-    },
-    {
-      "source": "RifaService",
+      "source": "SorteioService",
       "target": "NUMERO"
     },
     {
-      "source": "RifaService",
+      "source": "SorteioService",
+      "target": "PARTICIPANTE"
+    },
+    {
+      "source": "SorteioService",
+      "target": "PAGAMENTO"
+    },
+    {
+      "source": "SorteioService",
       "target": "RIFA"
     },
     {
-      "source": "RifaService",
+      "source": "SorteioService",
       "target": "RESULTADO"
     }
   ]
