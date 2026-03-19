@@ -1,112 +1,47 @@
-
 site_name: Rifa Digital
-site_description: Documentação completa do sistema Rifa Digital
+site_description: Portal de Engenharia e Gestão Ágil
 site_author: Ivna Valença de Oliveira
-site_url: https://ivnavalenca.github.io/rifa-digital/
-
-repo_url: https://github.com/ivnavalenca/rifa-digital
-repo_name: rifa-digital
-
-copyright: © 2026 Ivna Valença de Oliveira
 
 theme:
   name: material
   language: pt-BR
-  logo: docs/assets/images/logo.png
-  favicon: docs/assets/images/favicon.png
 
   features:
-    - navigation.instant
     - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.top
     - toc.follow
     - content.code.copy
-    - content.tabs.link
-    - search.highlight
-    - search.share
 
 plugins:
   - search
 
 markdown_extensions:
-
   - admonition
   - tables
-  - footnotes
   - attr_list
   - md_in_html
-
-  - toc:
-      permalink: true
-
   - pymdownx.superfences
   - pymdownx.details
-  - pymdownx.tabbed
-  - pymdownx.highlight
-  - pymdownx.inlinehilite
 
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
 
-extra:
-  mermaid:
-    initialize: true
-
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/ivnavalenca/rifa-digital
-
 nav:
 
   - Home: index.md
-
-  - Portal:
-      - Engineering Portal: engineering/portal.md
 
   - Product:
       - Visão do Produto: product/visao-produto.md
       - Stakeholders: product/stakeholders.md
       - Roadmap: product/roadmap.md
 
-  - UX:
-      - Personas: ux/personas.md
-      - Jornada do Usuário: ux/jornada-usuario.md
-      - Diagrama de Sequência: ux/sequencia.md
-
   - Requirements:
       - Requisitos: requirements/requisitos.md
       - Casos de Uso: requirements/casos-de-uso.md
       - Priorização: requirements/priorizacao.md
       - Rastreabilidade: requirements/rastreabilidade.md
-      - Classificação RNF: requirements/rnf-classificacao.md
-
-  - Architecture:
-      - System Overview: architecture/system-overview.md
-      - Component Diagram: architecture/component-diagram.md
-      - Class Diagram: architecture/class-diagram.md
-      - Sequence Diagram: architecture/sequence-diagram.md
-      - C4 Model: architecture/c4-model.md
-
-  - Data Architecture:
-      - Data Architecture: data/data-architecture.md
-      - Data Model Evolution: data/data-model-evolution.md
-      - Database Design: data/database-design.md
-      - MER: data/mer.md
-      - Modelo Relacional: data/modelo-relacional.md
-      - Schema SQL: data/schema-sql.md
-      - Dicionário de Dados: data/dicionario-dados.md
-
-  - Testing:
-      - Estratégia de Testes: testing/estrategia-testes.md
-      - Plano de Testes: testing/plano-testes.md
-      - Test Pyramid: testing/test-pyramid.md
-      - Casos de Teste: testing/casos-de-teste.md
-      - BDD Scenarios: testing/bdd-scenarios.md
-      - Test Data: testing/test-data.md
-      - Test Execution Report: testing/test-execution-report.md
-      - Matriz de Rastreabilidade: testing/matriz-rastreabilidade-testes.md
 
   - Agile:
       - Product Backlog: agile/backlog.md
@@ -117,6 +52,24 @@ nav:
       - Sprint Retrospective: agile/sprint-retrospective.md
       - Agile Metrics: agile/metrics.md
       - Agile Dashboard: agile/agile-dashboard.md
+
+  - Architecture:
+      - System Overview: architecture/system-overview.md
+      - Component Diagram: architecture/component-diagram.md
+      - Class Diagram: architecture/class-diagram.md
+      - Sequence Diagram: architecture/sequence-diagram.md
+      - C4 Model: architecture/c4-model.md
+
+  - Data Architecture:
+      - MER: data/mer.md
+      - Modelo Relacional: data/modelo-relacional.md
+      - Schema SQL: data/schema-sql.md
+      - Dicionário de Dados: data/dicionario-dados.md
+
+  - Testing:
+      - Estratégia de Testes: testing/estrategia-testes.md
+      - Plano de Testes: testing/plano-testes.md
+      - Casos de Teste: testing/casos-de-teste.md
 
   - Quality:
       - Plano de Qualidade: testing/plano-qualidade.md
@@ -136,7 +89,6 @@ nav:
 
   - Process:
       - Processo de Desenvolvimento: process/processo-desenvolvimento.md
-      - Engineering Dashboard: process/engineering-dashboard.md
       - Project Health: process/project-health.md
 
   - User:
