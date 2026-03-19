@@ -1,123 +1,34 @@
 site_name: Rifa Digital
-site_description: Portal de Engenharia e Gestão Ágil
+site_description: Portal de Engenharia de Software com IA
 site_author: Ivna Valença de Oliveira
+site_url: https://ivnavalenca.github.io/rifa-digital/
+
+repo_url: https://github.com/ivnavalenca/rifa-digital
+repo_name: rifa-digital
 
 theme:
   name: material
   language: pt-BR
-
   features:
     - navigation.tabs
     - navigation.sections
-    - navigation.expand
     - navigation.top
-    - toc.follow
     - content.code.copy
-
-plugins:
-  - search
-
-# 🔥 ESSENCIAL para seus dashboards e HTML funcionar
-markdown_extensions:
-  - admonition
-  - tables
-  - attr_list
-  - md_in_html
-  - pymdownx.superfences
-  - pymdownx.details
-
-extra_javascript:
-  - https://cdn.jsdelivr.net/npm/chart.js
-  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
-  - javascripts/metrics.js
-
-extra_css:
-  - stylesheets/extra.css
+    - content.tabs.link
 
 nav:
 
   - Home: index.md
-  - AI Chat: chat.md
 
   # =========================
-  # PRODUCT
-  # =========================
-  - Product:
-      - Visão do Produto: product/visao-produto.md
-      - Stakeholders: product/stakeholders.md
-      - Roadmap: product/roadmap.md
-
-  # =========================
-  # REQUIREMENTS
-  # =========================
-  - Requirements:
-      - Requisitos: requirements/requisitos.md
-      - Casos de Uso: requirements/casos-de-uso.md
-      - Priorização: requirements/priorizacao.md
-      - Rastreabilidade: requirements/rastreabilidade.md
-
-  # =========================
-  # AGILE
+  # 📊 AGILE
   # =========================
   - Agile:
-      - Product Backlog: agile/backlog.md
-      - Sprint Planning: agile/sprint-planning.md
-      - Sprint Backlog: agile/sprint-backlog.md
-      - Daily Scrum: agile/daily-scrum.md
-      - Sprint Review: agile/sprint-review.md
-      - Sprint Retrospective: agile/sprint-retrospective.md
-      - Agile Metrics: agile/metrics.md
+      - Overview: agile/index.md
       - Agile Dashboard: agile/agile-dashboard.md
 
   # =========================
-  # ARCHITECTURE
-  # =========================
-  - Architecture:
-      - System Overview: architecture/system-overview.md
-      - Component Diagram: architecture/component-diagram.md
-      - Class Diagram: architecture/class-diagram.md
-      - Sequence Diagram: architecture/sequence-diagram.md
-      - C4 Model: architecture/c4-model.md
-
-  # =========================
-  # DATA
-  # =========================
-  - Data Architecture:
-      - MER: data/mer.md
-      - Modelo Relacional: data/modelo-relacional.md
-      - Schema SQL: data/schema-sql.md
-      - Dicionário de Dados: data/dicionario-dados.md
-
-  # =========================
-  # QUALITY
-  # =========================
-  - Quality:
-      - Overview: quality/index.md
-      - Strategy:
-          - Plano de Testes: quality/strategy/plano-testes.md
-          - Estratégia: quality/strategy/estrategia-testes.md
-          - Test Pyramid: quality/strategy/test-pyramid.md
-      - Design:
-          - Casos de Teste: quality/design/casos-de-teste.md
-          - BDD: quality/design/bdd-scenarios.md
-          - Test Data: quality/design/test-data.md
-      - Execution:
-          - Relatório: quality/execution/test-execution-report.md
-          - Dashboard: quality/execution/quality-dashboard.md
-      - Traceability:
-          - Matriz: quality/traceability/matriz-rastreabilidade-testes.md
-      - Process:
-          - Plano de Qualidade: quality/process/plano-qualidade.md
-
-  # =========================
-  # QUALITY
-  # =========================
-  - Quality:
-      - Plano de Qualidade: testing/plano-qualidade.md
-      - Quality Dashboard: testing/quality-dashboard.md
-
-  # =========================
-  # ENGINEERING (SEU BLOCO COMPLETO)
+  # 🧠 ENGINEERING
   # =========================
   - Engineering:
       - Engineering Map: engineering/engineering-map.md
@@ -127,19 +38,64 @@ nav:
       - System Atlas: engineering/system-atlas.md
       - Interactive System Map: engineering/system-map.md
       - 3D Architecture Map: engineering/system-map-3d.md
-      - System Digital Twin: engineering/system-digital-twin.md
-      - Architecture Navigator: engineering/architecture-navigator.md
       - AI Engineering Assistant: engineering/assistant.md
 
   # =========================
-  # PROCESS
+  # 🗄️ DATA ARCHITECTURE
   # =========================
-  - Process:
-      - Processo de Desenvolvimento: process/processo-desenvolvimento.md
-      - Project Health: process/project-health.md
+  - Data Architecture:
+      - Overview: data-architecture/index.md
+      - Data Model Evolution: data-architecture/data-model-evolution.md
+      - Database Design: data-architecture/database-design.md
+      - Data Dictionary: data-architecture/dicionario-dados.md
+      - Relational Model: data-architecture/modelo-relacional.md
+      - SQL Schema: data-architecture/schema-sql.md
 
   # =========================
-  # USER
+  # 🧪 QUALITY (TESTES INTEGRADOS)
   # =========================
-  - User:
-      - Manual do Usuário: user/manual-usuario.md
+  - Quality:
+      - Overview: quality/index.md
+
+      - Strategy:
+          - Plano de Testes: quality/strategy/plano-testes.md
+          - Estratégia de Testes: quality/strategy/estrategia-testes.md
+          - Test Pyramid: quality/strategy/test-pyramid.md
+
+      - Design:
+          - Casos de Teste: quality/design/casos-de-teste.md
+          - BDD Scenarios: quality/design/bdd-scenarios.md
+          - Test Data: quality/design/test-data.md
+
+      - Execution:
+          - Quality Dashboard: quality/execution/quality-dashboard.md
+          - Test Execution Report: quality/execution/test-execution-report.md
+
+      - Traceability:
+          - Matriz de Rastreabilidade: quality/traceability/matriz-rastreabilidade-testes.md
+
+      - Process:
+          - Plano de Qualidade: quality/process/plano-qualidade.md
+
+  # =========================
+  # 🤖 AI
+  # =========================
+  - AI:
+      - Assistant: assistant.md
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - fenced_code
+  - md_in_html
+
+extra_javascript:
+  - javascripts/quality.js
+  - javascripts/metrics.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ivnavalenca
