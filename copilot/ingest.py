@@ -1,36 +1,23 @@
 import os
-import json
+from langchain.document_loaders import DirectoryLoader
+from langchain.text_splitter import CharacterTextSplitter
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
 
-DOCS_PATH = "docs"
-OUTPUT_FILE = "copilot/knowledge.json"
+# 📁 Carrega docs
+loader = DirectoryLoader("docs/", glob="**/*.md")
+documents = loader.load()
 
-def load_documents():
-    docs = []
+# ✂️ Divide em chunks
+splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+docs = splitter.split_documents(documents)
 
-    for root, _, files in os.walk(DOCS_PATH):
-        for file in files:
-            if file.endswith(".md"):
-                path = os.path.join(root, file)
+# 🧠 Embeddings
+embeddings = OpenAIEmbeddings()
 
-                with open(path, "r", encoding="utf-8") as f:
-                    content = f.read()
+# 💾 Banco vetorial
+db = Chroma.from_documents(docs, embeddings, persist_directory="copilot/db")
 
-                docs.append({
-                    "file": path,
-                    "content": content[:2000]  # evita textos enormes
-                })
+db.persist()
 
-    return docs
-
-
-def main():
-    docs = load_documents()
-
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(docs, f, indent=2, ensure_ascii=False)
-
-    print(f"{len(docs)} documentos ingeridos")
-
-
-if __name__ == "__main__":
-    main()
+print("✅ Base vetorial criada com sucesso!")
