@@ -13,37 +13,39 @@ jobs:
   ai:
     runs-on: ubuntu-latest
 
-    # 🚫 evita loop infinito (commit do próprio bot)
+    # 🚫 evita loop infinito (quando o próprio bot faz commit)
     if: github.actor != 'github-actions[bot]'
 
     steps:
 
-      # 📦 Checkout
+      # 📦 Checkout do código
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 🐍 Python
+      # 🐍 Setup Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # ⚡ Cache pip
+      # ⚡ Cache pip (melhora performance)
       - name: Cache pip
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
 
-      # 📚 Instalar dependências mínimas
+      # 📚 Instalar dependências (RAG + IA)
       - name: Install dependencies
         run: |
-          pip install openai requests
+          pip install openai chromadb tiktoken langchain
 
       # ======================================
-      # 🧠 RAG — CONHECIMENTO DO PROJETO
+      # 🧠 RAG — BASE DE CONHECIMENTO
       # ======================================
-      - name: Ingest project knowledge
+      - name: Build RAG database
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python copilot/ingest.py
 
       # ======================================
@@ -59,7 +61,7 @@ jobs:
         run: python scripts/generate_agile_dashboard.py || true
 
       # ======================================
-      # 🧩 GRAFOS
+      # 🧩 GRAFOS / ARQUITETURA
       # ======================================
       - name: Generate traceability graph
         run: python scripts/generate_traceability_graph.py || true
@@ -74,13 +76,15 @@ jobs:
         run: python scripts/generate_architecture_graph.py || true
 
       # ======================================
-      # 🤖 IA
+      # 🤖 IA (opcional - respostas pré-geradas)
       # ======================================
       - name: Generate AI responses
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python scripts/generate_ai_responses.py || true
 
       # ======================================
-      # 💾 COMMIT AUTOMÁTICO (CORRIGIDO)
+      # 💾 COMMIT AUTOMÁTICO
       # ======================================
       - name: Commit generated files
         run: |
@@ -88,8 +92,8 @@ jobs:
           git config --global user.email "actions@github.com"
 
           git add docs/assets/*.json || true
-          git add copilot/knowledge.json || true
+          git add copilot/db || true
 
-          git commit -m "update: metrics and knowledge base" || echo "No changes"
+          git commit -m "update: RAG + metrics + dashboards" || echo "No changes"
 
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
