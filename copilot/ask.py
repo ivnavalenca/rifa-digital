@@ -1,23 +1,32 @@
-import json
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
 from openai import OpenAI
 
 client = OpenAI()
 
+# 🔍 Carrega base vetorial
+embeddings = OpenAIEmbeddings()
+db = Chroma(persist_directory="copilot/db", embedding_function=embeddings)
+
 def ask(question):
 
-    try:
-        with open("copilot/knowledge.json") as f:
-            knowledge = json.load(f)
-    except:
-        knowledge = {}
+    # 🔎 Busca semântica
+    docs = db.similarity_search(question, k=3)
 
-    context = json.dumps(knowledge)
+    context = "\n\n".join([doc.page_content for doc in docs])
 
+    # 🤖 IA responde com contexto
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": f"Use este contexto para responder:\n{context}"},
-            {"role": "user", "content": question}
+            {
+                "role": "system",
+                "content": f"Responda baseado no contexto abaixo:\n{context}"
+            },
+            {
+                "role": "user",
+                "content": question
+            }
         ]
     )
 
