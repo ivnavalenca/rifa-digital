@@ -1,11 +1,7 @@
 {
   "nodes": [
     {
-      "id": "RifaService",
-      "type": "service"
-    },
-    {
-      "id": "NumeroService",
+      "id": "ReservaService",
       "type": "service"
     },
     {
@@ -13,15 +9,23 @@
       "type": "service"
     },
     {
+      "id": "NumeroService",
+      "type": "service"
+    },
+    {
       "id": "SorteioService",
       "type": "service"
     },
     {
-      "id": "ReservaService",
+      "id": "RifaService",
       "type": "service"
     },
     {
       "id": "RIFA",
+      "type": "table"
+    },
+    {
+      "id": "RESULTADO",
       "type": "table"
     },
     {
@@ -35,96 +39,16 @@
     {
       "id": "PARTICIPANTE",
       "type": "table"
-    },
-    {
-      "id": "RESULTADO",
-      "type": "table"
     }
   ],
   "links": [
     {
-      "source": "RifaService",
+      "source": "ReservaService",
       "target": "RIFA"
-    },
-    {
-      "source": "RifaService",
-      "target": "PAGAMENTO"
-    },
-    {
-      "source": "RifaService",
-      "target": "NUMERO"
-    },
-    {
-      "source": "RifaService",
-      "target": "PARTICIPANTE"
-    },
-    {
-      "source": "RifaService",
-      "target": "RESULTADO"
-    },
-    {
-      "source": "NumeroService",
-      "target": "RIFA"
-    },
-    {
-      "source": "NumeroService",
-      "target": "PAGAMENTO"
-    },
-    {
-      "source": "NumeroService",
-      "target": "NUMERO"
-    },
-    {
-      "source": "NumeroService",
-      "target": "PARTICIPANTE"
-    },
-    {
-      "source": "NumeroService",
-      "target": "RESULTADO"
-    },
-    {
-      "source": "PagamentoService",
-      "target": "RIFA"
-    },
-    {
-      "source": "PagamentoService",
-      "target": "PAGAMENTO"
-    },
-    {
-      "source": "PagamentoService",
-      "target": "NUMERO"
-    },
-    {
-      "source": "PagamentoService",
-      "target": "PARTICIPANTE"
-    },
-    {
-      "source": "PagamentoService",
-      "target": "RESULTADO"
-    },
-    {
-      "source": "SorteioService",
-      "target": "RIFA"
-    },
-    {
-      "source": "SorteioService",
-      "target": "PAGAMENTO"
-    },
-    {
-      "source": "SorteioService",
-      "target": "NUMERO"
-    },
-    {
-      "source": "SorteioService",
-      "target": "PARTICIPANTE"
-    },
-    {
-      "source": "SorteioService",
-      "target": "RESULTADO"
     },
     {
       "source": "ReservaService",
-      "target": "RIFA"
+      "target": "RESULTADO"
     },
     {
       "source": "ReservaService",
@@ -139,8 +63,84 @@
       "target": "PARTICIPANTE"
     },
     {
-      "source": "ReservaService",
+      "source": "PagamentoService",
+      "target": "RIFA"
+    },
+    {
+      "source": "PagamentoService",
       "target": "RESULTADO"
+    },
+    {
+      "source": "PagamentoService",
+      "target": "PAGAMENTO"
+    },
+    {
+      "source": "PagamentoService",
+      "target": "NUMERO"
+    },
+    {
+      "source": "PagamentoService",
+      "target": "PARTICIPANTE"
+    },
+    {
+      "source": "NumeroService",
+      "target": "RIFA"
+    },
+    {
+      "source": "NumeroService",
+      "target": "RESULTADO"
+    },
+    {
+      "source": "NumeroService",
+      "target": "PAGAMENTO"
+    },
+    {
+      "source": "NumeroService",
+      "target": "NUMERO"
+    },
+    {
+      "source": "NumeroService",
+      "target": "PARTICIPANTE"
+    },
+    {
+      "source": "SorteioService",
+      "target": "RIFA"
+    },
+    {
+      "source": "SorteioService",
+      "target": "RESULTADO"
+    },
+    {
+      "source": "SorteioService",
+      "target": "PAGAMENTO"
+    },
+    {
+      "source": "SorteioService",
+      "target": "NUMERO"
+    },
+    {
+      "source": "SorteioService",
+      "target": "PARTICIPANTE"
+    },
+    {
+      "source": "RifaService",
+      "target": "RIFA"
+    },
+    {
+      "source": "RifaService",
+      "target": "RESULTADO"
+    },
+    {
+      "source": "RifaService",
+      "target": "PAGAMENTO"
+    },
+    {
+      "source": "RifaService",
+      "target": "NUMERO"
+    },
+    {
+      "source": "RifaService",
+      "target": "PARTICIPANTE"
     }
   ]
 }
