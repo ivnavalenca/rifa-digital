@@ -9,30 +9,35 @@ document.getElementById("metrics").innerHTML = `
 <div class="grid cards">
 
 <div>
-<h3>⭐ Stars</h3>
-<p>${data.stars}</p>
+<h3>📄 Documents</h3>
+<p>${data.documents}</p>
 </div>
 
 <div>
-<h3>🐞 Issues</h3>
-<p>${data.open_issues}</p>
+<h3>📋 Requirements</h3>
+<p>${data.requirements}</p>
 </div>
 
 <div>
-<h3>🔀 PRs</h3>
-<p>${data.pull_requests}</p>
+<h3>🧩 User Stories</h3>
+<p>${data.user_stories}</p>
 </div>
 
 <div>
-<h3>👥 Contributors</h3>
-<p>${data.contributors}</p>
+<h3>🧪 Tests</h3>
+<p>${data.tests}</p>
+</div>
+
+<div>
+<h3>⚙️ Services</h3>
+<p>${data.services}</p>
 </div>
 
 </div>
 
 <br>
 
-<h2>📊 Issues vs PRs</h2>
+<h2>📊 Engineering Distribution</h2>
 <canvas id="chart1"></canvas>
 
 `
@@ -42,10 +47,16 @@ const ctx = document.getElementById('chart1');
 new Chart(ctx, {
 type: 'bar',
 data: {
-labels: ['Issues', 'Pull Requests'],
+labels: ['Documents','Requirements','User Stories','Tests','Services'],
 datasets: [{
 label: 'Quantidade',
-data: [data.open_issues, data.pull_requests]
+data: [
+data.documents,
+data.requirements,
+data.user_stories,
+data.tests,
+data.services
+]
 }]
 }
 });
