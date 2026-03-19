@@ -1,6 +1,6 @@
 import os
 
-from langchain.text_splitter import CharacterTextSplitter
+from langchain_text_splitters import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain_community.document_loaders import DirectoryLoader
 from langchain_community.vectorstores import Chroma
