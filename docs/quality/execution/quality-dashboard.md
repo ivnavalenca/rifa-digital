@@ -1,117 +1,73 @@
-# Quality Dashboard --- Rifa Digital
+# 📊 Quality Dashboard
 
-## 1. Introdução
+Visão dinâmica das métricas de qualidade do sistema **Rifa Digital**.
 
-Este documento apresenta um **Quality Dashboard** com métricas de
-qualidade do sistema **Rifa Digital**.
+---
 
-O objetivo é fornecer uma visão consolidada da qualidade do produto
-baseada em:
+## 🚦 Status Geral
 
--   execução de testes
--   defeitos identificados
--   cobertura de requisitos
+<div id="quality-status" markdown>
+Carregando status...
+</div>
 
-Essas métricas são comumente utilizadas em práticas de **QA, ISTQB e
-DevOps**.
+---
 
-------------------------------------------------------------------------
+## 📈 Métricas de Qualidade
 
-# 2. Métricas de Teste
+<div id="quality-metrics" markdown>
+Carregando métricas...
+</div>
 
-  Métrica                   Valor
-  ------------------------- -------
-  Total de Requisitos       15
-  Total de User Stories     15
-  Total de Casos de Teste   75
-  Casos Executados          75
-  Casos Aprovados           72
-  Casos Reprovados          3
+---
 
-------------------------------------------------------------------------
+## 📊 Análise Inteligente
 
-# 3. Taxa de Aprovação dos Testes
+<div id="quality-analysis" markdown>
+Carregando análise...
+</div>
 
-A taxa de aprovação indica a porcentagem de testes que passaram com
-sucesso.
+---
 
-Fórmula:
+## 🔍 O que está sendo monitorado?
 
-Taxa de Aprovação = (Testes Aprovados / Testes Executados) × 100
+- 🧪 Quantidade de casos de teste
+- 📊 Relatórios de execução
+- 🔗 Rastreabilidade entre requisitos e testes
+- 🧠 Estratégia de testes definida
+- ⚙️ Processos de qualidade documentados
 
-Exemplo:
+---
 
-Taxa de Aprovação = (72 / 75) × 100 = **96%**
+## 🔄 Atualização Automática
 
-------------------------------------------------------------------------
+As métricas são geradas automaticamente via pipeline CI/CD:
 
-# 4. Cobertura de Testes
+scripts/generate_quality_metrics.py → docs/assets/quality-metrics.json
 
-A cobertura de testes mede o quanto dos requisitos do sistema possuem
-casos de teste associados.
+---
 
-  Item                         Cobertura
-  ---------------------------- -----------
-  Requisitos Funcionais        100%
-  User Stories                 100%
-  Funcionalidades principais   100%
+## 📌 Interpretação
 
-Cada User Story possui aproximadamente **5 casos de teste associados**.
+| Indicador | Significado |
+|----------|------------|
+| 🧪 Test Cases | Cobertura funcional |
+| 📊 Reports | Execução dos testes |
+| 🔗 Traceability | Rastreabilidade |
+| 🧠 Strategy | Maturidade de testes |
+| ⚙️ Process | Governança |
+| 🚀 Score | Qualidade geral |
 
-------------------------------------------------------------------------
+---
 
-# 5. Densidade de Defeitos
+## 🎯 Objetivo
 
-A densidade de defeitos mede a quantidade de defeitos identificados em
-relação ao tamanho do sistema.
+Este dashboard permite:
 
-Fórmula:
+- acompanhar a evolução da qualidade
+- identificar gaps de testes
+- apoiar decisões técnicas
+- integrar com IA e automação
 
-Densidade de Defeitos = Número de Defeitos / Número de Funcionalidades
+---
 
-Exemplo:
-
-2 defeitos / 15 funcionalidades = **0,13 defeitos por funcionalidade**
-
-------------------------------------------------------------------------
-
-# 6. Distribuição de Defeitos por Severidade
-
-  Severidade   Quantidade
-  ------------ ------------
-  Crítica      0
-  Alta         1
-  Média        1
-  Baixa        0
-
-------------------------------------------------------------------------
-
-# 7. Indicadores de Qualidade
-
-  Indicador                 Avaliação
-  ------------------------- -----------
-  Estabilidade do Sistema   Alta
-  Cobertura de Testes       Alta
-  Qualidade do Código       Adequada
-  Risco de Produção         Baixo
-
-------------------------------------------------------------------------
-
-# 8. Visualização Simplificada
-
-    Cobertura de Testes      █████████████████ 100%
-    Taxa de Aprovação        ████████████████  96%
-    Defeitos Críticos        █ 0%
-
-------------------------------------------------------------------------
-
-# 9. Conclusão
-
-O sistema **Rifa Digital** apresenta boa qualidade geral com:
-
--   alta cobertura de testes
--   baixa quantidade de defeitos
--   estabilidade das funcionalidades principais
-
-As métricas indicam que o sistema está **adequado para uso e validação
-final**.
+<script src="../../javascripts/quality.js"></script>
