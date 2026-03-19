@@ -5,6 +5,7 @@ fetch("./assets/engineering-metrics.json")
 .then(data => {
 
 document.getElementById("metrics").innerHTML = `
+
 <div class="grid cards">
 
 <div>
@@ -13,17 +14,12 @@ document.getElementById("metrics").innerHTML = `
 </div>
 
 <div>
-<h3>🍴 Forks</h3>
-<p>${data.forks}</p>
-</div>
-
-<div>
-<h3>🐞 Issues Abertas</h3>
+<h3>🐞 Issues</h3>
 <p>${data.open_issues}</p>
 </div>
 
 <div>
-<h3>🔀 Pull Requests</h3>
+<h3>🔀 PRs</h3>
 <p>${data.pull_requests}</p>
 </div>
 
@@ -33,7 +29,27 @@ document.getElementById("metrics").innerHTML = `
 </div>
 
 </div>
+
+<br>
+
+<h2>📊 Issues vs PRs</h2>
+<canvas id="chart1"></canvas>
+
 `
+
+// 📊 GRÁFICO
+const ctx = document.getElementById('chart1');
+
+new Chart(ctx, {
+type: 'bar',
+data: {
+labels: ['Issues', 'Pull Requests'],
+datasets: [{
+label: 'Quantidade',
+data: [data.open_issues, data.pull_requests]
+}]
+}
+});
 
 })
 .catch(err => {
