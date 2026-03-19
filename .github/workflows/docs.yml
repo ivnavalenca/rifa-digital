@@ -16,28 +16,57 @@ jobs:
 
     steps:
 
+      # 📦 Checkout
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 🐍 Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
+      # ⚡ Cache
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+
+      # 📚 Instalar dependências
       - name: Install dependencies
         run: |
           pip install mkdocs-material matplotlib requests
           npm install -g markdownlint-cli
 
+      # 🧪 Lint
       - name: Markdown lint
         run: markdownlint docs/**/*.md || true
 
+      # 🔗 Links
+      - name: Check broken links
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --verbose docs/**/*.md || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 🏗️ Build
       - name: Build MkDocs
         run: mkdocs build
 
+      # 🚀 Deploy
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
+
+      # 📦 Preview PR
+      - name: Upload docs preview
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-preview
+          path: site
