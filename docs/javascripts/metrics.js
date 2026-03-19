@@ -37,7 +37,6 @@ document.getElementById("metrics").innerHTML = `
 
 `
 
-// 📊 GRÁFICO
 const ctx = document.getElementById('chart1');
 
 new Chart(ctx, {
@@ -57,4 +56,4 @@ document.getElementById("metrics").innerHTML = "Erro ao carregar métricas"
 console.error(err)
 })
 
-})
+});
