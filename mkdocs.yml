@@ -17,6 +17,7 @@ theme:
 plugins:
   - search
 
+# 🔥 ESSENCIAL para seus dashboards e HTML funcionar
 markdown_extensions:
   - admonition
   - tables
@@ -25,6 +26,7 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.details
 
+# (opcional mas útil para diagramas)
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
 
@@ -32,17 +34,26 @@ nav:
 
   - Home: index.md
 
+  # =========================
+  # PRODUCT
+  # =========================
   - Product:
       - Visão do Produto: product/visao-produto.md
       - Stakeholders: product/stakeholders.md
       - Roadmap: product/roadmap.md
 
+  # =========================
+  # REQUIREMENTS
+  # =========================
   - Requirements:
       - Requisitos: requirements/requisitos.md
       - Casos de Uso: requirements/casos-de-uso.md
       - Priorização: requirements/priorizacao.md
       - Rastreabilidade: requirements/rastreabilidade.md
 
+  # =========================
+  # AGILE
+  # =========================
   - Agile:
       - Product Backlog: agile/backlog.md
       - Sprint Planning: agile/sprint-planning.md
@@ -53,6 +64,9 @@ nav:
       - Agile Metrics: agile/metrics.md
       - Agile Dashboard: agile/agile-dashboard.md
 
+  # =========================
+  # ARCHITECTURE
+  # =========================
   - Architecture:
       - System Overview: architecture/system-overview.md
       - Component Diagram: architecture/component-diagram.md
@@ -60,21 +74,33 @@ nav:
       - Sequence Diagram: architecture/sequence-diagram.md
       - C4 Model: architecture/c4-model.md
 
+  # =========================
+  # DATA
+  # =========================
   - Data Architecture:
       - MER: data/mer.md
       - Modelo Relacional: data/modelo-relacional.md
       - Schema SQL: data/schema-sql.md
       - Dicionário de Dados: data/dicionario-dados.md
 
+  # =========================
+  # TESTING
+  # =========================
   - Testing:
       - Estratégia de Testes: testing/estrategia-testes.md
       - Plano de Testes: testing/plano-testes.md
       - Casos de Teste: testing/casos-de-teste.md
 
+  # =========================
+  # QUALITY
+  # =========================
   - Quality:
       - Plano de Qualidade: testing/plano-qualidade.md
       - Quality Dashboard: testing/quality-dashboard.md
 
+  # =========================
+  # ENGINEERING (SEU BLOCO COMPLETO)
+  # =========================
   - Engineering:
       - Engineering Map: engineering/engineering-map.md
       - Knowledge Graph: engineering/knowledge-graph.md
@@ -87,9 +113,15 @@ nav:
       - Architecture Navigator: engineering/architecture-navigator.md
       - AI Engineering Assistant: engineering/assistant.md
 
+  # =========================
+  # PROCESS
+  # =========================
   - Process:
       - Processo de Desenvolvimento: process/processo-desenvolvimento.md
       - Project Health: process/project-health.md
 
+  # =========================
+  # USER
+  # =========================
   - User:
       - Manual do Usuário: user/manual-usuario.md
