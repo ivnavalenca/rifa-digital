@@ -1,8 +1,5 @@
 {
-  "velocity": [10, 12, 9, 14],
-  "sprints": ["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4"],
-  "burndown": {
-    "planned": [20, 15, 10, 5, 0],
-    "actual": [20, 17, 11, 6, 2]
-  }
+  "total_user_stories": 0,
+  "done": 0,
+  "backlog": 0
 }
