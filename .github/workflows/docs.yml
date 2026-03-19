@@ -39,15 +39,14 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt || true
-          pip install mkdocs-material
-          pip install matplotlib requests
+          pip install mkdocs-material matplotlib requests
           npm install -g markdownlint-cli
 
-      # 🧪 Markdown Lint (não quebra o pipeline)
+      # 🧪 Lint (não quebra)
       - name: Markdown lint
         run: markdownlint docs/**/*.md || true
 
-      # 🔗 Verificar links
+      # 🔗 Links quebrados (não quebra)
       - name: Check broken links
         uses: lycheeverse/lychee-action@v1
         with:
@@ -60,6 +59,8 @@ jobs:
       # 🚀 =========================
 
       - name: Generate engineering metrics
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/generate_metrics.py
 
       - name: Generate agile dashboard
@@ -80,7 +81,7 @@ jobs:
       - name: Generate AI responses
         run: python scripts/generate_ai_responses.py
 
-      # 🤖 AGENTES (não quebram pipeline)
+      # 🤖 Agentes (não quebram)
       - name: Run engineering agent
         run: python copilot/agent.py || true
 
@@ -94,7 +95,7 @@ jobs:
       - name: Build MkDocs
         run: mkdocs build
 
-      # 🚀 Deploy (mais estável que mkdocs gh-deploy)
+      # 🚀 Deploy
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
