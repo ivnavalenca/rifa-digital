@@ -89,12 +89,25 @@ nav:
       - Dicionário de Dados: data/dicionario-dados.md
 
   # =========================
-  # TESTING
+  # QUALITY
   # =========================
-  - Testing:
-      - Estratégia de Testes: testing/estrategia-testes.md
-      - Plano de Testes: testing/plano-testes.md
-      - Casos de Teste: testing/casos-de-teste.md
+  - Quality:
+      - Overview: quality/index.md
+      - Strategy:
+          - Plano de Testes: quality/strategy/plano-testes.md
+          - Estratégia: quality/strategy/estrategia-testes.md
+          - Test Pyramid: quality/strategy/test-pyramid.md
+      - Design:
+          - Casos de Teste: quality/design/casos-de-teste.md
+          - BDD: quality/design/bdd-scenarios.md
+          - Test Data: quality/design/test-data.md
+      - Execution:
+          - Relatório: quality/execution/test-execution-report.md
+          - Dashboard: quality/execution/quality-dashboard.md
+      - Traceability:
+          - Matriz: quality/traceability/matriz-rastreabilidade-testes.md
+      - Process:
+          - Plano de Qualidade: quality/process/plano-qualidade.md
 
   # =========================
   # QUALITY
