@@ -53,7 +53,7 @@ Painel central do sistema.
 <div id="metrics"></div>
 
 <script>
-fetch("assets/engineering-metrics.json")
+fetch("./assets/engineering-metrics.json")
 .then(r => r.json())
 .then(data => {
 document.getElementById("metrics").innerHTML = `
