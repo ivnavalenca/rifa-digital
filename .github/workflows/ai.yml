@@ -5,10 +5,16 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
 
   ai:
     runs-on: ubuntu-latest
+
+    # 🚫 evita loop infinito (commit do próprio bot)
+    if: github.actor != 'github-actions[bot]'
 
     steps:
 
@@ -22,20 +28,27 @@ jobs:
         with:
           python-version: '3.11'
 
-      # 📚 Dependências
+      # ⚡ Cache pip
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+
+      # 📚 Instalar dependências mínimas
       - name: Install dependencies
         run: |
           pip install openai requests
 
-      # 🧠 =========================
-      # 🔥 RAG (CONHECIMENTO)
-      # 🧠 =========================
+      # ======================================
+      # 🧠 RAG — CONHECIMENTO DO PROJETO
+      # ======================================
       - name: Ingest project knowledge
         run: python copilot/ingest.py
 
-      # 📊 =========================
-      # 🔥 MÉTRICAS
-      # 📊 =========================
+      # ======================================
+      # 📊 MÉTRICAS
+      # ======================================
       - name: Generate engineering metrics
         run: python scripts/generate_metrics.py || true
 
@@ -45,9 +58,9 @@ jobs:
       - name: Generate agile dashboard
         run: python scripts/generate_agile_dashboard.py || true
 
-      # 🧩 =========================
-      # 🔥 GRAFOS
-      # 🧩 =========================
+      # ======================================
+      # 🧩 GRAFOS
+      # ======================================
       - name: Generate traceability graph
         run: python scripts/generate_traceability_graph.py || true
 
@@ -60,13 +73,15 @@ jobs:
       - name: Generate architecture graph
         run: python scripts/generate_architecture_graph.py || true
 
-      # 🤖 =========================
-      # 🔥 IA
-      # 🤖 =========================
+      # ======================================
+      # 🤖 IA
+      # ======================================
       - name: Generate AI responses
         run: python scripts/generate_ai_responses.py || true
 
-      # 💾 Commit automático
+      # ======================================
+      # 💾 COMMIT AUTOMÁTICO (CORRIGIDO)
+      # ======================================
       - name: Commit generated files
         run: |
           git config --global user.name "github-actions"
@@ -76,4 +91,5 @@ jobs:
           git add copilot/knowledge.json || true
 
           git commit -m "update: metrics and knowledge base" || echo "No changes"
-          git push
+
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
