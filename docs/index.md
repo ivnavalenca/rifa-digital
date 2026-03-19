@@ -1,65 +1,118 @@
-# Rifa Digital
+# 🚀 Rifa Digital — Engineering Intelligence Portal
 
-## 🚀 Engineering Command Center
+Bem-vindo ao portal de engenharia do sistema **Rifa Digital**.
 
-Painel central do sistema.
+Este ambiente integra:
+
+- 📊 gestão ágil
+- 🧠 arquitetura de software
+- 🗄️ arquitetura de dados
+- 🧪 qualidade e testes
+- 🤖 inteligência artificial aplicada
 
 ---
 
-<div class="grid cards">
+## 🚀 Quick Access
 
-<div>
-<h3>⚙️ Engineering Dashboard</h3>
-<p>Monitoramento da arquitetura e serviços.</p>
-<a href="engineering/engineering-map/">👉 Abrir</a>
-</div>
+<div class="grid cards" markdown>
 
-<div>
-<h3>📊 Agile Dashboard</h3>
-<p>Métricas das sprints (Velocity e Burndown).</p>
-<a href="agile/agile-dashboard/">👉 Abrir</a>
-</div>
+- 🧠 **Engineering Dashboard**
+  
+  Visão completa da arquitetura e engenharia.
 
-<div>
-<h3>🧪 Quality Dashboard</h3>
-<p>Indicadores de qualidade e testes.</p>
-<a href="testing/quality-dashboard/">👉 Abrir</a>
-</div>
+  👉 [Abrir](engineering/engineering-map.md)
 
-<div>
-<h3>📈 Project Health</h3>
-<p>Saúde do projeto.</p>
-<a href="process/project-health/">👉 Abrir</a>
-</div>
+- 📊 **Agile Dashboard**
+  
+  Métricas de sprint e gestão ágil.
 
-<div>
-<h3>🌐 System Digital Twin</h3>
-<p>Visualização interativa da arquitetura.</p>
-<a href="engineering/system-digital-twin/">👉 Abrir</a>
-</div>
+  👉 [Abrir](agile/agile-dashboard.md)
 
-<div>
-<h3>🧭 Architecture Navigator</h3>
-<p>Navegação entre requisitos, testes e arquitetura.</p>
-<a href="engineering/architecture-navigator/">👉 Abrir</a>
-</div>
+- 🧪 **Quality Dashboard**
+  
+  Métricas de qualidade e testes.
+
+  👉 [Abrir](quality/execution/quality-dashboard.md)
 
 </div>
 
 ---
 
-## 📊 Project Metrics
+## 🧭 Navegação por Domínio
 
-<div id="metrics"></div>
+<div class="grid cards" markdown>
+
+- 📊 **Agile Command Center**
+  
+  Gestão de sprints, backlog e métricas.
+
+  👉 [Explorar](agile/index.md)
+
+- 🧠 **Engineering**
+  
+  Arquitetura, grafos e visão sistêmica.
+
+  👉 [Explorar](engineering/engineering-map.md)
+
+- 🗄️ **Data Architecture**
+  
+  Modelagem e estrutura de dados.
+
+  👉 [Explorar](data-architecture/index.md)
+
+- 🧪 **Quality Command Center**
+  
+  Estratégia, execução e rastreabilidade.
+
+  👉 [Explorar](quality/index.md)
+
+- 🤖 **AI Assistant**
+  
+  Assistente inteligente baseado no projeto.
+
+  👉 [Abrir](assistant.md)
+
+</div>
 
 ---
 
-## 📘 Sobre o Projeto
+## 📊 Visão Geral do Sistema
 
-O sistema **Rifa Digital** integra:
+O sistema Rifa Digital permite:
 
-- Engenharia de Software  
-- Arquitetura  
-- Testes  
-- DevOps  
-- Gestão Ágil  
+- criação de rifas digitais
+- gerenciamento de participantes
+- controle de números e pagamentos
+- sorteio automatizado
+
+---
+
+## 🧠 Engenharia + IA
+
+Este portal implementa:
+
+- 📊 dashboards automáticos
+- 🔗 rastreabilidade entre artefatos
+- 🤖 IA com conhecimento do projeto (RAG)
+- 🔄 integração com CI/CD
+
+---
+
+## 🧪 Qualidade Integrada
+
+A qualidade é garantida por:
+
+- testes estruturados
+- métricas contínuas
+- dashboards dinâmicos
+- validação automatizada
+
+---
+
+## 🔄 Integração CI/CD
+
+Pipeline automatizado:
+
+```text
+docs.yml → build + deploy
+ai.yml   → IA + métricas + dashboards
