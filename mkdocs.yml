@@ -81,7 +81,7 @@ nav:
   # 🤖 AI
   # =========================
   - AI:
-      - Assistant: assistant.md
+      - Assistant: docs/assistant.md
 
 markdown_extensions:
   - admonition
