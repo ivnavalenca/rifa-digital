@@ -1,34 +1,42 @@
-name: AI Processing
+name: AI Pipeline
 
 on:
-  workflow_dispatch:   # manual
   push:
-    paths:
-      - "docs/**"
-      - "copilot/**"
+    branches:
+      - main
 
 jobs:
+
   ai:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: '3.11'
 
-      - run: |
-          pip install langchain chromadb openai tiktoken
+      - name: Install dependencies
+        run: |
+          pip install openai requests
 
-      # 🧠 AI
-      - name: Ingest documents
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      # 🔥 INGESTÃO (RAG)
+      - name: Ingest project knowledge
         run: python copilot/ingest.py
 
-      - name: Run AI responses
-        run: python scripts/generate_ai_responses.py
+      # 🔥 (opcional) gerar respostas automáticas
+      - name: Generate AI responses
+        run: python scripts/generate_ai_responses.py || true
 
-      - name: Generate knowledge graph
-        run: python scripts/generate_knowledge_graph.py
+      # 💾 salvar arquivo gerado
+      - name: Commit knowledge
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add copilot/knowledge.json
+          git commit -m "update: knowledge base" || echo "No changes"
+          git push
