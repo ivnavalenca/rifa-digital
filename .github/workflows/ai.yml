@@ -1,0 +1,34 @@
+name: AI Processing
+
+on:
+  workflow_dispatch:   # manual
+  push:
+    paths:
+      - "docs/**"
+      - "copilot/**"
+
+jobs:
+  ai:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      - run: |
+          pip install langchain chromadb openai tiktoken
+
+      # 🧠 AI
+      - name: Ingest documents
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python copilot/ingest.py
+
+      - name: Run AI responses
+        run: python scripts/generate_ai_responses.py
+
+      - name: Generate knowledge graph
+        run: python scripts/generate_knowledge_graph.py
