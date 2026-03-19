@@ -1,5 +1,5 @@
 langchain
 chromadb
-tiktoken
 openai
+tiktoken
 python-dotenv
