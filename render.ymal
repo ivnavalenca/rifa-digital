@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: rifa-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python api/chat.py
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
