@@ -130,6 +130,8 @@ nav:
       - System Atlas: engineering/system-atlas.md
       - Interactive System Map: engineering/system-map.md
       - 3D Architecture Map: engineering/system-map-3d.md
+      - System Digital Twin: engineering/system-digital-twin.md
+      - Architecture Navigator: engineering/architecture-navigator.md
       - AI Engineering Assistant: engineering/assistant.md
 
   - Process:
