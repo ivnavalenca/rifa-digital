@@ -29,6 +29,7 @@ markdown_extensions:
 # (opcional mas útil para diagramas)
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - javascripts/metrics.js
 
 extra_css:
   - stylesheets/extra.css
