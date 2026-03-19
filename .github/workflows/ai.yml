@@ -12,31 +12,68 @@ jobs:
 
     steps:
 
+      # 📦 Checkout
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 🐍 Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
+      # 📚 Dependências
       - name: Install dependencies
         run: |
           pip install openai requests
 
-      # 🔥 INGESTÃO (RAG)
+      # 🧠 =========================
+      # 🔥 RAG (CONHECIMENTO)
+      # 🧠 =========================
       - name: Ingest project knowledge
         run: python copilot/ingest.py
 
-      # 🔥 (opcional) gerar respostas automáticas
+      # 📊 =========================
+      # 🔥 MÉTRICAS
+      # 📊 =========================
+      - name: Generate engineering metrics
+        run: python scripts/generate_metrics.py || true
+
+      - name: Generate quality metrics
+        run: python scripts/generate_quality_metrics.py || true
+
+      - name: Generate agile dashboard
+        run: python scripts/generate_agile_dashboard.py || true
+
+      # 🧩 =========================
+      # 🔥 GRAFOS
+      # 🧩 =========================
+      - name: Generate traceability graph
+        run: python scripts/generate_traceability_graph.py || true
+
+      - name: Generate knowledge graph
+        run: python scripts/generate_knowledge_graph.py || true
+
+      - name: Generate system atlas
+        run: python scripts/generate_system_atlas.py || true
+
+      - name: Generate architecture graph
+        run: python scripts/generate_architecture_graph.py || true
+
+      # 🤖 =========================
+      # 🔥 IA
+      # 🤖 =========================
       - name: Generate AI responses
         run: python scripts/generate_ai_responses.py || true
 
-      # 💾 salvar arquivo gerado
-      - name: Commit knowledge
+      # 💾 Commit automático
+      - name: Commit generated files
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-          git add copilot/knowledge.json
-          git commit -m "update: knowledge base" || echo "No changes"
+
+          git add docs/assets/*.json || true
+          git add copilot/knowledge.json || true
+
+          git commit -m "update: metrics and knowledge base" || echo "No changes"
           git push
