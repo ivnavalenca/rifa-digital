@@ -1,118 +1,34 @@
-name: Documentation CI/CD
+name: Docs Deploy
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
+    branches: [ main ]
 
 permissions:
   contents: write
 
 jobs:
-
-  docs:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
 
-      # 📦 Checkout
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # 🐍 Python
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: 3.11
 
-      # ⚡ Cache pip
-      - name: Cache pip
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
-      # 📚 Instalar dependências
-      - name: Install dependencies
-        run: |
+      - run: |
+          pip install mkdocs-material
           pip install -r requirements.txt || true
-          pip install mkdocs-material matplotlib requests
-          npm install -g markdownlint-cli
 
-      # 🤖 Ingestão (AGORA NO LUGAR CERTO)
-      - name: Ingest documents
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python copilot/ingest.py
+      # 🚀 Apenas o essencial
+      - run: python scripts/generate_metrics.py
+      - run: python scripts/generate_agile_dashboard.py
 
-      # 🧪 Lint (não quebra)
-      - name: Markdown lint
-        run: markdownlint docs/**/*.md || true
+      - run: mkdocs build
 
-      # 🔗 Links quebrados (não quebra)
-      - name: Check broken links
-        uses: lycheeverse/lychee-action@v1
-        with:
-          args: --verbose docs/**/*.md || true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # 🚀 =========================
-      # 🔥 GERAÇÃO AUTOMÁTICA
-      # 🚀 =========================
-
-      - name: Generate engineering metrics
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/generate_metrics.py
-
-      - name: Generate agile dashboard
-        run: python scripts/generate_agile_dashboard.py
-
-      - name: Generate traceability graph
-        run: python scripts/generate_traceability_graph.py
-
-      - name: Generate knowledge graph
-        run: python scripts/generate_knowledge_graph.py
-
-      - name: Generate system atlas
-        run: python scripts/generate_system_atlas.py
-
-      - name: Generate architecture graph
-        run: python scripts/generate_architecture_graph.py
-
-      - name: Generate AI responses
-        run: python scripts/generate_ai_responses.py
-
-      # 🤖 Agentes (não quebram)
-      - name: Run engineering agent
-        run: python copilot/agent.py || true
-
-      - name: Run auto architect
-        run: python copilot/auto_architect.py || true
-
-      - name: Run self evolving agent
-        run: python copilot/self_evolving_agent.py || true
-
-      # 🏗️ Build
-      - name: Build MkDocs
-        run: mkdocs build
-
-      # 🚀 Deploy
-      - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v3
+      - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
-
-      # 📦 Preview PR
-      - name: Upload docs preview
-        if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v4
-        with:
-          name: docs-preview
-          path: site
