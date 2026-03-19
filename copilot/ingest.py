@@ -1,8 +1,11 @@
 import os
-from langchain.document_loaders import DirectoryLoader
+
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
+from langchain_community.document_loaders import DirectoryLoader
+from langchain_community.vectorstores import Chroma
+from langchain.text_splitter import CharacterTextSplitter
+from langchain.embeddings import OpenAIEmbeddings
 
 # 📁 Carrega docs
 loader = DirectoryLoader("docs/", glob="**/*.md")
