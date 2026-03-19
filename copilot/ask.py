@@ -1,63 +1,34 @@
+from langchain.vectorstores import Chroma
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.chat_models import ChatOpenAI
 
-# ask.py
-#
-# Simple CLI interface to query the Engineering Knowledge Graph
-# generated from the documentation.
-#
-# It reads:
-# docs/assets/knowledge-graph.json
-#
-# and allows basic queries about relationships between nodes.
+def ask(question):
 
-import json
+    db = Chroma(
+        persist_directory="db",
+        embedding_function=OpenAIEmbeddings()
+    )
 
-GRAPH_FILE = "docs/assets/knowledge-graph.json"
+    docs = db.similarity_search(question, k=3)
 
+    context = "\n".join([d.page_content for d in docs])
 
-def load_graph():
-    try:
-        with open(GRAPH_FILE, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception as e:
-        print("Error loading graph:", e)
-        return {"nodes": [], "links": []}
+    llm = ChatOpenAI(temperature=0)
 
+    prompt = f"""
+    Responda com base no contexto abaixo:
 
-def find_links(graph, query):
-    results = []
+    {context}
 
-    for link in graph["links"]:
-        if query in link["source"] or query in link["target"]:
-            results.append(link)
+    Pergunta: {question}
+    """
 
-    return results
+    response = llm.predict(prompt)
 
-
-def main():
-    graph = load_graph()
-
-    print("Engineering Copilot CLI")
-    print("-----------------------")
-    print("Type a node name (RF, US, CT, Service) or 'exit' to quit.
-")
-
-    while True:
-        q = input("Query: ").strip()
-
-        if q.lower() in ["exit", "quit"]:
-            break
-
-        results = find_links(graph, q)
-
-        if not results:
-            print("No relationships found.
-")
-        else:
-            print("Relationships:")
-            for r in results:
-                print(" -", r["source"], "->", r["target"])
-            print()
+    return response
 
 
 if __name__ == "__main__":
-    main()
+    while True:
+        q = input("Pergunta: ")
+        print(ask(q))
