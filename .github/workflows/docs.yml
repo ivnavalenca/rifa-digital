@@ -36,6 +36,8 @@ jobs:
       # 📚 Instalar dependências
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
           pip install mkdocs-material matplotlib requests
           npm install -g markdownlint-cli
 
