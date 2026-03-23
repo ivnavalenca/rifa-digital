@@ -3,7 +3,7 @@ import os
 from langchain_community.document_loaders import DirectoryLoader
 from langchain-text-splitters import CharacterTextSplitter
 from langchain_community.vectorstores import Chroma
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 
 # 📂 Caminhos
 DOCS_PATH = "docs/"
