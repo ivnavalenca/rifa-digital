@@ -1,16 +1,26 @@
 from langchain_community.vectorstores import Chroma
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from openai import OpenAI
+from dotenv import load_dotenv
 import os
+
+# 🔑 Carrega variáveis de ambiente
+load_dotenv()
 
 client = OpenAI()
 
 # 🔗 URL base do seu site
 BASE_URL = "https://ivnavalenca.github.io/rifa-digital/"
 
-# 🧠 carregar banco vetorial
-embeddings = OpenAIEmbeddings()
-db = Chroma(persist_directory="copilot/db", embedding_function=embeddings)
+# 🧠 embeddings
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+
+# 🗂️ banco vetorial
+db = Chroma(
+    persist_directory="copilot/db",
+    embedding_function=embeddings
+)
+
 
 def build_links(docs):
     links = []
