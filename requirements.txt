@@ -4,6 +4,7 @@ flask-cors
 openai
 
 langchain
+langchain-openai
 langchain-community
 langchain-text-splitters
 
