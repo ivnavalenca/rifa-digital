@@ -1,5 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from dotenv import load_dotenv
+import traceback
+
+# 🔑 carrega .env
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
@@ -7,7 +12,8 @@ CORS(app)
 try:
     from copilot.ask import ask
 except Exception as e:
-    print("Erro ao importar ask:", e)
+    print("❌ Erro ao importar ask:")
+    traceback.print_exc()
     ask = None
 
 @app.route("/chat", methods=["POST"])
@@ -16,7 +22,7 @@ def chat():
     question = data.get("question")
 
     if not ask:
-        return jsonify({"answer": "IA não configurada."})
+        return jsonify({"answer": "Erro interno: IA não carregada."})
 
     try:
         answer = ask(question)
