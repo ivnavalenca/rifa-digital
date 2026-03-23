@@ -1,6 +1,7 @@
 import os
+from pathlib import Path
 
-from langchain_community.document_loaders import DirectoryLoader
+from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import CharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
@@ -11,18 +12,31 @@ DB_PATH = "copilot/db"
 
 print("📂 Carregando documentos...")
 
-# 🔎 Carrega todos os .md do projeto
-loader = DirectoryLoader(DOCS_PATH, glob="**/*.md")
-documents = loader.load()
+documents = []
+
+# 🔎 Carrega todos os arquivos .md manualmente (SEM unstructured)
+for path in Path(DOCS_PATH).rglob("*.md"):
+    try:
+        loader = TextLoader(str(path), encoding="utf-8")
+        docs = loader.load()
+
+        # 🔗 salva origem (importante para links no chat)
+        for doc in docs:
+            doc.metadata["source"] = str(path)
+
+        documents.extend(docs)
+
+    except Exception as e:
+        print(f"⚠️ Erro ao carregar {path}: {e}")
 
 print(f"📄 {len(documents)} documentos carregados")
 
-# ❗ Validação
+# ❗ validação
 if len(documents) == 0:
     print("❌ Nenhum documento encontrado em docs/")
     exit(1)
 
-# ✂️ Divide em pedaços (chunks)
+# ✂️ dividir em chunks
 splitter = CharacterTextSplitter(
     chunk_size=500,
     chunk_overlap=50
@@ -32,7 +46,7 @@ docs = splitter.split_documents(documents)
 
 print(f"✂️ {len(docs)} chunks criados")
 
-# 🧠 Embeddings
+# 🧠 embeddings
 print("🧠 Gerando embeddings...")
 
 if not os.getenv("OPENAI_API_KEY"):
@@ -41,13 +55,13 @@ if not os.getenv("OPENAI_API_KEY"):
 
 embeddings = OpenAIEmbeddings()
 
-# 🗑️ Limpa DB antigo (evita conflito)
+# 🗑️ remove DB antigo (evita conflito)
 if os.path.exists(DB_PATH):
     import shutil
     shutil.rmtree(DB_PATH)
     print("🗑️ DB antigo removido")
 
-# 💾 Cria banco vetorial
+# 💾 cria banco vetorial
 db = Chroma.from_documents(
     docs,
     embeddings,
