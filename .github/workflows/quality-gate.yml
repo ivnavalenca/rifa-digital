@@ -1,0 +1,32 @@
+name: Quality Gate
+
+on:
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Run tests
+        run: pytest || exit 1
+
+      - name: Check requirements coverage
+        run: |
+          echo "Validando cobertura de requisitos..."
+          grep -q "RF" docs/traceability-matrix.md || exit 1
+
+      - name: Block if failed
+        run: echo "Quality Gate Passed ✅"
