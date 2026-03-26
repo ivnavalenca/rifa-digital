@@ -1,0 +1,7 @@
+{
+  "status": "\ud83d\udd34 Projeto em risco (Issues abertas: 19)",
+  "metrics": "\nDocuments: 0\nRequirements: 0\nUser Stories: 0\nTests: 0\nServices: 0\n",
+  "rf01": "Testes que validam RF01: CT001, CT002",
+  "us01": "US01 \u00e9 implementada pelo servi\u00e7o RifaService",
+  "resumo": "O sistema possui documenta\u00e7\u00e3o, testes e arquitetura integrados."
+}
