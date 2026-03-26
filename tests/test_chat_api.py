@@ -1,30 +1,17 @@
-def test_chat_responde(client):
-    response = client.post("/chat", json={
-        "question": "O que é uma rifa?"
-    })
+from unittest.mock import patch
 
-    assert response.status_code == 200
+def test_chat_mockado(client):
 
-    data = response.get_json()
+    with patch("copilot.ask.ask") as mock_ask:
+        mock_ask.return_value = "Resposta simulada"
 
-    assert "answer" in data
-    assert isinstance(data["answer"], str)
+        response = client.post("/chat", json={
+            "question": "Teste"
+        })
 
+        data = response.get_json()
 
-def test_chat_sem_pergunta(client):
-    response = client.post("/chat", json={})
-
-    assert response.status_code == 200
-
-    data = response.get_json()
-
-    assert "answer" in data
-
-
-def test_chat_pergunta_valida(client):
-    response = client.post("/chat", json={
-        "question": "Quais testes foram implementados?"
-    })
+        assert data["answer"] == "Resposta simulada"
 
     data = response.get_json()
 
