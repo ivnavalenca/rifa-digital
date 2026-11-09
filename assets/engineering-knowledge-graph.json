@@ -1,0 +1,16 @@
+{
+ "nodes":[
+  {"id":"RF01","type":"requirement"},
+  {"id":"US01","type":"story"},
+  {"id":"CT001","type":"test"},
+  {"id":"RifaService","type":"service"},
+  {"id":"RIFA","type":"table"}
+ ],
+
+ "links":[
+  {"source":"RF01","target":"US01"},
+  {"source":"US01","target":"RifaService"},
+  {"source":"US01","target":"CT001"},
+  {"source":"RifaService","target":"RIFA"}
+ ]
+}
